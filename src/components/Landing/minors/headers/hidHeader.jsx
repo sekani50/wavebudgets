@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "../../../../assets/images/waveb.png";
 import "../../../../index.css";
+import {MdNavigateBefore} from "react-icons/md"
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import AuthCard from "../authcard/authcard";
 import CartCard from "../minicartcard/miniCard";

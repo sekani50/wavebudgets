@@ -4,10 +4,11 @@ import HidHeader from "components/Landing/minors/headers/hidHeader";
 import { BsCartPlus } from "react-icons/bs";
 import {MdPreview} from "react-icons/md"
 import WaveFooter from "components/Landing/minors/footer/footer";
-import MobileNav from "components/mobilenav/mobileNav";
+//import MobileNav from "components/mobilenav/mobileNav";
 import ImageSlider from "./imageslider/imageSlider";
-import AuthCard from "components/Landing/minors/authcard/authcard";
+//import AuthCard from "components/Landing/minors/authcard/authcard";
 import MobileBtns from "components/mobilenav/mobileBtns";
+import GroupHeaders from "components/groupHeadings/groupHeaders";
 
 const ProductDetail = () => {
   const [isShow, setisShow] = useState(false)
@@ -21,6 +22,9 @@ const ProductDetail = () => {
       <HidHeader 
       isVisibles={isVisible}
       />
+      <GroupHeaders
+                headings={"Product Descriptions"}
+                />
 
       <div className="mt-[48px] min-[450px]:mt-[60px] sm:mt-[80px] mb-[1rem] w-full bg-white p-2 min-[450px]:p-3 gap-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         <div className="w-full flex flex-col cursor-pointer sm:row-span-2">
