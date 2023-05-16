@@ -32,11 +32,11 @@ const Search = () => {
       window.open(url, "blank").focus();
     }
     return (
-        <div className="w-full relative h-[200px] hidden sm:block mb-[4rem]">
+        <div className="w-full relative h-[200px] hidden min-[450px]:block mb-[4rem]">
               <img className="w-full h-full object-cover" src={pix} alt="pxl" />
         <div className="w-full h-full flex justify-center mx-auto items-center absolute inset-0 bg-[#009999] bg-opacity-30">
 
-        <div className="relative w-[60%] h-10 rounded-3xl">
+        <div className="relative w-[60%] min-[450px]:h-8 md:h-10 rounded-3xl">
         <input
         onChange={(e) => {
             setsearchText(e.target.value)
@@ -53,23 +53,23 @@ const Search = () => {
             <span>Search</span>
         </div>
         </div>
-        <div className="absolute w-[75%] h-20 shadow-lg bottom-[-48px] rounded-xl bg-white grid grid-cols-3 px-2">
+        <div className="cursor-pointer absolute min-[450px]:w-[88vw] h-20 shadow-lg bottom-[-48px] rounded-xl bg-white grid grid-cols-3 px-2">
             <div
             onClick={Lservices}
-            className="flex items-center justify-center space-x-3 text-[15px] h-full">
-                <TbTruckDelivery className="text-[#009999] text-[40px]"/>
+            className="flex items-center justify-center min-[450px]:space-x-2 md:space-x-3 text-sm md:text-[15px] h-full">
+                <TbTruckDelivery className="text-[#009999] min-[450px]:text-[30px] md:text-[40px]"/>
                 <p className="font-semibold">Logistics Services</p>
             </div>
             <div
             onClick={Bseller}
-            className="flex items-center justify-center space-x-3 text-[15px] px-2 border-l border-r h-full">
-                <IoIosCash  className="text-[#009999] text-[40px]"/>
+            className="flex items-center justify-center min-[450px]:space-x-2 md:space-x-3 text-sm md:text-[15px] px-2 border-l border-r h-full">
+                <IoIosCash  className="text-[#009999] min-[450px]:text-[30px] md:text-[40px]"/>
                 <p  className="font-semibold" >Becoming a Seller</p>
             </div>
             <div
             onClick={Rdelivery}
-            className="flex items-center justify-center space-x-3 text-[15px] h-full">
-                <AiOutlineDeliveredProcedure  className="text-[#009999] text-[40px]"/>
+            className="flex items-center justify-center min-[450px]:space-x-2 md:space-x-3 text-sm md:text-[15px]  h-full">
+                <AiOutlineDeliveredProcedure  className="text-[#009999] min-[450px]:text-[30px] md:text-[40px]"/>
                 <p  className="font-semibold" >Ready for Delivery</p>
             </div>
         </div>

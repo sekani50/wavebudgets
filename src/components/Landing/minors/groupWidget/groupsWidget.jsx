@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {HiArrowNarrowRight} from 'react-icons/hi'
 import back from "../../../../assets/Svg/back.svg"
 import foward from "../../../../assets/Svg/foward.svg"
-import LandingWidget from '../landingWidget';
+import LandingWidget from '../scrollWidget/scrollWidget';
 
 
 const GroupWidget = ({heading, response}) => {
