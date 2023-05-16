@@ -86,10 +86,10 @@ const GroupWidget = ({heading, response}) => {
           </div>
         </div>
         <div className="overflow_hidden_wrapper">
-          <div className={isprev ? "prev" : "prev_none"} onClick={prev}>
+          <div className={isprev ? "prevs" : "prev_none"} onClick={prev}>
             <img src={back} alt="back" />
           </div>
-          <div className={isnext ? "next" : "next_none"} onClick={next}>
+          <div className={isnext ? "nexts" : "next_none"} onClick={next}>
             <img src={foward} alt="foward" />
           </div>
           <div ref={slide} className="overflow_auto_wrapper">
@@ -104,11 +104,7 @@ const GroupWidget = ({heading, response}) => {
                   <div
                     className="groupWidget_album_item"
                     onClick={() => {
-                      navigate(`/audiodetail`, {
-                        state: {
-                         
-                        },
-                      });
+                      navigate(`/product`);
                      
                     }}
                     key={idx + 1}

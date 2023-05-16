@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
 import { Toaster } from "react-hot-toast";
-import { HomePage,SignUp } from "Pages";
+import { HomePage,SignIn, SignUp, ProductDetail } from "Pages";
 
 import Scrolltotop from "components/UI/ScrollToTop";
 
@@ -36,7 +36,9 @@ const App = () => {
           {/*    LANDING PAGE */}
         
           <Route path="/" element={<HomePage />} />
-          <Route path="/signin" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/product" element={<ProductDetail />} />
           {/*    AUTH PAGE */}
         </Routes>
       </Router>

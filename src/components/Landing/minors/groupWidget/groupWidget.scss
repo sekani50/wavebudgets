@@ -71,8 +71,8 @@
       overflow-x:hidden;
       position:relative;
   
-      .prev,
-      .next {
+      .prevs,
+      .nexts {
         cursor: pointer;
         position: absolute;
        // top: 30px;
@@ -81,7 +81,7 @@
         color: white;
         font-weight: bold;
         bottom:95px;
-        z-index:90;
+        z-index:40;
         //padding:3px 12px;
         background:rgba(0,0,0,0.6);
         //font-size: 18px;
@@ -91,13 +91,13 @@
         user-select: none;
         
       }
-      .next {
+      .nexts {
         right: 7px;
         @media screen and (max-width:615px) {
           display:none;
         }
       }
-      .prev {
+      .prevs {
         left: 15px;
         @media screen and (max-width:615px) {
           display:none;
