@@ -19,7 +19,7 @@ const GroupHeaders = ({headings}) => {
         <MdNavigateBefore className="text-[22px] text-black " />
         </div>
        
-       <div className="flex space-x-2 items-center min-[450px]:hidden">
+       <div className="flex space-x-2 items-center max-[450px]:hidden">
        <div className="w-10 h-6">
           <img className="w-full h-full" src={logo} alt="" />
         </div>

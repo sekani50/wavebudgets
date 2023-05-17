@@ -7,7 +7,7 @@ const MobileBtns = () => {
   //const { pathname } = useLocation();
 
   return (
-    <div className="min-[450px]:hidden fixed w-full border-t shadow-lg bg-white inset-x-0 flex gap-3 justify-between p-2 bottom-0">
+    <div className="min-[450px]:hidden fixed w-full border-t shadow-lg bg-white inset-x-0 flex gap-3 justify-between p-4 rounded-t-xl bottom-0">
          <button
         
         className="text-white bg-[#009999] flex rounded-2xl py-3 justify-center items-center w-[90%]">

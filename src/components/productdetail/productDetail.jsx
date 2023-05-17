@@ -9,13 +9,14 @@ import ImageSlider from "./imageslider/imageSlider";
 //import AuthCard from "components/Landing/minors/authcard/authcard";
 import MobileBtns from "components/mobilenav/mobileBtns";
 import GroupHeaders from "components/groupHeadings/groupHeaders";
-
+import { useNavigate } from "react-router-dom";
 const ProductDetail = () => {
   const [isShow, setisShow] = useState(false)
     const [isVisible, setIsVisible] = useState(true)
     const [isSlider, setisSlider] = useState(false)
     const [curPrice, setcurPrice] = useState()
     const [curBNPL, setcurBNPL] = useState()
+    const navigate = useNavigate()
 
   return (
     <div className="w-full h-full">
@@ -80,7 +81,9 @@ const ProductDetail = () => {
             Buy now pay later
           </button>
           <button 
-          
+          onClick={() => {
+            navigate("/cart")
+          }}
           className="text-white sm:w-full lg:w-[90%] bg-sky-900 border py-3 space-x-2   rounded-lg flex justify-center items-center w-[90%]">
             <span>
               <BsCartPlus />
