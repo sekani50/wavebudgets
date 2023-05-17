@@ -11,12 +11,12 @@ const MobileBtns = () => {
          <button
         
         className="text-white bg-[#009999] flex rounded-2xl py-3 justify-center items-center w-[90%]">
-          Order now
+          Buy now
         </button>
         <button
      
         className="text-white py-3 bg-sky-900 rounded-2xl flex justify-center items-center w-[90%]">
-          Buy now pay later
+         Buy on installment
         </button>
     </div>
   );

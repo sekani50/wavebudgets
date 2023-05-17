@@ -9,14 +9,62 @@ import ImageSlider from "./imageslider/imageSlider";
 //import AuthCard from "components/Landing/minors/authcard/authcard";
 import MobileBtns from "components/mobilenav/mobileBtns";
 import GroupHeaders from "components/groupHeadings/groupHeaders";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { itemsToCart ,calculateTotal} from "Redux/Actions/ActionCreators";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 const ProductDetail = () => {
+  const {state} = useLocation()
+  const {name, descriptions, price} = state
+  const {cartItems} = useSelector((state) => state.cart)
   const [isShow, setisShow] = useState(false)
     const [isVisible, setIsVisible] = useState(true)
     const [isSlider, setisSlider] = useState(false)
-    const [curPrice, setcurPrice] = useState()
-    const [curBNPL, setcurBNPL] = useState()
+    const [curPrice, setcurPrice] = useState(price)
+    const [curBNPL, setcurBNPL] = useState((price + (price * 0.1)))
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const [count, setCount] = useState(1)
+
+
+    console.log(name, descriptions, price)
+
+    const incItem = () => {
+      setCount(count + 1)
+      setcurPrice(curPrice + price)
+      setcurBNPL(curBNPL + price)
+
+    }
+    const decItem = () => {
+      if (count > 1) {
+        setCount(count - 1)
+      }else  {
+        setCount(1)
+      }
+      if (curPrice === price) {
+        setcurPrice( price)
+        setcurBNPL(price + (price * 0.1))
+      }
+      else {
+        setcurPrice(curPrice - price)
+        setcurBNPL(curBNPL - price)
+  
+      }
+      
+    }
+   const addToCart = () => {
+      const payload = {
+        name,
+        price,
+        curPrice,
+        count
+      }
+      dispatch(itemsToCart(payload, cartItems))
+
+      navigate("/cart")
+      dispatch(calculateTotal(cartItems))
+      toast.success("Item added to cart successfully")
+    }
 
   return (
     <div className="w-full h-full">
@@ -43,21 +91,25 @@ const ProductDetail = () => {
 
         <div className="flex flex-col justify-start space-y-[5%] text-zinc-800">
           <div className="border-b p-2">
-            Name of the product i am purchasing
+            {name}
           </div>
           <p className="border-b p-2">
-            Unit price: <b>₦50,000</b>
+            Outright price: <b>{`₦${price}`}</b>
           </p>
           <p className="border-b p-2">
-            BNPL price: <b>₦50,000</b>
+            BNPL price: <b>{`₦${price + (price * 0.1)}`}</b>
           </p>
 
           <div class="w-[50%] my-2 flex border text-zinc-800 font-semibold bg-white h-10 sm:h-14 items-center rounded-sm sm:rounded-md">
-            <button class="p-2 flex justify-center items-center hover:text-white rounded-l-md hover:bg-zinc-800 h-full w-4/12">
+            <button
+            onClick={incItem}
+            class="p-2 flex justify-center items-center hover:text-white rounded-l-md hover:bg-zinc-800 h-full w-4/12">
               <div>+</div>
             </button>
-            <button class="p-2 border-l border-r h-full w-5/12">2</button>
-            <button class="p-2 flex justify-center items-center rounded-r-md hover:text-white hover:hover:bg-zinc-800 h-full w-4/12">
+            <button class="p-2 border-l border-r h-full w-5/12">{count}</button>
+            <button
+            onClick={decItem}
+            class="p-2 flex justify-center items-center rounded-r-md hover:text-white hover:hover:bg-zinc-800 h-full w-4/12">
               <div>-</div>
             </button>
           </div>
@@ -65,25 +117,23 @@ const ProductDetail = () => {
 
         <div className="flex flex-col justify-center items-center space-y-[3%] p-2 min-[450px]:p-4">
           <div className=" flex w-[90%] sm:w-full lg:w-[90%] justify-between items-center p-2">
-            <span>Unit price:</span> <span><b>₦50,000</b></span>
+            <span>Outright price:</span> <span><b>{`₦${curPrice}`}</b></span>
           </div>
           <div className=" flex w-[90%] sm:w-full lg:w-[90%] justify-between items-center p-2">
-            <span>BNPL price:</span> <span><b>₦50,000</b></span>
+            <span>Installment price:</span> <span><b>{`₦${curBNPL}`}</b></span>
           </div>
           <button
         
           className="text-white sm:w-full lg:w-[90%] bg-[#009999] flex rounded-lg py-3 justify-center items-center w-[90%]">
-            Order now
+            Buy now
           </button>
           <button
        
           className="bg-white sm:w-full lg:w-[90%] border-[#009999] py-3  rounded-lg border flex justify-center items-center w-[90%]">
-            Buy now pay later
+            Buy on installment
           </button>
           <button 
-          onClick={() => {
-            navigate("/cart")
-          }}
+          onClick={addToCart}
           className="text-white sm:w-full lg:w-[90%] bg-sky-900 border py-3 space-x-2   rounded-lg flex justify-center items-center w-[90%]">
             <span>
               <BsCartPlus />
@@ -97,14 +147,7 @@ const ProductDetail = () => {
         <p className="text-[#009999] font-semibold">Product Details</p>
         <p className=" font-semibold">Overview</p>
         <div className="leading-7 min-[450px]:leading-8">
-          The unique and potentially useful properties of nanomaterials include
-          dramatically increased surface areas and reactivities, improved
-          strength-weight ratios, increased electrical conductivity, and changes
-          in color and opacity. Materials designed to take advantage of these
-          properties are finding application in a variety of areas, such as
-          electronics, medicine, and environmental protection. Nanomaterials and
-          nanotechnology provide a powerful method of detection and treatment of
-          trace pollutants in the environment
+         {descriptions}
         </div>
         <div className="grid grid-cols-1 min-[450px]:grid-cols-2">
         <div className="w-full h-[400px] rounded-sm">

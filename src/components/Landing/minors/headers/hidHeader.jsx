@@ -6,11 +6,17 @@ import { FaShoppingCart, FaUser } from "react-icons/fa";
 import AuthCard from "../authcard/authcard";
 import CartCard from "../minicartcard/miniCard";
 import {IoIosSearch} from "react-icons/io"
+import { useSelector } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const HidHeader = ({isVisibles}) => {
+  const {numOfCartItems} = useSelector((state) => state.cart)
   const [isVisible, setisVisisble] = useState(false);
   const [isCart, setisCart] = useState(false);
   const [searchText, setsearchText] = useState()
+  const navigate = useNavigate()
+  const {pathname} = useLocation()
+
 
   return (
     <div className={isVisibles? "bg-white w-full z-50 fixed inset-x-0 top-0 p-3 min-[450px]:py-4 min-[450px]:px-6 min-[450px]:shadow-lg flex justify-between items-center border-b": "hidden"}>
@@ -23,7 +29,7 @@ const HidHeader = ({isVisibles}) => {
         </p>
       </div>
 
-      <div className="hidden min-[450px]:block relative w-[50%] h-6 min-[450px]:h-9 md:h-11 rounded-md">
+      <div className="hidden min-[450px]:block relative w-[50%] h-6 min-[450px]:h-9 md:h-[2.3rem] rounded-md">
         <input
         onChange={(e) => {
             setsearchText(e.target.value)
@@ -59,6 +65,12 @@ const HidHeader = ({isVisibles}) => {
           <AuthCard isVisible={isVisible} />
         </div>
         <div
+        onClick={() => {
+          if (pathname !== "/cart") {
+            navigate("/cart")
+          }
+          
+          }}
           onMouseEnter={() => {
             setisCart(true);
           }}
@@ -67,9 +79,13 @@ const HidHeader = ({isVisibles}) => {
           }}
           className="relative"
         >
+            {numOfCartItems > 0 && <div className="absolute top-[-10px] right-[-10px] bg-[#009999] rounded-full px-2  text-[10px] text-white flex items-center justify-center">
+                    <span>{numOfCartItems}</span>
+
+                </div>}
           <FaShoppingCart className="hidden sm:block hover:text-[#009999]" />
 
-          <CartCard isCart={isCart} />
+         {numOfCartItems === 0 && <CartCard isCart={isCart} />}
         </div>
       </div>
     </div>

@@ -4,11 +4,13 @@ import "../../../../index.css";
 import {FaShoppingCart, FaUser} from "react-icons/fa";
 import AuthCard from "../authcard/authcard";
 import CartCard from "../minicartcard/miniCard";
-
-
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
+    const { numOfCartItems}  = useSelector((state) => state.cart)
     const [isVisible, setisVisisble] = useState(false)
     const [isCart, setisCart] = useState(false)
+    const navigate = useNavigate()
 
 
     return (
@@ -39,6 +41,9 @@ const Header = () => {
                 <AuthCard isVisible={isVisible}/>
                 </div>
                <div
+               onClick={() => {
+               navigate("/cart")
+               }}
                 onMouseEnter={() => {
                     setisCart(true)
                 }}
@@ -46,9 +51,12 @@ const Header = () => {
                     setisCart(false)
                 }}
                className="relative">
+                {numOfCartItems > 0 && <div className="absolute top-[-10px] right-[-10px] bg-[#009999] rounded-full px-2  text-[10px] text-white flex items-center justify-center">
+                    <span>{numOfCartItems}</span>
+
+                </div>}
                <FaShoppingCart className="hidden sm:block hover:text-[#009999]"/>
-              
-              <CartCard isCart={isCart}/>
+               {numOfCartItems === 0 && <CartCard isCart={isCart} />}
                </div>
              
             </div>

@@ -4,15 +4,20 @@ import { useNavigate } from 'react-router-dom';
 import {HiArrowNarrowRight} from 'react-icons/hi'
 import back from "../../../../assets/Svg/back.svg"
 import foward from "../../../../assets/Svg/foward.svg"
-import LandingWidget from '../scrollWidget/scrollWidget';
-
+//import LandingWidget from '../scrollWidget/scrollWidget';
+import { useSelector } from 'react-redux';
+import ScrollWidget from '../scrollWidget/scrollWidget';
 
 const GroupWidget = ({heading, response}) => {
+  const {items} = useSelector((state) => state.items)
     const navigate = useNavigate()
     const slide = useRef()
-    const [data, setData] = useState(['i'])
+    
     const [isnext, setisnext] = useState(true)
   const [isprev, setisprev] = useState(false)
+  const [data, setData] = useState(items)
+
+  console.log(items)
     
   function prev() {
    
@@ -93,24 +98,37 @@ const GroupWidget = ({heading, response}) => {
             <img src={foward} alt="foward" />
           </div>
           <div ref={slide} className="overflow_auto_wrapper">
-            {data.map(
+            {data?.map(
               (
                 {
+                  name,
+                  price,
+                  descriptions
              
                 },
                 idx
               ) => {
+                console.log(name)
                 return (
                   <div
                     className="groupWidget_album_item"
                     onClick={() => {
-                      navigate(`/product`);
+                      navigate(`/product`, {
+                        state: {
+                          name,
+                          descriptions,
+                          price
+                        }
+                      });
                      
                     }}
                     key={idx + 1}
                   >
-                    <LandingWidget
-                     
+                    <ScrollWidget
+                    name={name}
+                    price={price}
+                    descriptions={descriptions}
+  
                     />
                   </div>
                 );

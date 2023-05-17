@@ -37,16 +37,16 @@ const decreaseCount = (data) => {
   };
 };
 
-const getFoodItem = (data) => {
+const getItem = (data) => {
   return {
-    type: type.GET_FOOD_ITEMS,
+    type: type.GET_ITEMS,
     payload: data,
   };
 };
 
-const sumFoodItems = (data) => {
+const updateTotal = (data) => {
   return {
-    type: type.SUM_FOOD_ITEMS,
+    type: type.UPDATE_TOTAL_PRICE,
     payload: data,
   };
 };
@@ -57,30 +57,31 @@ const resetStackPrice = () => {
   };
 };
 
-const getVendorInfo = (data) => {
+const getNums = (data) => {
   return {
-    type: type.GET_VENDOR_INFO,
+    type: type.NUM_OF_ITEMS,
     payload: data,
   };
 };
 
-const getFeaturedVendors = () => {
-  return {
-    type: type.GET_FEATURED_VENDORS,
-  };
-};
 
 const getPreviousOrders = () => {
   return {
     type: type.GET_PREVIOUS_ORDERS,
   };
 };
-const itemsToCart = (payload) => {
+const itemsToCart = (payload, cartItems) => {
+  return (dispatch) => {
+    cartItems.push(payload)
+    dispatch(updatedCart(cartItems))
+  }
+};
+const updatedCart = (payload) => {
   return {
-    type: type.ADD_FOODITEMS_TO_CART,
+    type: type.ADD_ITEMS_TO_CART,
     payload,
   };
-};
+}
 
 const resetCart = () => {
   // return (dispatch) => {
@@ -92,9 +93,25 @@ const resetCart = () => {
   };
 };
 
-const calculateTotalPrice = () => {
+const calculateTotal = (cartItems) => {
+  return (dispatch) => {
+    let total = cartItems.map((value) => value.curPrice)
+    let  nums = total.reduce((acc, item) => acc + parseFloat(item || 0),0)
+ 
+    dispatch(updateTotal(nums))
+    let numItems = cartItems.map((value) => value.count)
+    let totalCount = numItems.reduce((acc, item) => acc + item,0)
+    dispatch(getNums(totalCount))
+  }
+ 
+}
+
+/**
+ * 
+ const calculateTotalPrice = () => {
   return (dispatch, getState) => {
     const { cartItems } = getState().cart;
+  
     const calculatedTotal = cartItems.reduce(
       (acc, curr) => acc + parseFloat(curr.totalPrice || 0),
       0
@@ -104,6 +121,7 @@ const calculateTotalPrice = () => {
   };
 };
 
+
 const addFoodItemsToCart = (data) => {
   return (dispatch, getState) => {
     const { cartItems } = getState().cart;
@@ -112,48 +130,99 @@ const addFoodItemsToCart = (data) => {
     data.id = generateRandomID(10);
     const updatedCart = [...cartItems, data];
     toast.success("Item added successfully");
-    dispatch({ type: "ADD_FOODITEMS_TO_CART", payload: updatedCart });
-    dispatch(calculateTotalPrice());
+   dispatch({ type: "ADD_ITEMS_TO_CART", payload: updatedCart });
+    //dispatch(calculateTotalPrice());
   };
 };
+ */
 
-const increaseSingleCartItems = (id) => {
-  return (dispatch, getState) => {
+
+const increaseSingleCartItems = (id, cartItems) => {
+  return (dispatch) => {
+    let item = cartItems[id]
+    item.count +=1
+    item.curPrice = item.curPrice + item.price
+    cartItems[id].count = item.count
+    cartItems[id].curPrice = item.curPrice
+    dispatch(updatedCart(cartItems))
+    let total = cartItems.map((value) => value.curPrice)
+    let  nums = total.reduce((acc, item) => acc + parseFloat(item || 0),0)
+ 
+    dispatch(updateTotal(nums))
+    let numItems = cartItems.map((value) => value.count)
+    let totalCount = numItems.reduce((acc, item) => acc + item,0)
+    dispatch(getNums(totalCount))
+    //let itemc = cartItems.find((val) => val.id === id)
+    /**
+     * 
     const getCart = getState().cart.cartItems;
     const getItem = getCart.find((item) => item.id === id);
     getItem.quantity += 1;
     getItem.totalPrice = getItem.quantity * +getItem.unitprice;
     const getItemIndex = getCart.findIndex((item) => item.id === id);
     getCart.splice(getItemIndex, 1, getItem);
-    dispatch({ type: "ADD_FOODITEMS_TO_CART", payload: getCart });
+    dispatch({ type: "ADD_ITEMS_TO_CART", payload: getCart });
     console.log("vdv");
     dispatch(calculateTotalPrice());
+     */
   };
 };
 
-const decreaseSingleCartItems = (id) => {
-  return (dispatch, getState) => {
-    const getCart = getState().cart.cartItems;
+const decreaseSingleCartItems = (id, cartItems) => {
+  return (dispatch) => {
+    let item = cartItems[id]
+    if (item.count > 1) {
+      item.count -=1
+      item.curPrice = item.curPrice - item.price
+      cartItems[id].count = item.count
+      cartItems[id].curPrice = item.curPrice
+      dispatch(updatedCart(cartItems))
+      let total = cartItems.map((value) => value.curPrice)
+      let  nums = total.reduce((acc, item) => acc + parseFloat(item || 0),0)
+   
+      dispatch(updateTotal(nums))
+      let numItems = cartItems.map((value) => value.count)
+      let totalCount = numItems.reduce((acc, item) => acc + item,0)
+      dispatch(getNums(totalCount))
+    }
+   
+   /**
+    * 
+   const getCart = getState().cart.cartItems;
     const getItem = getCart.find((item) => item.id === id);
     const getItemIndex = getCart.findIndex((item) => item.id === id);
     if (getItem.quantity > 1) {
       getItem.quantity -= 1;
       getItem.totalPrice = getItem.quantity * +getItem.unitprice;
       getCart.splice(getItemIndex, 1, getItem);
-      dispatch({ type: type.ADD_FOODITEMS_TO_CART, payload: getCart });
+      dispatch({ type: type.ADD_ITEMS_TO_CART, payload: getCart });
       dispatch(calculateTotalPrice());
     }
+    */
   };
 };
 
-const removeFromCart = (id) => {
-  return (dispatch, getState) => {
-    const getCart = getState().cart.cartItems;
+const removeFromCart = (id, cartItems) => {
+  return (dispatch) => {
+    //let item = cartItems[id];
+     //let itemc = cartItems.find((val) => val.id === id)
+     cartItems.splice(id, 1);
+     dispatch(updatedCart(cartItems))
+      let total = cartItems.map((value) => value.curPrice)
+      let  nums = total.reduce((acc, item) => acc + parseFloat(item || 0),0)
+   
+      dispatch(updateTotal(nums))
+      let numItems = cartItems.map((value) => value.count)
+      let totalCount = numItems.reduce((acc, item) => acc + item,0)
+      dispatch(getNums(totalCount))
+    toast.success("Item removed successfully");
+    //dispatch(calculateTotalPrice());
+    /**
+     const getCart = getState().cart.cartItems;
     const getItemIndex = getCart.findIndex((item) => item.id === id);
     getCart.splice(getItemIndex, 1);
-    dispatch({ type: type.ADD_FOODITEMS_TO_CART, payload: getCart });
-    toast.success("Item removed successfully");
-    dispatch(calculateTotalPrice());
+    dispatch({ type: type.ADD_ITEMS_TO_CART, payload: getCart });
+     */
   };
 };
 
@@ -170,30 +239,6 @@ const showCartCount = () => {
   };
 };
 
-const sendOrderToVendor = (data) => {
-  return {
-    type: type.SEND_ORDER_TO_VENDOR,
-    payload: data,
-  };
-};
-const reOrderFromVendor = (data) => {
-  return {
-    type: type.RE_ORDER_FROM_VENDOR,
-    payload: data,
-  };
-};
-const showLiveChat = (data) => {
-  return {
-    type: type.SHOW_LIVE_CHAT,
-    payload: data,
-  };
-};
-const viewChat = (data) => {
-  return {
-    type: type.VIEW_CHAT,
-    payload: data,
-  };
-};
 const getUserPreviousOrderInfo = (data) => {
   return {
     type: type.GET_USER_PREVIOUS_ORDER_INFO,
@@ -279,27 +324,24 @@ const LoginAction = (loginParams, navigate, setLoading) => {
 
 export {
   getUserPreviousOrderInfo,
-  getPreviousOrders,
-  reOrderFromVendor,
-  getFeaturedVendors,
   showCartCount,
-  sendOrderToVendor,
   resetCart,
-  viewChat,
-  showLiveChat,
   increaseSingleCartItems,
   decreaseSingleCartItems,
-  getVendorInfo,
+  getNums,
   addMealPackToCart,
-  sumFoodItems,
+  updateTotal,
   resetStackPrice,
   removeFromCart,
-  addFoodItemsToCart,
-  getFoodItem,
+
+  getItem,
+  itemsToCart,
   decreaseCount,
   IncreaseCount,
   LoginAction,
   loginSuccess,
   logout,
+  updatedCart,
+  calculateTotal,
   registration,
 };

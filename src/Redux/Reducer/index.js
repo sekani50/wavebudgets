@@ -1,21 +1,14 @@
 import { combineReducers } from "redux";
 import User from "./user";
 import Cart from "./cart";
-import FoodItems from "./foodItems";
-import SuggestedMeal from "./suggestedMeals"
-import Chat from "./chat"
-import FeaturedVendors from "./featuredVendor"
-import PreviousOrders from "./previousOrders"
-import LiveChat from "./livechat";
+import Items from "./items";
+
 const appReducer = combineReducers({
   user: User,
   cart:Cart,
-  foodItems:FoodItems,
-  suggestedMeal:SuggestedMeal,
-  chat:Chat,
-  featuredVendors:FeaturedVendors,
-  previousOrders:PreviousOrders,
-  livechat: LiveChat,
+  items: Items
+ 
+
 });
 
 const rootReducer = (state, action) => {
