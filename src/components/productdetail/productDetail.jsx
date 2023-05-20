@@ -25,6 +25,7 @@ const ProductDetail = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [count, setCount] = useState(1)
+    const bnpl= price + (price * 0.1)
 
 
     console.log(name, descriptions, price)
@@ -32,7 +33,7 @@ const ProductDetail = () => {
     const incItem = () => {
       setCount(count + 1)
       setcurPrice(curPrice + price)
-      setcurBNPL(curBNPL + price)
+      setcurBNPL(curBNPL + bnpl)
 
     }
     const decItem = () => {
@@ -47,7 +48,7 @@ const ProductDetail = () => {
       }
       else {
         setcurPrice(curPrice - price)
-        setcurBNPL(curBNPL - price)
+        setcurBNPL(curBNPL - bnpl)
   
       }
       
