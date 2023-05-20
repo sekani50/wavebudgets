@@ -55,8 +55,8 @@ const ImageSlider = ({isSlider, setisSlider, data}) => {
             <div className="min-w-max flex h-full ">
               <div
                 className="w-full h-full rounded-tl-lg sm:rounded-l-xl rounded-tr-lg sm:rounded-tr-none"
-                v-for="(img, index) in image"
-                key="index"
+               
+               
               >
                 <img
                   className="w-full h-full rounded-tl-lg sm:rounded-l-xl rounded-tr-lg sm:rounded-tr-none object-fill"

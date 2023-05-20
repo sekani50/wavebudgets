@@ -76,8 +76,9 @@ const ProductDetail = () => {
                 />
 
       <div className="mt-[48px] min-[450px]:mt-[60px] sm:mt-[80px] mb-[1rem] w-full bg-white p-2 min-[450px]:p-3 gap-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="w-full flex flex-col cursor-pointer sm:row-span-2">
-          <div className="w-full h-[450px] rounded-sm">
+       <div className="w-full mx-auto">
+       <div className="w-[93%] mx-auto flex flex-col cursor-pointer sm:row-span-2">
+          <div className="w-full h-[300px] min-[450px]:h-[400px]  rounded-sm">
             <img className="w-full h-full rounded-sm" src={pxl} alt="pxl" />
           </div>
           <button
@@ -89,6 +90,8 @@ const ProductDetail = () => {
           </button>
         </div>
 
+       </div>
+       
         <div className="flex flex-col justify-start space-y-[5%] text-zinc-800">
           <div className="border-b p-2">
             {name}

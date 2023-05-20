@@ -149,6 +149,9 @@ body {
 #not-bold {
   @apply font-normal
 }
+.collection {
+  font-family: Montserrat;
+}
 
 /* The container */
 .container {

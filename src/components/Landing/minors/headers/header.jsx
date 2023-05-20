@@ -20,7 +20,11 @@ const Header = () => {
                 <div className="w-10 h-6">
                     <img className="w-full h-full" src={logo} alt="" />
                 </div>
-                <p className="uppercase special font-semibold text-[#009999]">Wave Bugdet</p>
+                <div className="flex flex-col justify-start">
+                <div className="uppercase font-semibold text-[#009999]">Wave</div>
+                <div className="uppercase font-semibold text-[#009999]">Budget</div>
+                </div>
+              
             </div>
 
             <div className="hide cursor-pointer sm:flex items-center sm:space-x-4 space-x-2">
@@ -33,7 +37,7 @@ const Header = () => {
                 }}
                 className="group relative text-black">
                     <div className="flex group-hover:text-[#009999] text-[16px] items-center space-x-2">
-                    <span className="text-sm">Sign in</span>
+                    <span className="hidden sm:block text-sm">Sign in</span>
                 <FaUser className="hidden sm:block " />
                     </div>
                  

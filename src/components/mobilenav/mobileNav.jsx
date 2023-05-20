@@ -13,16 +13,16 @@ const MobileNav = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="min-[450px]:hidden border-t shadow-lg fixed w-full bg-white inset-x-0 flex justify-between p-2 bottom-0">
+    <div className="min-[450px]:hidden border-t shadow-lg fixed w-full bg-white inset-x-0 flex justify-between py-2 px-4 bottom-0">
       {pathname === "/" ? (
         <div className="text-[#009999] flex flex-col space-y-1 items-center justify-center">
           <HiHome className="text-[20px]" />
           <span className="font-medium"> Home</span>
         </div>
       ) : (
-        <div className="text-black flex flex-col space-y-1 items-center justify-center">
+        <div className="text-zinc-800 flex flex-col space-y-1 items-center justify-center">
           <HiOutlineHome className="text-[20px]" />
-          <span className="font-medium">Home</span>
+          <span className="font-normal">Home</span>
         </div>
       )}
       {pathname === "/cart" ? (
@@ -32,9 +32,9 @@ const MobileNav = () => {
        </div>
         
       ) : (
-        <div className="text-black flex flex-col space-y-1 items-center justify-center">
+        <div className="text-zinc-800 flex flex-col space-y-1 items-center justify-center">
          <AiOutlineShoppingCart className="text-[20px]" />
-          <span className="font-medium">Cart</span>
+          <span className="font-normal">Cart</span>
         </div>
        
       )}
@@ -42,12 +42,12 @@ const MobileNav = () => {
           <div className="text-[#009999] flex flex-col space-y-1 items-center justify-center">
       
       <HiUserCircle className="text-[20px]" />
-          <span className="font-medium">My wave</span>
+          <span className="font-normal">My wave</span>
           </div>
       ) : (
-        <div className="text-black flex flex-col space-y-1 items-center justify-center">
+        <div className="text-zinc-800 flex flex-col space-y-1 items-center justify-center">
          <HiOutlineUserCircle className="text-[20px]"/>
-         <span className="font-medium">My wave</span>
+         <span className="font-normal">My wave</span>
        </div>
        
       )}
