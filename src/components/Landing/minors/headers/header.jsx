@@ -55,7 +55,7 @@ const Header = () => {
                     setisCart(false)
                 }}
                className="relative">
-                {numOfCartItems > 0 && <div className="absolute top-[-10px] right-[-10px] bg-[#009999] rounded-full px-2  text-[10px] text-white flex items-center justify-center">
+                {numOfCartItems > 0 && <div className="hidden sm:flex absolute top-[-10px] right-[-10px] bg-[#009999] rounded-full px-2  text-[10px] text-white  items-center justify-center ">
                     <span>{numOfCartItems}</span>
 
                 </div>}

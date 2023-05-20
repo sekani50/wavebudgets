@@ -8,7 +8,7 @@ const GroupHeaders = ({headings}) => {
     const navigate = useNavigate()
     return (
 
-        <div className="min-[450px]:hidden fixed flex justify-between border-b shadow-lg items-center inset-x-0 p-2 bg-white z-40">
+        <div className="min-[450px]:hidden fixed flex justify-between border-b shadow-lg items-center inset-x-0 px-3 py-2 bg-white z-40">
              <div className="flex space-x-2 items-center">
         <div
         onClick={() => {
