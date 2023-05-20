@@ -17,7 +17,7 @@ const UserCart = () => {
       <HidHeader isVisibles={!isShow} />
       <GroupHeaders headings={"Shopping Cart"} />
 
-      <div className="mt-[65px]  h-full relative min-[450px]:mt-[60px] sm:mt-[80px] mb-[1rem] w-full p-2 min-[450px]:p-3 gap-6 flex flex-col">
+      <div className="mt-[56px]  h-full relative min-[450px]:mt-[60px] sm:mt-[80px] mb-[1rem] w-full p-2 min-[450px]:p-3 gap-6 flex flex-col">
        {cartItems.length === 0 && <div className=" m-auto absolute w-[320px] inset-0 flex flex-col justify-center items-center space-y-[4%] h-fit">
           <div className="w-[128px] h-[128px]">
             <img className="w-full h-full" src={empty} alt="" />

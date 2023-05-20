@@ -12,7 +12,7 @@ const DetailPage = () => {
   const [isVisible, setisVisible] = useState(false);
   const { navtitle } = state;
   return (
-    <div className="w-full h-full">
+    <div className="max-[450px]:mt-[56px] w-full h-full">
       <VisHeader />
       <HidHeader isVisibles={isVisible} />
 

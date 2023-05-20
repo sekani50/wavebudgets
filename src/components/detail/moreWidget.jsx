@@ -8,7 +8,7 @@ const MoreWidget = () => {
     const navigate = useNavigate()
     return (
 
-        <div className="mt-[1rem] min-[450px]:mt-[2rem] px-[2%] md:px-[1%] lg:px-[2%] space-y-[1rem]">
+        <div className="mt-[4rem] min-[450px]:mt-[2rem] px-[2%] md:px-[1%] lg:px-[2%] space-y-[1rem]">
 
             <div className="mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-5">
             {data?.map (({name, descriptions, price, available}, idx) => {
