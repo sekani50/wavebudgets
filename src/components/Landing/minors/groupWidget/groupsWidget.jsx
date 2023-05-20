@@ -103,7 +103,8 @@ const GroupWidget = ({heading, response}) => {
                 {
                   name,
                   price,
-                  descriptions
+                  descriptions,
+                  available
              
                 },
                 idx
@@ -117,7 +118,8 @@ const GroupWidget = ({heading, response}) => {
                         state: {
                           name,
                           descriptions,
-                          price
+                          price,
+                          available
                         }
                       });
                      

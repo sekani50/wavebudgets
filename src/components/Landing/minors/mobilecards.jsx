@@ -2,21 +2,16 @@ import React from "react";
 import {IoIosCash} from "react-icons/io"
 import {AiOutlineDeliveredProcedure} from "react-icons/ai"
 import {GiTakeMyMoney} from 'react-icons/gi'
+import { useNavigate } from "react-router-dom";
 
 
 const MobileCards = () => {
+  const navigate = useNavigate()
 
-    
-    function Bseller () {
-        const url =
-        "https://wa.me/2348118617926?text=" + "   I want to become a seller "
-
-      window.open(url, "blank").focus();
-    }
-
+ 
     function Lservices () {
         const url =
-        "https://wa.me/2348118617926?text=" + "  I want to know more about the logistics service "
+        "https://wa.me/2348137960202?text=" + "  I want to know more about the logistics service "
 
       window.open(url, "blank").focus();
     }
@@ -24,7 +19,7 @@ const MobileCards = () => {
     
     function Rdelivery () {
         const url =
-        "https://wa.me/2348118617926?text=" + "   I want to know more about the delivery service and process "
+        "https://wa.me/2348137960202?text=" + "   I want to know more about the delivery service and process "
 
       window.open(url, "blank").focus();
     }
@@ -36,10 +31,12 @@ const MobileCards = () => {
             onClick={Lservices}
             className="flex items-center justify-center space-x-2 h-full rounded-lg bg-[#009999] min-w-max px-2">
                 <GiTakeMyMoney className="text-white text-[20px]"/>
-                <p className=" text-sm">Shop and Earn</p>
+                <p className=" text-sm">Shop to Earn</p>
             </div>
             <div
-            onClick={Bseller}
+              onClick={() => {
+                navigate("/activate-account")
+              }}
             className="flex items-center justify-center space-x-2 h-full rounded-lg bg-orange-500 min-w-max px-2">
                 <IoIosCash  className="text-white text-[20px]"/>
                 <p  className=" text-sm" >Become a Seller</p>
@@ -48,7 +45,7 @@ const MobileCards = () => {
             onClick={Rdelivery}
             className="flex items-center justify-center space-x-2 h-full rounded-lg bg-cyan-600 min-w-max px-2">
                 <AiOutlineDeliveredProcedure  className="text-white text-[20px]"/>
-                <p  className=" text-sm" >Ready for Delivery</p>
+                <p  className=" text-sm" >Pay on Installment</p>
             </div>
 
         </div>

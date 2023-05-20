@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
 const ProductDetail = () => {
   const {state} = useLocation()
-  const {name, descriptions, price} = state
+  const {name, descriptions, price, available} = state
   const {cartItems} = useSelector((state) => state.cart)
   const [isShow, setisShow] = useState(false)
     const [isVisible, setIsVisible] = useState(true)
@@ -102,6 +102,10 @@ const ProductDetail = () => {
           </p>
           <p className="border-b p-2">
             BNPL price: <b>{`₦${price + (price * 0.1)}`}</b>
+          </p>
+
+          <p className="border-b p-2">
+            Available Qty: <b>{`${available} pieces`}</b>
           </p>
 
           <div class="w-[50%] my-2 flex border text-zinc-800 font-semibold bg-white h-10 sm:h-14 items-center rounded-sm sm:rounded-md">

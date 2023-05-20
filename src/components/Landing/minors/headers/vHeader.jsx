@@ -9,7 +9,7 @@ import { IoIosSearch } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const HidHeader = ({ isVisibles }) => {
+const VisHeader = () => {
   const { numOfCartItems } = useSelector((state) => state.cart);
   const [isVisible, setisVisisble] = useState(false);
   const [isCart, setisCart] = useState(false);
@@ -19,11 +19,7 @@ const HidHeader = ({ isVisibles }) => {
 
   return (
     <div
-      className={
-        isVisibles
-          ? "bg-white w-full z-50 fixed inset-x-0 top-0 p-2 min-[450px]:py-3 min-[450px]:px-5 min-[450px]:shadow-lg flex justify-between items-center border-b"
-          : "hidden"
-      }
+      className="bg-white w-full p-2 min-[450px]:py-3 min-[450px]:px-5 shadow-lg flex justify-between items-center border-b"
     >
       <div className="flex space-x-2 items-center">
         <div className="w-10 h-6">
@@ -98,4 +94,4 @@ const HidHeader = ({ isVisibles }) => {
   );
 };
 
-export default HidHeader;
+export default VisHeader;

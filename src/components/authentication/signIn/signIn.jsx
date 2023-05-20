@@ -21,12 +21,15 @@ const SignIn = () => {
 
         <div className='w-full h-full fixed inset-0 '>
             <div className='w-full h-full'>
-            <div className='bg-white py-4 px-6 min-[450px]:py-6 min-[450px]:px-4'>
+            <div className='bg-white py-3 px-6 min-[450px]:py-4 min-[450px]:px-4'>
             <div className="flex space-x-2 items-center" >
                 <div className="w-10 h-6">
                     <img className="w-full h-full" src={logo} alt="" />
                 </div>
-                <p className="special font-semibold uppercase text-[#009999]">Wave Bugdet</p>
+                <div className="flex flex-col justify-start">
+                <div className="uppercase font-semibold text-[#009999]">Wave</div>
+                <div className="uppercase font-semibold text-[#009999]">Budget</div>
+                </div>
             </div>
             </div>
             <div className='bg-teal-100 flex justify-around  w-full h-full items-center'>

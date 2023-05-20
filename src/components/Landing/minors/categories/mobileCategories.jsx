@@ -93,7 +93,7 @@ const MobileCategories = () => {
                 onClick={() => {
                   navigate(`/detail`, {
                     state: {
-                      cats,
+                      navtitle:cats,
                     },
                   });
                 }}

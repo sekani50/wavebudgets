@@ -3,11 +3,13 @@ import pix from  "../../../assets/images/pxl2.jpg";
 import {IoIosSearch,IoIosCash} from "react-icons/io"
 import {AiOutlineDeliveredProcedure} from "react-icons/ai"
 import {GiTakeMyMoney} from 'react-icons/gi'
+import { useNavigate } from "react-router-dom";
 
 
 const Search = ({setIsVisible}) => {
     const [searchText, setsearchText] = useState()
     const observeEl = useRef()
+    const navigate = useNavigate()
 
 
          /// Get the exiting element
@@ -35,7 +37,7 @@ const Search = ({setIsVisible}) => {
 
     function Lservices () {
         const url =
-        "https://wa.me/2348118617926?text=" + "  I want to know more about the logistics service "
+        "https://wa.me/2348137960202?text=" + "  I want to know how i can shop to earn "
 
       window.open(url, "blank").focus();
     }
@@ -43,7 +45,7 @@ const Search = ({setIsVisible}) => {
     
     function Rdelivery () {
         const url =
-        "https://wa.me/2348118617926?text=" + "   I want to know more about the delivery service and process "
+        "https://wa.me/2348137960202?text=" + "   I want to know about buying on installment "
 
       window.open(url, "blank").focus();
     }
@@ -76,10 +78,12 @@ const Search = ({setIsVisible}) => {
             onClick={Lservices}
             className="flex items-center justify-center min-[450px]:space-x-2 md:space-x-3 text-sm md:text-[15px] h-full">
                 <GiTakeMyMoney className="text-[#009999] min-[450px]:text-[30px] md:text-[40px]"/>
-                <p className="font-semibold hover:text-[#009999]">Shop and Earn</p>
+                <p className="font-semibold hover:text-[#009999]">Shop to Earn</p>
             </div>
             <div
-            onClick={Bseller}
+            onClick={() => {
+              navigate("/activate-account")
+            }}
             className="flex items-center justify-center min-[450px]:space-x-2 md:space-x-3 text-sm md:text-[15px] px-2 border-l border-r h-full">
                 <IoIosCash  className="text-[#009999] min-[450px]:text-[30px] md:text-[40px]"/>
                 <p  className="font-semibold hover:text-[#009999]" >Become a Seller</p>
@@ -88,7 +92,7 @@ const Search = ({setIsVisible}) => {
             onClick={Rdelivery}
             className="flex items-center justify-center min-[450px]:space-x-2 md:space-x-3 text-sm md:text-[15px]  h-full">
                 <AiOutlineDeliveredProcedure  className="text-[#009999] min-[450px]:text-[30px] md:text-[40px]"/>
-                <p  className="font-semibold hover:text-[#009999]" >Ready for Delivery</p>
+                <p  className="font-semibold hover:text-[#009999]" >Buy on Installment</p>
             </div>
         </div>
        

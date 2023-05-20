@@ -1,25 +1,28 @@
-import React,{useState} from 'react';
-import pay from "../../../assets/images/pay.png";
+import React, {useState} from 'react';
+import buy from "../../../assets/images/buy.jpg";
 import viewpassword from "../../../assets/Svg/viewpassword.svg";
 import logo from "../../../assets/images/waveb.png"
 
-
-const SignUp = () => {
+const MerchantSignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [storeName, setStorename] = useState("")
+    const [address, setAddress] = useState("")
 
     
   const handleSubmit = () => {
     let form = {
       email: email,
       password: password,
-      type: "Customer",
+      store:storeName,
+      address,
+      type: "Merchant",
     };
 }
 
     return (
-   
+
         <div className='w-full h-full fixed inset-0 '>
             <div className='w-full h-full'>
             <div className='bg-white py-3 px-6 min-[450px]:py-4 min-[450px]:px-4'>
@@ -33,21 +36,45 @@ const SignUp = () => {
                 </div>
             </div>
             </div>
-            <div className='bg-gray-300 flex justify-around  w-full h-full items-center'>
+            <div className='bg-teal-100 flex justify-around  w-full h-full items-center'>
 
-                <div className='hidden md:block w-[350px] h-[350px] lg:w-[400px] lg:h-[400px]'>
-                    <img className='w-full h-full mix-blend-multiply' src={pay} alt="pay" />
+                <div className='hidden md:block md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px]'>
+                    <img className='w-full h-full mix-blend-multiply' src={buy} alt="buy" />
  
                 </div>
 
                 <div className='w-[80vw] h-fit min-[450px]:w-[60%] min-[450px]:h-[60%] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] flex flex-col justify-center items-center bg-white p-4 space-y-3 rounded-xl shadow-lg'>
-                <p className='text-zinc-800 font-semibold'>Sign Up</p>
+              <p className='text-zinc-800 font-semibold'>Sign Up</p>
+              <div className="form-group space-y-3 w-full">
+          <label className="block font-semibold text-zinc-800" htmlFor="name">
+            Store Name
+          </label>
+          <input
+            className="block form__input input-field border border-black  rounded-md focus:outline-none w-full h-10 sm:h-11 px-4"
+            type="text"
+            placeholder=""
+            name="name"
+            onChange={(e) => setStorename(e.target.value)}
+          />
+        </div>
+        <div className="form-group space-y-3 w-full">
+          <label className="block font-semibold text-zinc-800" htmlFor="address">
+            Location Address
+          </label>
+          <input
+            className="block form__input input-field border border-black  rounded-md focus:outline-none w-full h-10 sm:h-11 px-4"
+            type="text"
+            placeholder=""
+            name="address"
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </div>
                 <div className="form-group space-y-3 w-full">
           <label className="block font-semibold text-zinc-800" htmlFor="email">
             Email Address
           </label>
           <input
-            className="block form__input input-field border border-black  rounded-md focus:outline-none w-full  h-10 sm:h-11 px-4"
+            className="block form__input input-field border border-black  rounded-md focus:outline-none w-full h-10 sm:h-11 px-4"
             type="email"
             placeholder=""
             name="email"
@@ -86,7 +113,7 @@ const SignUp = () => {
 
         <button
         className="bg-[#009999] text-white sm:py-3 py-2 rounded-md flex items-center w-full justify-center"
-        >Sign up</button>
+        >Sign Up</button>
 
 
                 </div>
@@ -100,4 +127,4 @@ const SignUp = () => {
     )
 }
 
-export default SignUp
+export default MerchantSignUp 
