@@ -74,13 +74,13 @@ const GroupWidget = ({heading, response}) => {
           </p>
           <div
             onClick={() => {
-              navigate("/more", {
+              navigate("/detail", {
                 state: {
                   name: "",
                   typeOf: "",
                   id: "",
                   img: "",
-                  navtitle: "group",
+                  navtitle: heading,
                 },
               });
             }}

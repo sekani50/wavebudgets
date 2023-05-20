@@ -8,6 +8,8 @@ import ProductWidget from "./minors/productWidget";
 import WaveFooter from "./minors/footer/footer";
 import MobileNav from "components/mobilenav/mobileNav";
 import HidHeader from "./minors/headers/hidHeader";
+import ItemCategories from "./minors/categories/itemCategories";
+import MobileCategories from "./minors/categories/mobileCategories";
 const HomePage = () => {
     const [isVisible, setIsVisible] = useState(false)
 
@@ -22,8 +24,10 @@ const HomePage = () => {
       isVisibles={isVisible} 
       setIsVisible={setIsVisible}
       />
-
+      
       <div className="mx-auto mb-[1rem] sm:p-0 p-3 w-full min-[450px]:w-[97vw] lg:w-[88vw]">
+        <ItemCategories/>
+        <MobileCategories/>
         <GroupWidget heading={"Best Selling"} />
         <GroupWidget heading={"New Arrivals"} />
         <ProductWidget />

@@ -1,8 +1,7 @@
 import React from "react";
 import {IoIosCash} from "react-icons/io"
-import  {TbTruckDelivery} from "react-icons/tb"
 import {AiOutlineDeliveredProcedure} from "react-icons/ai"
-
+import {GiTakeMyMoney} from 'react-icons/gi'
 
 
 const MobileCards = () => {
@@ -36,14 +35,14 @@ const MobileCards = () => {
              <div
             onClick={Lservices}
             className="flex items-center justify-center space-x-2 h-full rounded-lg bg-[#009999] min-w-max px-2">
-                <TbTruckDelivery className="text-white text-[20px]"/>
-                <p className=" text-sm">Logistics Services</p>
+                <GiTakeMyMoney className="text-white text-[20px]"/>
+                <p className=" text-sm">Shop and Earn</p>
             </div>
             <div
             onClick={Bseller}
             className="flex items-center justify-center space-x-2 h-full rounded-lg bg-orange-500 min-w-max px-2">
                 <IoIosCash  className="text-white text-[20px]"/>
-                <p  className=" text-sm" >Becoming a Seller</p>
+                <p  className=" text-sm" >Become a Seller</p>
             </div>
             <div
             onClick={Rdelivery}

@@ -1,9 +1,8 @@
 import React, {useState,useEffect,useRef, useCallback} from "react";
 import pix from  "../../../assets/images/pxl2.jpg";
 import {IoIosSearch,IoIosCash} from "react-icons/io"
-import  {TbTruckDelivery} from "react-icons/tb"
 import {AiOutlineDeliveredProcedure} from "react-icons/ai"
-
+import {GiTakeMyMoney} from 'react-icons/gi'
 
 
 const Search = ({setIsVisible}) => {
@@ -76,20 +75,20 @@ const Search = ({setIsVisible}) => {
             <div
             onClick={Lservices}
             className="flex items-center justify-center min-[450px]:space-x-2 md:space-x-3 text-sm md:text-[15px] h-full">
-                <TbTruckDelivery className="text-[#009999] min-[450px]:text-[30px] md:text-[40px]"/>
-                <p className="font-semibold">Logistics Services</p>
+                <GiTakeMyMoney className="text-[#009999] min-[450px]:text-[30px] md:text-[40px]"/>
+                <p className="font-semibold hover:text-[#009999]">Shop and Earn</p>
             </div>
             <div
             onClick={Bseller}
             className="flex items-center justify-center min-[450px]:space-x-2 md:space-x-3 text-sm md:text-[15px] px-2 border-l border-r h-full">
                 <IoIosCash  className="text-[#009999] min-[450px]:text-[30px] md:text-[40px]"/>
-                <p  className="font-semibold" >Becoming a Seller</p>
+                <p  className="font-semibold hover:text-[#009999]" >Become a Seller</p>
             </div>
             <div
             onClick={Rdelivery}
             className="flex items-center justify-center min-[450px]:space-x-2 md:space-x-3 text-sm md:text-[15px]  h-full">
                 <AiOutlineDeliveredProcedure  className="text-[#009999] min-[450px]:text-[30px] md:text-[40px]"/>
-                <p  className="font-semibold" >Ready for Delivery</p>
+                <p  className="font-semibold hover:text-[#009999]" >Ready for Delivery</p>
             </div>
         </div>
        
