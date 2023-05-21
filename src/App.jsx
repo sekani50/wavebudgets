@@ -10,6 +10,7 @@ import {
   DetailPage,
   ActivationCard,
   MerchantSignUp,
+  AddToStore,
 } from "Pages";
 
 import Scrolltotop from "components/UI/ScrollToTop";
@@ -52,6 +53,7 @@ const App = () => {
           <Route path="/detail" element={<DetailPage />} />
           <Route path="/activate-account" element={<ActivationCard />} />
           <Route path="/register" element={<MerchantSignUp />} />
+          <Route path="/store" element={<AddToStore />} />
           {/*    AUTH PAGE */}
         </Routes>
       </Router>

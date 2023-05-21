@@ -6,6 +6,9 @@ import UserCart from "components/User/cart/cart";
 import DetailPage from "components/detail/detailPage";
 import ActivationCard from "components/merchants/activationCard";
 import MerchantSignUp from "components/merchants/authentication/msignup";
+import AddToStore from "components/merchants/addtostore";
+
+
 export {
     HomePage,
     SignIn,
@@ -15,6 +18,7 @@ export {
     DetailPage,
     ActivationCard,
     MerchantSignUp,
+    AddToStore
 
 }
 
