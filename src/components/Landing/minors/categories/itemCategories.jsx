@@ -9,7 +9,9 @@ import {
 import { TbBabyCarriage } from "react-icons/tb";
 import health from "../../../../assets/Svg/health.svg";
 import elect from "../../../../assets/Svg/elect.svg";
+import auto from "../../../../assets/Svg/auto.svg";
 import fashion from "../../../../assets/Svg/fashion.svg";
+
 import appliances from "../../../../assets/Svg/appliances.svg";
 import { useNavigate } from "react-router-dom";
 const ItemCategories = () => {
@@ -25,7 +27,7 @@ const ItemCategories = () => {
 
   return (
     <div className="max-[1000px]:hidden gap-6 grid grid-cols-6 bg-white rounded-md p-4">
-      <div className="w-fit col-span-1 space-y-3 cursor-pointer">
+      <div className="w-fit text-[14px] col-span-1 space-y-4 cursor-pointer">
         <div
           onClick={() => {
             navigate("/detail", {
@@ -134,6 +136,21 @@ const ItemCategories = () => {
             <img src={fashion} alt="" />
           </div>
           <span className="capitalize">Fashion</span>
+        </div>
+        <div
+          onClick={() => {
+            navigate("/detail", {
+              state: {
+                navtitle: "Automobile",
+              },
+            });
+          }}
+          className="flex  space-x-2 justify-start items-center"
+        >
+          <div className="w-[20px] h-[20px]">
+            <img src={auto} alt="" />
+          </div>
+          <span className="capitalize">Automobile</span>
         </div>
         <div
           onClick={() => {

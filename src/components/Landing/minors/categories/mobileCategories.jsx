@@ -13,7 +13,7 @@ import estate from "../../../../assets/images/estate.jpg";
 import drink from "../../../../assets/images/drink.png";
 import baby from "../../../../assets/images/baby.jpg";
 import pharm from "../../../../assets/images/pharm.jpg";
-
+import auto from "../../../../assets/images/autom.jpg";
 const MobileCategories = () => {
   const navigate = useNavigate();
   const slide = useRef();
@@ -29,6 +29,7 @@ const MobileCategories = () => {
     { cats: "Drinks & Beverages", img: drink },
     { cats: "FoodStuffs", img: food },
     { cats: "Fashion", img: fashion },
+    { cats: "Automobile", img: auto },
     { cats: "Appliances", img: appliances },
     { cats: "Baby Products", img: baby },
   ];

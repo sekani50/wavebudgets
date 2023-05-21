@@ -13,7 +13,7 @@ const SignIn = () => {
     let form = {
       email: email,
       password: password,
-      type: "Customer",
+      
     };
 }
 

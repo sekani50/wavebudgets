@@ -35,7 +35,7 @@ const MobileCards = () => {
             </div>
             <div
               onClick={() => {
-                navigate("/activate-account")
+                navigate("/register")
               }}
             className="flex items-center justify-center space-x-2 h-full rounded-lg bg-orange-500 min-w-max px-2">
                 <IoIosCash  className="text-white text-[20px]"/>
