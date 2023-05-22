@@ -16,6 +16,7 @@ const Header = () => {
     const {currentUser} = useSelector((state) => state.user)
 
     useEffect(() => {
+        if(!currentUser) return
        async function getUser () {
        await getExistingDoc(currentUser)
        .then((res) => {

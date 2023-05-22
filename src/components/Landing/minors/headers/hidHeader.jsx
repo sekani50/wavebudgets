@@ -21,6 +21,7 @@ const HidHeader = ({ isVisibles }) => {
   const {currentUser} = useSelector((state) => state.user)
   
   useEffect(() => {
+    if(!currentUser) return
     async function getUser () {
     await getExistingDoc(currentUser)
     .then((res) => {
@@ -87,7 +88,7 @@ const HidHeader = ({ isVisibles }) => {
           className="group relative hidden sm:block text-black"
         >
           <div className="flex group-hover:text-[#009999] text-[16px] items-center space-x-2">
-            <span className="hidden sm:block text-sm">Sign in</span>
+          {name ? <span className="capitalize hidden sm:block text-sm">{name.split(" ")[0] || name}</span>:<span className="hidden sm:block text-sm">Sign in</span>}
             <FaUser className="hidden sm:block " />
           </div>
 

@@ -70,8 +70,8 @@ const MerchantSignUp = () => {
             console.log(res);
 
             await saveMerchantID(uid, {
-              userId: res.user.uid,
-              key: generateRandomID(15),
+              userId: uid,
+              key: generateRandomID(20),
               storeName,
             })
               .then((res) => {
@@ -130,7 +130,7 @@ const MerchantSignUp = () => {
             />
           </div>
 
-          <div className=" col-span-3 text-sm w-[100vw] mx-auto md:mx-0 h-fit min-[450px]:w-[95%] min-[450px]:h-fit md:w-[95%] md:h-fit lg:w-[95%] lg:h-fit flex flex-col justify-center items-center bg-white p-4 space-y-1 rounded-xl shadow-lg">
+          <div className=" overflow-hidden col-span-3 text-sm w-[100vw] mx-auto md:mx-0 h-fit min-[450px]:w-[95%] min-[450px]:h-fit md:w-[95%] md:h-fit lg:w-[95%] lg:h-fit flex flex-col justify-center items-center bg-white p-4 space-y-1 rounded-xl shadow-lg">
             <p className="text-zinc-700 text-lg font-medium">Sign Up</p>
 
             <div className="grid max-[450px]:grid-cols-1  grid-cols-2 space-y-2 gap-2 md:gap-5 w-full">

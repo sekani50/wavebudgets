@@ -1,7 +1,7 @@
 import * as type from "../Actions/Types";
-import { mock } from "mock";
 const initailState = {
-    items: mock,
+    items: null,
+    category:null
    
   };
   const Items = (state = initailState, action) => {
@@ -10,6 +10,11 @@ const initailState = {
         return {
           ...state,
           items: action.payload,
+        };
+        case type.GET_CATEGORY:
+        return {
+          ...state,
+          category: action.payload,
         };
   
   

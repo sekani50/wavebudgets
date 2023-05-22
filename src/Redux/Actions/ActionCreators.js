@@ -121,7 +121,7 @@ const calculateTotal = (cartItems) => {
   };
 };
 
-
+ms
 const addFoodItemsToCart = (data) => {
   return (dispatch, getState) => {
     const { cartItems } = getState().cart;
@@ -238,7 +238,12 @@ const showCartCount = () => {
     type: type.SHOW_CART_COUNT,
   };
 };
-
+const updateCategory = (data) => {
+  return {
+    type: type.GET_CATEGORY,
+    payload:data
+  }
+}
 const getUserPreviousOrderInfo = (data) => {
   return {
     type: type.GET_USER_PREVIOUS_ORDER_INFO,
@@ -344,4 +349,5 @@ export {
   updatedCart,
   calculateTotal,
   registration,
+  updateCategory
 };

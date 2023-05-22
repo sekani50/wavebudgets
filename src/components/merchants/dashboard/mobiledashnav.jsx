@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
 import { MdOutlineEditNote } from "react-icons/md";
 import { AiOutlineHome } from "react-icons/ai";
 
-const MobileDashboard = () => {
+const MobileDashboard = ({key}) => {
   const [isCat, setisCat] = useState(false);
   const [isOpen, setisOpen] = useState(false);
-
+  const {pathname} = useLocation()
   const showCats = () => {
     setisCat(!isCat);
     setisOpen(true);
@@ -43,11 +43,11 @@ const MobileDashboard = () => {
         </div>
 
         <Link
-          to="/admindashboard/0"
-          className="flex flex-col space-y-1 items-center justify-center"
+          to={`/store/COeALmKoRQcLvtk4XHIu`}
+          className={`flex flex-col space-y-1 items-center justify-center ${pathname === `/store/${key}` ? 'text-[#009999]':'text-zinc-700'}`}
         >
           <span>
-            <IoMdAddCircle className="text-[22px]" />
+            <IoMdAddCircle className="text-[22px]"/>
           </span>
           <span> Add products </span>
         </Link>

@@ -15,7 +15,7 @@ const GroupWidget = ({heading, response}) => {
     
     const [isnext, setisnext] = useState(true)
   const [isprev, setisprev] = useState(false)
-  const [data, setData] = useState(items)
+  const [data, setData] = useState([])
 
   console.log(items)
     

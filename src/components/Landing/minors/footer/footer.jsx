@@ -12,7 +12,7 @@ import paystack from "../../../../assets/Svg/paystack.svg"
 const WaveFooter = () => {
     return (
 
-        <div className="w-full p-4 bg-emerald-500 text-white ">
+        <div className="w-full p-4 bg-emerald-500 text-white max-[450px]:pb-[90px] ">
         <div className="grid grid-cols-1 gap-4 grid_desk">
             <div className="flex flex-col space-y-2 sm:space-y-3 justify-start">
                 <p>Follow us on:</p>

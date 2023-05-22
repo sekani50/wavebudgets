@@ -8,6 +8,7 @@ import CartCards from "./cartCard";
 import { useNavigate } from "react-router-dom";
 const UserCart = () => {
   const [isShow, setisShow] = useState(false);
+  const {currentUser} = useSelector((state) => state.user)
   const {cartItems,overallPrice} = useSelector((state) => state.cart)
   const navigate = useNavigate()
 
@@ -44,9 +45,11 @@ const UserCart = () => {
         className="text-white py-2 bg-[#009999] rounded-2xl flex justify-center items-center w-full">
           CheckOut
         </button>
+
+        
         </div>}
         <div className="mt-[40px] min-[450px]:mt-0 flex flex-col pb-20 mx-auto min-[650px]:mx-0 w-[90%] min-[650px]:w-[60%] min-[930px]:w-[70%] space-y-[3%] justify-start items-center">
-        {cartItems?.map(({name, curPrice, count}, idx) => {
+        {cartItems?.map(({name, curPrice,image, count}, idx) => {
 
           return (
             <div
@@ -54,6 +57,7 @@ const UserCart = () => {
             className="w-full h-full">
               <CartCards
               name={name}
+              image={image}
               price={curPrice}
               quantity={count}
               id={idx}

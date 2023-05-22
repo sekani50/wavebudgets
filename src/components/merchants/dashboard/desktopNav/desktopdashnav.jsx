@@ -4,7 +4,8 @@ import "./desktopdashnav.scss";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
 
-const DesktopDashNav = () => {
+const DesktopDashNav = ({key}) => {
+
   const [isOpen, setisOpen] = useState(false);
   const {pathname} = useLocation()
 
@@ -13,6 +14,7 @@ const DesktopDashNav = () => {
     setisOpen(!isOpen)
   };
   const checkcat = () => {};
+  console.log(key)
   return (
     <div
       onClick={(e) => {
@@ -46,7 +48,7 @@ const DesktopDashNav = () => {
       >
         <div className="uppercase font-bold text-white">Dashboard</div>
         <div className="bg-none h-2 w-2"></div>
-        <Link to="/store" className={pathname === "/store"? 'font-medium text-gray-200':"font-light text-gray-200"}>
+        <Link to={`/store/COeALmKoRQcLvtk4XHIu`} className={pathname === `/store/COeALmKoRQcLvtk4XHIu`? 'font-medium text-gray-200':"font-light text-gray-200"}>
           Add product
         </Link>
         <div

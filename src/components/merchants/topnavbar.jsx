@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../../assets/images/waveb.png";
 import user from "../../assets/images/user.png";
 import { useNavigate } from "react-router-dom";
-const TopNavBar=() => {
+const TopNavBar=({merchant}) => {
     const navigate = useNavigate()
     return (
         <div className="let swipeIn fixed right-0 min-[450px]:right-[9px] top-0 w-full z-10 sm:w-[96%] min-[1000px]:w-[85%] float-right  bg-white flex justify-between items-center border-b-2 shadow-lg ">
@@ -19,7 +19,7 @@ const TopNavBar=() => {
             </div>
           
             <div className="px-6  max-[450px]:px-3 flex items-center space-x-3">
-                <div className="min-w-max max-[450px]:px-3 max-[450px]:py-4 px-6 py-6 text-gray-100  bg-[#009999]"><span>Abubakar James Chioma</span></div>
+                <div className="min-w-max max-[450px]:px-3 max-[450px]:py-4 px-6 py-6 font-light text-gray-100  bg-[#009999]"><span>{merchant || '----------'}</span></div>
                 <div className="min[450px]:w-11 min-[450px]:h-8 h-6 w-6">
                     <img className="w-full h-full" src={user} alt="avatar" />
                 </div>

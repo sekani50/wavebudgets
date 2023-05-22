@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { categories } from "./data";
 import "./addproduct.scss";
 import {MdOutlinePhotoSizeSelectActual} from 'react-icons/md'
 import { toast } from "react-hot-toast";
-import { useLocation } from "react-router-dom";
-
-
-const AddProduct = () => {
-    
+import { useParams, useNavigate } from "react-router-dom";
+import { sendToStore } from "firebasedatas/addProduct";
+const AddProduct = ({merchant, uid, key}) => {
   const [selectedImage, setselectedImage] = useState(null);
   const [isEditButton, setisEditButton] = useState(false);
   const [downloadedImage, setdownloadedImage] = useState(null);
@@ -15,6 +13,9 @@ const AddProduct = () => {
   //const [selectedCategory, setselectedCategory] = useState("");
   const [isChecked, setisChecked] = useState(false);
   const [description, setdescription] = useState("");
+  const [qty, setQty] = useState()
+  const navigate = useNavigate()
+
   const [name, setname] = useState("");
   const [isSubmit, setisSubmit] = useState(false);
   const [selectedCat, setselectedCat] = useState();
@@ -32,8 +33,8 @@ const AddProduct = () => {
       })
   //const selectedImageObj = ;
 
-  //const imageFile = {};
 
+  
   const chooseImage = (e) => {
     const newImgObj = { ...selectedImageObj}
     const newImgdata = { ...imagedata}
@@ -66,12 +67,23 @@ const AddProduct = () => {
     setselectedImageObj(newImgObj)
   };
 
+
+
+  const selectedFn = (cat) => {
+    setselectedCat(cat);
+    console.log(cat)
+  };
+  console.log(imagedata);
+const {first, second, third, forth} = selectedImageObj
+  console.log(uid, key)
 const  saveToDatabse = async () => {
   setisSubmit(true)
   const validateData = {
+
     name,
     description,
     price,
+    qty,
     image: imagedata,
     category: selectedCat,
   };
@@ -86,46 +98,53 @@ const  saveToDatabse = async () => {
   const payload = {
     name,
     description,
+    storeName:merchant,
+    merchantId:uid,
+    qty,
     image:imagedata,
     category: selectedCat,
     price,
     //id: this.getEdit,
   };
 
- /**
-  * 
-   await getData(payload)
+   await sendToStore (payload)
     .then((res) => {
       console.log(res);
       setisSubmit(false)
-
       toast.success("Saved successfully");
 
       setname("")
       setdescription("")
+      setQty("")
       //this.imageFile = null;
     setselectedCat('')
     setprice(0)
-    setselectedImageObj(null)
+    setselectedImageObj({
+      first: null,
+      second: null,
+      third: null,
+      forth: null,
+    })
+    setimagedata({
+      first: { img: null, isEdit: false },
+      second: { img: null, isEdit: false },
+      third: { img: null, isEdit: false },
+      forth: { img: null, isEdit: false },
+    })
       //this.editCategory(null);
       //this.$toast.error("Error");
     })
     .catch((err) => {
       console.log(err);
     });
-  */
+  
 }
 
-  const selectedFn = (cat) => {
-    setselectedCat(cat);
-    console.log(cat)
-  };
-  console.log(imagedata);
-const {first, second, third, forth} = selectedImageObj
+ 
   //console.log('from first',selectedImageObj.first)
 
   return (
-    <div className="let swipeIn mt-[40px] min-[450px]:mt-[60px] w-full sm:w-[96%] min-[1000px]:w-[85%] pb-[5rem] sm:pb-[5rem] space-y-[5%] float-right p-6 text-">
+    <div className="let swipeIn mt-[40px] text-zinc-700 min-[450px]:mt-[60px] w-full sm:w-[96%] min-[1000px]:w-[85%] pb-[5rem] sm:pb-[5rem] space-y-[5%] float-right p-6 text-">
       <div className="space-y-[5%] w-full sm:w-[80%] mx-auto">
         <div className="flex items-center justify-between">
           <div className="w-6 h-6 bg-none"></div>
@@ -363,8 +382,8 @@ const {first, second, third, forth} = selectedImageObj
           </div>
 
           <div className="flex flex-col space-y-2">
-            <p className="text-sm sm:text-lg">
-              <b>Select Category</b>
+            <p className="text-sm text-[16px] font-medium">
+              <span>Select Category</span>
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 items-center justify-center">
               {categories.map(({ cats }, idx) => {
@@ -386,8 +405,8 @@ const {first, second, third, forth} = selectedImageObj
           </div>
 
           <div className="form-group space-y-3">
-            <label className="block form__label text-sm sm:text-lg" htmlFor="">
-              <b>Name</b>
+            <label className="block form__label text-sm text-[16px] font-medium" htmlFor="">
+              <span>Name</span>
             </label>
             <input
               onChange={(e) => {
@@ -401,8 +420,8 @@ const {first, second, third, forth} = selectedImageObj
             />
           </div>
           <div className="form-group space-y-3">
-            <label className="block form__label text-sm sm:text-lg" htmlFor="">
-              <b>Price</b>
+            <label className="block form__label text-sm text-[16px] font-medium" htmlFor="">
+              <span>Price</span>
             </label>
             <input
               onChange={(e) => {
@@ -415,9 +434,24 @@ const {first, second, third, forth} = selectedImageObj
               value={price}
             />
           </div>
+          <div className="form-group space-y-3">
+            <label className="block form__label text-sm text-[16px] font-medium" htmlFor="">
+              <span>Available Qty.</span>
+            </label>
+            <input
+              onChange={(e) => {
+                setQty(e.target.value);
+              }}
+              className="block form__input input-field  h-8 sm:h-11 px-2 border-zinc-700 rounded-md focus:outline-none text-zinc-700"
+              type="number"
+              name="quantity"
+              placeholder="quantities"
+              value={qty}
+            />
+          </div>
           <div className="form-group relative space-y-3">
-            <label className="block form__label text-sm sm:text-lg " htmlFor="desc">
-              <b>Description</b>
+            <label className="block form__label text-sm text-[16px] font-medium " htmlFor="desc">
+              <span>Description</span>
             </label>
 
             <textarea

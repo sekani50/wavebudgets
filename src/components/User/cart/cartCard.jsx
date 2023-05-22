@@ -7,7 +7,7 @@ import {
   decreaseSingleCartItems,
   removeFromCart
 } from "Redux/Actions/ActionCreators";
-const CartCards = ({ name, price, quantity, id }) => {
+const CartCards = ({ name, price, quantity, id, image }) => {
   const { cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -33,7 +33,7 @@ const CartCards = ({ name, price, quantity, id }) => {
         <div className="w-[60px] h-[60px] min-[450px]:w-[80px] min-[450px]:h-[80px] rounded-md">
           <img
             className="w-full h-full object-cover rounded-md"
-            src={pix}
+            src={image}
             alt=""
           />
         </div>
