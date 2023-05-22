@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../../../assets/images/waveb.png";
 import "../../../../index.css";
 import { MdNavigateBefore } from "react-icons/md";
@@ -9,6 +9,7 @@ import { IoIosSearch } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import { getExistingDoc } from "firebasedatas/firebaseAuth";
 const HidHeader = ({ isVisibles }) => {
   const { numOfCartItems } = useSelector((state) => state.cart);
   const [isVisible, setisVisisble] = useState(false);
@@ -16,6 +17,23 @@ const HidHeader = ({ isVisibles }) => {
   const [searchText, setsearchText] = useState();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const [name, setname] = useState()
+  const {currentUser} = useSelector((state) => state.user)
+  
+  useEffect(() => {
+    async function getUser () {
+    await getExistingDoc(currentUser)
+    .then((res) => {
+     console.log(res)
+     setname(res.name)
+    })
+    .catch((err) => {
+     console.log(err)
+    })
+     }
+    
+     getUser()
+ },[])
 
   return (
     <div
@@ -56,7 +74,12 @@ const HidHeader = ({ isVisibles }) => {
       <div className="hide cursor-pointer sm:flex items-center sm:space-x-4 space-x-2">
         <div
           onMouseEnter={() => {
-            setisVisisble(true);
+            if(name) {
+              setisVisisble(false)
+          }
+          else {
+              setisVisisble(true)
+          }
           }}
           onMouseLeave={() => {
             setisVisisble(false);
@@ -91,7 +114,7 @@ const HidHeader = ({ isVisibles }) => {
           )}
           <FaShoppingCart className="hidden sm:block hover:text-[#009999]" />
 
-          {numOfCartItems === 0 && <CartCard isCart={isCart} />}
+          <CartCard isCart={isCart} name={name}  items={numOfCartItems} />
         </div>
       </div>
     </div>

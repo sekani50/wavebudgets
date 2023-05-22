@@ -2,19 +2,69 @@ import React, {useState} from 'react';
 import buy from "../../../assets/images/buy.jpg";
 import viewpassword from "../../../assets/Svg/viewpassword.svg";
 import logo from "../../../assets/images/waveb.png"
+import { useNavigate } from "react-router-dom";
+import { userlogin, getUserData, getExistingDoc } from 'firebasedatas/firebaseAuth';
+import Loader from 'components/UI/Loader';
+import { toast } from 'react-hot-toast';
+import { useDispatch } from "react-redux";
+import { GetUsersSuccess } from "Redux/Actions/ActionCreators";
 
 const SignIn = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [loading, setLoading] = useState(false)
     
-  const handleSubmit = () => {
-    let form = {
-      email: email,
-      password: password,
-      
-    };
+  const handleSubmit = async() => {
+    const customersId=[]
+    const sellersId = []
+    setLoading(true)
+    await userlogin(email, password)
+    .then(async (res) => {
+      console.log(res)
+      const {uid} = res.user
+      await getUserData(customersId, sellersId)
+      .then (async (res) => {
+        console.log(res)
+        const {customersId, sellersId} = res
+        if(customersId && customersId.includes(uid)) {
+          navigate("/")
+        dispatch(GetUsersSuccess(uid))
+        }
+        if (sellersId && sellersId.includes(uid)) {
+          await getExistingDoc(uid)
+          .then ((res) => {
+            console.log(res)
+            if (res.key) {
+              navigate(`/store/${res.key}`)
+              dispatch(GetUsersSuccess(uid))
+            }
+            else {
+              navigate("/not-activated")
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+          //navigate("/store")
+          
+        }
+       
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      setLoading(false)
+    })
+    .catch((err) => {
+      console.log(err)
+      setLoading(false)
+      toast.error(err.code)
+    })
+
+
 }
 
     return (
@@ -22,7 +72,11 @@ const SignIn = () => {
         <div className='w-full h-full fixed inset-0 '>
             <div className='w-full h-full'>
             <div className='bg-white py-3 px-6 min-[450px]:py-4 min-[450px]:px-4'>
-            <div className="flex space-x-2 items-center" >
+            <div
+            onClick={() => {
+              navigate("/")
+            }}
+            className="flex space-x-2 items-center" >
                 <div className="w-10 h-6">
                     <img className="w-full h-full" src={logo} alt="" />
                 </div>
@@ -39,7 +93,7 @@ const SignIn = () => {
  
                 </div>
 
-                <div className='w-[80vw] h-fit min-[450px]:w-[60%] min-[450px]:h-[60%] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] flex flex-col justify-center items-center bg-white p-4 space-y-3 rounded-xl shadow-lg'>
+                <div className='w-[80vw] h-fit min-[450px]:w-[60%] text-sm md:w-[350px]  lg:w-[400px]  flex flex-col justify-center items-center bg-white p-4 space-y-3 rounded-xl shadow-lg'>
               <p className='text-zinc-800 font-semibold'>Log In</p>
                 <div className="form-group space-y-3 w-full">
           <label className="block font-semibold text-zinc-800" htmlFor="email">
@@ -72,7 +126,7 @@ const SignIn = () => {
               onClick={() => {
                 setShowPassword(!showPassword);
               }}
-              className="absolute right-3 top-3"
+              className="absolute right-3 max-[450px]:top-[0.5rem] top-3"
             >
               <img
                 src={viewpassword}
@@ -84,8 +138,9 @@ const SignIn = () => {
         </div>
 
         <button
+        onClick={handleSubmit}
         className="bg-[#009999] text-white sm:py-3 py-2 rounded-md flex items-center w-full justify-center"
-        >Log in</button>
+        >{loading ? <Loader/> : <span>Log in</span>}</button>
 
 
                 </div>

@@ -1,13 +1,18 @@
 import React from "react";
 import logo from "../../assets/images/waveb.png";
 import user from "../../assets/images/user.png";
-
+import { useNavigate } from "react-router-dom";
 const TopNavBar=() => {
+    const navigate = useNavigate()
     return (
         <div className="let swipeIn fixed right-0 min-[450px]:right-[9px] top-0 w-full z-10 sm:w-[96%] min-[1000px]:w-[85%] float-right  bg-white flex justify-between items-center border-b-2 shadow-lg ">
             
-            <div className="px-6 min-[1000px]:pl-14 xl:px-6 max-[450px]:px-3 text-black flex items-center justify-start space-x-2">
-            <div className="w-10 h-6">
+            <div
+            onClick={() => {
+                navigate("/")
+            }}
+             className="px-6 min-[1000px]:pl-14 xl:px-6 max-[450px]:px-3 text-black flex items-center justify-start space-x-2">
+            <div className="w-12 h-6">
               <img className="w-full h-full" src={logo} alt="" />
             </div>
             <div className="uppercase font-semibold text-[#009999]">Wave Budget</div>

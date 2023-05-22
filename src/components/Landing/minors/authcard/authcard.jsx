@@ -27,6 +27,11 @@ const AuthCard = ({ isVisible}) => {
             }}
             className="text-[#009999] bg-white border p-2 border-[#009999] rounded-2xl flex items-center w-full justify-center">Register for free </button>
           
+          <button
+            onClick={() => {
+                navigate("/signin")
+            }}
+            className="text-white bg-[#009999] p-2 rounded-2xl flex items-center w-full justify-center">Sign as a seller </button>
             </div>
             
             </>

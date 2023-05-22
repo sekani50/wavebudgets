@@ -2,7 +2,7 @@ import * as type from "../Actions/Types";
 
 const initailState = {
   currentUser: "",
-  activeVendor: null,
+  
   token: "",
 };
 const User = (state = initailState, action) => {
@@ -17,11 +17,7 @@ const User = (state = initailState, action) => {
         ...state,
         currentUser: action.payload,
       };
-    case "GET_ACTIVE_VENDOR":
-      return {
-        ...state,
-        activeVendor: action.payload,
-      };
+   
 
     case type.GET_USER_PERSONAL_INFORMATION:
       let curUser = {

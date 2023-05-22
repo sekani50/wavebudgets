@@ -11,6 +11,8 @@ import {
   ActivationCard,
   MerchantSignUp,
   AddToStore,
+  AwaitActivation,
+
 } from "Pages";
 
 import Scrolltotop from "components/UI/ScrollToTop";
@@ -52,8 +54,9 @@ const App = () => {
           <Route path="/cart" element={<UserCart />} />
           <Route path="/detail" element={<DetailPage />} />
           <Route path="/activate-account" element={<ActivationCard />} />
+          <Route path="/not-activated" element={<AwaitActivation />} />
           <Route path="/register" element={<MerchantSignUp />} />
-          <Route path="/store" element={<AddToStore />} />
+          <Route path="/store/:id" element={<AddToStore />} />
           {/*    AUTH PAGE */}
         </Routes>
       </Router>

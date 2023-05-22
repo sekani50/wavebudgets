@@ -52,7 +52,7 @@ const AuthPopCard = ({setisShow}) => {
               onClick={() => {
                 setShowPassword(!showPassword);
               }}
-              className="absolute right-3 top-3"
+              className="absolute right-3 max-[450px]:top-[0.5rem] top-3"
             >
               <img
                 src={viewpassword}

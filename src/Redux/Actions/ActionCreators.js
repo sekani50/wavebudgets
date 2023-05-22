@@ -333,7 +333,7 @@ export {
   updateTotal,
   resetStackPrice,
   removeFromCart,
-
+  GetUsersSuccess,
   getItem,
   itemsToCart,
   decreaseCount,

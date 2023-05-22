@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../../../assets/images/waveb.png";
 import "../../../../index.css";
 import { MdNavigateBefore } from "react-icons/md";
@@ -9,14 +9,32 @@ import { IoIosSearch } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import { getExistingDoc } from "firebasedatas/firebaseAuth";
 const VisHeader = () => {
   const { numOfCartItems } = useSelector((state) => state.cart);
   const [isVisible, setisVisisble] = useState(false);
   const [isCart, setisCart] = useState(false);
   const [searchText, setsearchText] = useState();
-  const navigate = useNavigate();
+  const [name, setname] = useState()
+  const navigate = useNavigate()
+  const {currentUser} = useSelector((state) => state.user)
   const { pathname } = useLocation();
 
+
+  useEffect(() => {
+    async function getUser () {
+    await getExistingDoc(currentUser)
+    .then((res) => {
+     console.log(res)
+     setname(res.name)
+    })
+    .catch((err) => {
+     console.log(err)
+    })
+     }
+    
+     getUser()
+ },[])
   return (
     <div
       className="bg-white max-[450px]:fixed max-[450px]:inset-x-0 z-40 max-[450px]:top-0 w-full p-2 min-[450px]:py-3 min-[450px]:px-5 shadow-lg flex justify-between items-center border-b"
@@ -52,7 +70,12 @@ const VisHeader = () => {
       <div className="hide cursor-pointer sm:flex items-center sm:space-x-4 space-x-2">
         <div
           onMouseEnter={() => {
-            setisVisisble(true);
+            if(name) {
+              setisVisisble(false)
+          }
+          else {
+              setisVisisble(true)
+          }
           }}
           onMouseLeave={() => {
             setisVisisble(false);
@@ -87,7 +110,7 @@ const VisHeader = () => {
           )}
           <FaShoppingCart className="hidden sm:block hover:text-[#009999]" />
 
-          {numOfCartItems === 0 && <CartCard isCart={isCart} />}
+          {numOfCartItems === 0 && <CartCard name={name}  items={numOfCartItems} isCart={isCart} />}
         </div>
       </div>
     </div>

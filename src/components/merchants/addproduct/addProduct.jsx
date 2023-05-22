@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { categories } from "./data";
 import "./addproduct.scss";
 import {MdOutlinePhotoSizeSelectActual} from 'react-icons/md'
+import { toast } from "react-hot-toast";
+import { useLocation } from "react-router-dom";
+
 
 const AddProduct = () => {
+    
   const [selectedImage, setselectedImage] = useState(null);
   const [isEditButton, setisEditButton] = useState(false);
   const [downloadedImage, setdownloadedImage] = useState(null);
@@ -14,30 +18,111 @@ const AddProduct = () => {
   const [name, setname] = useState("");
   const [isSubmit, setisSubmit] = useState(false);
   const [selectedCat, setselectedCat] = useState();
-
-  const selectedImageObj = {
-    first: null,
-    second: null,
-    third: null,
-    forth: null,
-  };
-
-  const imageFile = {
+  const [imagedata, setimagedata] = useState({
     first: { img: null, isEdit: false },
     second: { img: null, isEdit: false },
     third: { img: null, isEdit: false },
     forth: { img: null, isEdit: false },
+  })
+    const [selectedImageObj, setselectedImageObj] = useState({
+        first: null,
+        second: null,
+        third: null,
+        forth: null,
+      })
+  //const selectedImageObj = ;
+
+  //const imageFile = {};
+
+  const chooseImage = (e) => {
+    const newImgObj = { ...selectedImageObj}
+    const newImgdata = { ...imagedata}
+    if (e.target.files[0]) {
+        const file = e.target.files[0];
+        //selectedImageObj[e.target.id] = file;
+        newImgdata[e.target.id].img = file;
+        newImgdata[e.target.id].isEdit = true;
+        if (file.size > 3000000) {
+          toast.error("Image size should not exceeds 3MB");
+          return;
+        }
+        // console.log(imageData)
+        newImgObj[e.target.id] = URL.createObjectURL(file);
+
+        setselectedImageObj(newImgObj)
+
+       // console.log(selectedImageObj[e.target.id]) 
+      }
+
+  };
+  const removeImage = (e) => {
+    const newImgObj = { ...selectedImageObj}
+    const newImgdata = { ...imagedata}
+    newImgObj[e.target.id] = null;
+    newImgdata[e.target.id].img = null;
+    newImgdata[e.target.id].isEdit = true;
+
+    setimagedata(newImgdata);
+    setselectedImageObj(newImgObj)
   };
 
-  const chooseImage = (e) => {};
-  const removeImage = (e) => {};
+const  saveToDatabse = async () => {
+  setisSubmit(true)
+  const validateData = {
+    name,
+    description,
+    price,
+    image: imagedata,
+    category: selectedCat,
+  };
 
-  const saveToDatabse = () => {};
+  for (let i in validateData) {
+    if (validateData[i] === "") {
+      this.$toast.error(`${i} is empty`);
+      return;
+    }
+  }
+
+  const payload = {
+    name,
+    description,
+    image:imagedata,
+    category: selectedCat,
+    price,
+    //id: this.getEdit,
+  };
+
+ /**
+  * 
+   await getData(payload)
+    .then((res) => {
+      console.log(res);
+      setisSubmit(false)
+
+      toast.success("Saved successfully");
+
+      setname("")
+      setdescription("")
+      //this.imageFile = null;
+    setselectedCat('')
+    setprice(0)
+    setselectedImageObj(null)
+      //this.editCategory(null);
+      //this.$toast.error("Error");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  */
+}
 
   const selectedFn = (cat) => {
     setselectedCat(cat);
     console.log(cat)
   };
+  console.log(imagedata);
+const {first, second, third, forth} = selectedImageObj
+  //console.log('from first',selectedImageObj.first)
 
   return (
     <div className="let swipeIn mt-[40px] min-[450px]:mt-[60px] w-full sm:w-[96%] min-[1000px]:w-[85%] pb-[5rem] sm:pb-[5rem] space-y-[5%] float-right p-6 text-">
@@ -55,20 +140,20 @@ const AddProduct = () => {
             <div className="relative w-full border text-sm h-[160px] sm:h-[230px] rounded-md border-zinc-700">
               <div
                 className={
-                  selectedImageObj.first
+                  first
                     ? "w-full h-[160px] sm:h-[230px] rounded md"
                     : "hidden"
                 }
               >
                 <img
-                  src={selectedImageObj.first}
+                  src={first}
                   alt=""
                   className="w-full h-full object-cover rounded-md"
                 />
               </div>
               <div
                 className={
-                  selectedImageObj.first
+                  first
                     ? "hidden"
                     : "w-[50%] absolute inset-0 m-auto h-fit flex flex-col justify-center items-center"
                 }
@@ -99,7 +184,7 @@ const AddProduct = () => {
                 }}
                 id="first"
                 className={
-                  selectedImageObj.first
+                  first
                     ? "absolute text-white py-1 px-2 bg-zinc-700 rounded-md right-0 top-0"
                     : "hidden"
                 }
@@ -111,20 +196,20 @@ const AddProduct = () => {
             <div className="relative w-full text-sm border h-[160px] sm:h-[230px] rounded-md border-zinc-700">
               <div
                 className={
-                  selectedImageObj.second
+                  second
                     ? "w-full h-[160px] sm:h-[230px] rounded md"
                     : "hidden"
                 }
               >
                 <img
-                  src={selectedImageObj.second}
+                  src={second}
                   alt=""
                   className="w-full h-full object-cover rounded-md"
                 />
               </div>
               <div
                 className={
-                  selectedImageObj.second
+                  second
                     ? "hidden"
                     : "w-[50%] absolute inset-0 m-auto h-fit flex flex-col justify-center items-center"
                 }
@@ -155,7 +240,7 @@ const AddProduct = () => {
                 }}
                 id="second"
                 className={
-                  selectedImageObj.second
+                  second
                     ? "absolute text-white py-1 px-2 bg-zinc-700 rounded-md right-0 top-0"
                     : "hidden"
                 }
@@ -167,20 +252,20 @@ const AddProduct = () => {
             <div className="relative w-full text-sm border h-[160px] sm:h-[230px] rounded-md border-zinc-700">
               <div
                 className={
-                  selectedImageObj.third
+                  third
                     ? "w-full h-[160px] sm:h-[230px] rounded md"
                     : "hidden"
                 }
               >
                 <img
-                  src={selectedImageObj.third}
+                  src={third}
                   alt=""
                   className="w-full h-full object-cover rounded-md"
                 />
               </div>
               <div
                 className={
-                  selectedImageObj.third
+                  third
                     ? "hidden"
                     : "w-[50%] absolute inset-0 m-auto h-fit flex flex-col justify-center items-center"
                 }
@@ -211,7 +296,7 @@ const AddProduct = () => {
                 }}
                 id="third"
                 className={
-                  selectedImageObj.third
+                  third
                     ? "absolute text-white py-1 px-2 bg-zinc-700 rounded-md right-0 top-0"
                     : "hidden"
                 }
@@ -223,20 +308,20 @@ const AddProduct = () => {
             <div className="relative w-full text-sm border h-[160px] sm:h-[230px] rounded-md border-zinc-700">
               <div
                 className={
-                  selectedImageObj.forth
+                  forth
                     ? "w-full h-[160px] sm:h-[230px] rounded md"
                     : "hidden"
                 }
               >
                 <img
-                  src={selectedImageObj.forth}
+                  src={forth}
                   alt=""
                   className="w-full h-full object-cover rounded-md"
                 />
               </div>
               <div
                 className={
-                  selectedImageObj.forth
+                  forth
                     ? "hidden"
                     : "w-[50%] absolute inset-0 m-auto h-fit flex flex-col justify-center items-center"
                 }
@@ -267,7 +352,7 @@ const AddProduct = () => {
                 }}
                 id="forth"
                 className={
-                  selectedImageObj.forth
+                  forth
                     ? "absolute text-white py-1 px-2 bg-zinc-700 rounded-md right-0 top-0"
                     : "hidden"
                 }
