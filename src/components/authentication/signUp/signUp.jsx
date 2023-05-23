@@ -74,7 +74,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="w-full h-full fixed inset-0 ">
+    <div className="w-full h-full cursor-pointer fixed inset-0 ">
       <div className="w-full h-full">
         <div className="bg-white py-3 px-6 min-[450px]:py-4 min-[450px]:px-4">
           <div

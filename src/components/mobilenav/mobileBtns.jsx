@@ -36,7 +36,7 @@ const handlePay = () => {
       return
     }
     const url =
-    "https://wa.me/2348118617926?text=" 
+    "https://wa.me/2348137960202?text=" 
     
     + "Username: "+username+"%0a"
     + "Email:   "+email+"%0a"

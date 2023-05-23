@@ -32,8 +32,12 @@ const Header = () => {
     },[])
     return (
 
-        <div className="bg-white w-full p-2 min-[450px]:py-3 min-[450px]:px-5 shadow-lg flex justify-between items-center border-b">
-            <div className="flex space-x-2 items-center" >
+        <div className="bg-white w-full cursor-pointer p-2 min-[450px]:py-3 min-[450px]:px-5 shadow-lg flex justify-between items-center border-b">
+            <div
+            onClick={() => {
+                navigate("/")
+            }}
+            className="flex space-x-2 items-center" >
                 <div className="w-10 h-6">
                     <img className="w-full h-full" src={logo} alt="" />
                 </div>

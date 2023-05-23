@@ -40,11 +40,7 @@ const ItemCategories = () => {
     },
   ];
 
-  const spanStyle = {
-    padding: '20px',
-    background: '#efefef',
-    color: '#000000'
-  }
+
   
   const divStyle = {
     display: 'flex',

@@ -30,7 +30,7 @@ const Search = ({setIsVisible}) => {
 
     function Bseller () {
         const url =
-        "https://wa.me/2348118617926?text=" + "   I want to become a seller "
+        "https://wa.me/2348137960202?text=" + "   I want to become a seller "
 
       window.open(url, "blank").focus();
     }

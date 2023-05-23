@@ -14,10 +14,10 @@ const LandingWidget = ({name, descriptions,image, price}) => {
             </div>
             <div className="mt-2 px-2 min-[450px]:space-y-2 space-y-1 text-sm sm:text-[15px]">
             <p className="truncate  w-[100vw] text-zinc-700 sm:pr-[10%]">
-              <span className="text-ellipsis whitespace-nowrap overflow-hidden w-[150px] min-[450px]:w-[200px]">{name}</span>
+              <span className="text-ellipsis whitespace-nowrap overflow-hidden w-[150px] min-[450px]:w-[190px]">{name}</span>
             </p>
             <p className="truncate w-[98vw] text-zinc-700 font-thin sm:pr-[10%] flex flex-wrap overflow-hidden">
-              <span className="text-ellipsis whitespace-nowrap overflow-hidden w-[150px] min-[450px]:w-[200px]">{descriptions}</span> 
+              <span className="text-ellipsis whitespace-nowrap overflow-hidden w-[150px] min-[450px]:w-[190px]">{descriptions}</span> 
             </p>
             </div>
             <div className="mt-2 min-[450px]:mt-5 px-2 text-[15px] font-medium sm:font-semibold text-zinc-700"> {`₦${price}`}</div>

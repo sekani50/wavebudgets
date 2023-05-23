@@ -7,6 +7,7 @@ import DetailPage from "components/detail/detailPage";
 import ActivationCard from "components/merchants/activationCard";
 import MerchantSignUp from "components/merchants/authentication/msignup";
 import AddToStore from "components/merchants/addtostore";
+import UserInfo from "components/User/userInfo";
 import AwaitActivation from "components/merchants/awaitActivation";
 import EditStore from "components/merchants/merchantCategory/editStore";
 export {
@@ -20,7 +21,8 @@ export {
     MerchantSignUp,
     AddToStore,
     AwaitActivation,
-    EditStore
+    EditStore,
+    UserInfo
 
 }
 

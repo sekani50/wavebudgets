@@ -38,9 +38,13 @@ const VisHeader = () => {
  },[])
   return (
     <div
-      className="bg-white max-[450px]:fixed max-[450px]:inset-x-0 z-40 max-[450px]:top-0 w-full p-2 min-[450px]:py-3 min-[450px]:px-5 shadow-lg flex justify-between items-center border-b"
+      className="cursor-pointer bg-white max-[450px]:fixed max-[450px]:inset-x-0 z-40 max-[450px]:top-0 w-full p-2 min-[450px]:py-3 min-[450px]:px-5 shadow-lg flex justify-between items-center border-b"
     >
-      <div className="flex space-x-2 items-center">
+      <div
+     onClick={() => {
+      navigate("/")
+  }}
+      className="flex space-x-2 items-center">
         <div className="w-10 h-6">
           <img className="w-full h-full" src={logo} alt="" />
         </div>

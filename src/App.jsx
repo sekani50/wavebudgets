@@ -13,6 +13,7 @@ import {
   AddToStore,
   AwaitActivation,
   EditStore,
+  UserInfo,
 
 } from "Pages";
 
@@ -59,6 +60,7 @@ const App = () => {
           <Route path="/register" element={<MerchantSignUp />} />
           <Route path="/store/:id" element={<AddToStore />} />
           <Route path="/edit-item" element={<EditStore />} />
+          <Route path="/userinfo" element={<UserInfo />} />
           {/*    AUTH PAGE */}
         </Routes>
       </Router>
