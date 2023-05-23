@@ -41,7 +41,7 @@ const HomePage = () => {
         const currentTime = new Date().getTime()
         console.log(res)
         setProduct(res)
-        const filter = res.filter((val) => val.createdAt.integerValue > (currentTime - 604800000))
+        const filter = res.filter((val) => val.createdAt?.integerValue > (currentTime - 604800000))
         console.log('this is filter',filter)
         setNewarrival(filter)
         

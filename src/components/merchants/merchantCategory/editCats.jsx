@@ -23,7 +23,7 @@ const EditCategories = ({ cats, uid }) => {
       .then((res) => {
         console.log(res);
         dispatch(
-          updateSingleItem(singleCategory.filter((val) => val.id !== id))
+          updateSingleItem(singleCategory?.filter((val) => val.id !== id))
         );
       })
       .catch((err) => {
