@@ -79,7 +79,7 @@ const HomePage = () => {
   useEffect(() => {
     const currentTime = new Date().getTime()
     if (items) {
-      const filter = items.filter((val) => val.createdAt.integerValue > (currentTime - 604800000))
+      const filter = items?.filter((val) => val.createdAt?.integerValue > (currentTime - 604800000))
    console.log('this is filter',filter)
    setNewarrival(filter)
     }
