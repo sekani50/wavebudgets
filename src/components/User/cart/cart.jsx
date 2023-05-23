@@ -1,18 +1,43 @@
 import HidHeader from "components/Landing/minors/headers/hidHeader";
 import GroupHeaders from "components/groupHeadings/groupHeaders";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import empty from "../../../assets/images/emptycarts.png";
 import MobileCheckout from "components/mobilenav/mobileCheckout";
 import { useSelector, useDispatch } from "react-redux";
 import CartCards from "./cartCard";
 import { useNavigate } from "react-router-dom";
+import { getExistingDoc } from "firebasedatas/firebaseAuth";
+import { handlePayment } from "paystack/paystackInterface";
 const UserCart = () => {
   const [isShow, setisShow] = useState(false);
   const {currentUser} = useSelector((state) => state.user)
+  const [username, setUsername] = useState();
+  const [email, setEmail] = useState()
   const {cartItems,overallPrice} = useSelector((state) => state.cart)
   const navigate = useNavigate()
 
+    //console.log(name, description, price.)
+    useEffect(() => {
+      if(!currentUser) return
+     async function getUser () {
+     await getExistingDoc(currentUser)
+     .then((res) => {
+      console.log(res)
+      setUsername(res.name)
+      setEmail(res.email)
+     })
+     .catch((err) => {
+      console.log(err)
+     })
+      }
+     
+      getUser()
+  },[])
   
+  
+  const handlePay = () => {
+    handlePayment(email, parseFloat(overallPrice))
+}
   return (
     <div className="w-full h-full">
       <HidHeader isVisibles={!isShow} />
@@ -41,7 +66,7 @@ const UserCart = () => {
         </div>
         
         <button
-     
+      onClick={handlePay}
         className="text-white py-2 bg-[#009999] rounded-2xl flex justify-center items-center w-full">
           CheckOut
         </button>
@@ -70,6 +95,7 @@ const UserCart = () => {
       </div>
       <MobileCheckout
       total={overallPrice}
+      email={email}
       />
     </div>
   );

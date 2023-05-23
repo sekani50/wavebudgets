@@ -14,6 +14,7 @@ import { itemsToCart, calculateTotal } from "Redux/Actions/ActionCreators";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
 import { getExistingDoc } from "firebasedatas/firebaseAuth";
+import { handlePayment } from "paystack/paystackInterface";
 const ProductDetail = () => {
   const { state } = useLocation();
   const { name, description, price, qty, storeName, images } = state;
@@ -92,6 +93,10 @@ const ProductDetail = () => {
     dispatch(calculateTotal(cartItems));
     toast.success("Item added to cart successfully");
   };
+
+  const handlePay = () => {
+      handlePayment(email, parseFloat(curPrice))
+  }
 
   const handleInstallment = () => {
     if (!currentUser) {
@@ -191,7 +196,9 @@ const ProductDetail = () => {
               <b>{`₦${curBNPL}`}</b>
             </span>
           </div>
-          <button className="text-white sm:w-full lg:w-[90%] bg-[#009999] flex rounded-lg py-3 justify-center items-center w-[90%]">
+          <button
+          onClick={handlePay}
+          className="text-white sm:w-full lg:w-[90%] bg-[#009999] flex rounded-lg py-3 justify-center items-center w-[90%]">
             Buy now
           </button>
           <button
@@ -245,6 +252,7 @@ const ProductDetail = () => {
        bnpl={curBNPL}
        count={count}
        store={storeName}
+       curPrice={parseFloat(curPrice)}
       />
     </div>
   );

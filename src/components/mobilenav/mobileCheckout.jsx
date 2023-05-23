@@ -1,6 +1,7 @@
+import { handlePayment } from "paystack/paystackInterface";
 import React from "react";
 
-const MobileCheckout = ({ total }) => {
+const MobileCheckout = ({ email, total }) => {
   //const { pathname } = useLocation();
 
   return (
@@ -11,8 +12,12 @@ const MobileCheckout = ({ total }) => {
           <span>{`₦${total}`}</span>
         </b>
       </div>
-
-      <button className="text-white py-3 bg-[#009999] rounded-2xl flex justify-center items-center w-[100px] ">
+    
+      <button
+      onClick={()=> {
+        handlePayment(email, parseFloat(total))
+      }}
+      className="text-white py-3 bg-[#009999] rounded-2xl flex justify-center items-center w-[100px] ">
         CheckOut
       </button>
     </div>
