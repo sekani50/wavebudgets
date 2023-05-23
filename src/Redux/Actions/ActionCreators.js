@@ -43,7 +43,12 @@ const getItem = (data) => {
     payload: data,
   };
 };
-
+const editItem = (data) => {
+  return {
+    type: type.EDIT_ITEM,
+    payload: data,
+  };
+}
 const updateTotal = (data) => {
   return {
     type: type.UPDATE_TOTAL_PRICE,
@@ -63,6 +68,12 @@ const getNums = (data) => {
     payload: data,
   };
 };
+const updateSingleItem = (data) => {
+  return {
+    type: type.UPDATE_SINGLE_ITEM,
+    payload: data,
+  };
+} 
 
 
 const getPreviousOrders = () => {
@@ -349,5 +360,7 @@ export {
   updatedCart,
   calculateTotal,
   registration,
-  updateCategory
+  updateCategory,
+  editItem,
+  updateSingleItem
 };

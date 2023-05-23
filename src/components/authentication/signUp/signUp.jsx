@@ -170,6 +170,13 @@ const SignUp = () => {
             >
               {loading ? <Loader /> : <span>Sign up</span>}
             </button>
+          
+                  
+              <span>Already have an account? <span 
+              onClick={() => {
+                navigate("/signin")
+              }}
+              className='mr-3 text-blue-700'>Sign in</span></span>
           </div>
         </div>
       </div>

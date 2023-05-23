@@ -4,13 +4,14 @@ import AddProduct from "./addproduct/addProduct";
 import MobileDashboard from "./dashboard/mobiledashnav";
 import TopNavBar from "./topnavbar";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getExistingDoc } from "firebasedatas/firebaseAuth";
 
 const AddToStore = () => {
     const {id} = useParams()
     const [merchant, setMerchant] = useState()
     const [merchantId, setmerchantId] = useState()
+    const dispatch = useDispatch()
     const {currentUser} = useSelector((state) => state.user)
     //const imageFile = {};
   useEffect(() => {
@@ -29,10 +30,14 @@ const AddToStore = () => {
      getUser()
  },[]) 
 
+ 
+
+ 
+
  console.log(id)
  console.log(merchant)
     return (
-        <div className="w-full h-full  bg-gray-50 inset-0 sm:pb-56 fixed overflow-y-auto overflow-x-hidden">
+        <div className="w-full h-full  bg-gray-50 inset-0 sm:pb-32 fixed overflow-y-auto overflow-x-hidden">
             <TopNavBar merchant={merchant}/>
             <DesktopDashNav key={id}/>
             <AddProduct merchant={merchant} uid={merchantId} key={id}/>

@@ -16,7 +16,7 @@ import { toast } from "react-hot-toast";
 import { getExistingDoc } from "firebasedatas/firebaseAuth";
 const ProductDetail = () => {
   const { state } = useLocation();
-  const { name, description, price, available, storeName, images } = state;
+  const { name, description, price, qty, storeName, images } = state;
   const { cartItems } = useSelector((state) => state.cart);
   const [isShow, setisShow] = useState(false);
   const [username, setUsername] = useState();
@@ -158,7 +158,7 @@ const ProductDetail = () => {
             }`}</b></span></div>
           <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-20 items-center">
           <span>  Available Qty: </span>
-          <span><b>{`${available} pieces`}</b></span></div>
+          <span><b>{`${qty.stringValue} pieces`}</b></span></div>
 
 
           <div class="w-[50%] my-2 flex border text-zinc-800 font-semibold bg-white h-10 sm:h-14 items-center rounded-sm sm:rounded-md">

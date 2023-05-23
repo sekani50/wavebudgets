@@ -5,20 +5,25 @@ import {MdOutlinePhotoSizeSelectActual} from 'react-icons/md'
 import { toast } from "react-hot-toast";
 import { useParams, useNavigate } from "react-router-dom";
 import { sendToStore } from "firebasedatas/addProduct";
+import { getExistingProduct } from "firebasedatas/getExisting";
+import { useSelector, useDispatch } from "react-redux";
+import { editItem } from "Redux/Actions/ActionCreators";
 const AddProduct = ({merchant, uid, key}) => {
   const [selectedImage, setselectedImage] = useState(null);
   const [isEditButton, setisEditButton] = useState(false);
   const [downloadedImage, setdownloadedImage] = useState(null);
   const [price, setprice] = useState(0);
+  const {itemId} = useSelector((state) => state.items)
   //const [selectedCategory, setselectedCategory] = useState("");
   const [isChecked, setisChecked] = useState(false);
   const [description, setdescription] = useState("");
   const [qty, setQty] = useState()
   const navigate = useNavigate()
-
+  const dispatch = useDispatch()
   const [name, setname] = useState("");
   const [isSubmit, setisSubmit] = useState(false);
   const [selectedCat, setselectedCat] = useState();
+  const [id, setId] = useState(itemId)
   const [imagedata, setimagedata] = useState({
     first: { img: null, isEdit: false },
     second: { img: null, isEdit: false },
@@ -33,6 +38,49 @@ const AddProduct = ({merchant, uid, key}) => {
       })
   //const selectedImageObj = ;
 
+  useEffect(() => {
+    //if (!itemId) return
+   
+      async function getData ()  {
+        if (itemId) {
+          console.log(itemId)
+        await getExistingProduct(itemId)
+        .then((res) => {
+          console.log(res)
+          dispatch(editItem(null))
+          const {name, qty,description, category, price,image} = res
+          setname(name)
+          setdescription(description)
+          setselectedCat(category)
+          setprice(price)
+          setQty(qty)
+
+         setselectedImageObj({
+          first: image[0],
+          second: image[1],
+          third: image[2],
+          forth: image[3]
+         })
+
+         setimagedata({
+          first: { img: image[0], isEdit: false },
+          second: { img: image[1], isEdit: false },
+          third: { img: image[2], isEdit: false },
+          forth: { img: image[3], isEdit: false },
+         })
+          
+        
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+        
+      }
+    }
+  
+
+   getData()
+  },[itemId])
 
   
   const chooseImage = (e) => {
@@ -104,7 +152,7 @@ const  saveToDatabse = async () => {
     image:imagedata,
     category: selectedCat,
     price,
-    //id: this.getEdit,
+    id
   };
 
    await sendToStore (payload)
@@ -144,7 +192,7 @@ const  saveToDatabse = async () => {
   //console.log('from first',selectedImageObj.first)
 
   return (
-    <div className="let swipeIn mt-[40px] text-zinc-700 min-[450px]:mt-[60px] w-full sm:w-[96%] min-[1000px]:w-[85%] pb-[5rem] sm:pb-[5rem] space-y-[5%] float-right p-6 text-">
+    <div className="let swipeIn mt-[40px] text-zinc-700 min-[450px]:mt-[60px] w-full sm:w-[95%] min-[1000px]:w-[80%] xl:w-[83%] pb-[5rem] sm:pb-[5rem] space-y-[5%] float-right p-6 text-">
       <div className="space-y-[5%] w-full sm:w-[80%] mx-auto">
         <div className="flex items-center justify-between">
           <div className="w-6 h-6 bg-none"></div>

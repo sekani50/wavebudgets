@@ -7,23 +7,19 @@ import {
   MdOutlineEmojiFoodBeverage,
 } from "react-icons/md";
 import { TbBabyCarriage } from "react-icons/tb";
-import health from "../../../../assets/Svg/health.svg";
+import healths from "../../../../assets/Svg/health.svg";
 import elect from "../../../../assets/Svg/elect.svg";
-import auto from "../../../../assets/Svg/auto.svg";
-import fashion from "../../../../assets/Svg/fashion.svg";
-
+import autos from "../../../../assets/Svg/auto.svg";
+import fashions from "../../../../assets/Svg/fashion.svg";
+import { useSelector } from "react-redux";
 import appliances from "../../../../assets/Svg/appliances.svg";
 import { useNavigate } from "react-router-dom";
 const ItemCategories = () => {
   const navigate = useNavigate();
+  const {category} = useSelector((state) => state.items)
 
-  function viewDetail(nav) {
-    navigate("/detail", {
-      state: {
-        navtitle: nav,
-      },
-    });
-  }
+
+
 
   return (
     <div className="max-[1000px]:hidden gap-6 grid grid-cols-6 bg-white rounded-md p-4">
@@ -33,15 +29,17 @@ const ItemCategories = () => {
             navigate("/detail", {
               state: {
                 navtitle: "Health and Beauty",
+                data:category?.health
+                
               },
             });
           }}
-          className="flex space-x-2 justify-start items-center"
+          className="flex group space-x-2 justify-start items-center"
         >
           <div className="w-[20px] h-[20px]">
-            <img className="w-full h-full" src={health} alt="" />
+            <img className="w-full h-full" src={healths} alt="" />
           </div>
-          <span className="capitalize">Health and Beauty</span>
+          <span className=" group-hover:text-[#009999] capitalize">Health and Beauty</span>
         </div>
 
         <div
@@ -49,136 +47,146 @@ const ItemCategories = () => {
             navigate("/detail", {
               state: {
                 navtitle: "Phones",
+                data:category?.phone
               },
             });
           }}
-          className="flex  space-x-2 justify-start items-center"
+          className="flex group space-x-2 justify-start items-center"
         >
-          <BsPhone className="text-[20px]" />
-          <span className="capitalize">Phones</span>
+          <BsPhone className="text-[20px] group-hover:text-[#009999]" />
+          <span className="capitalize  group-hover:text-[#009999]">Phones</span>
         </div>
         <div
           onClick={() => {
             navigate("/detail", {
               state: {
                 navtitle: "Laptops",
+                data:category?.laptop
               },
             });
           }}
-          className="flex  space-x-2 justify-start items-center"
+          className="flex  space-x-2 group justify-start items-center"
         >
-          <BsLaptop className="text-[20px]" />
-          <span className="capitalize">Laptops</span>
+          <BsLaptop className="text-[20px]  group-hover:text-[#009999]" />
+          <span className="capitalize  group-hover:text-[#009999]">Laptops</span>
         </div>
         <div
           onClick={() => {
             navigate("/detail", {
               state: {
                 navtitle: "Real Estate",
+                data:category?.estate
               },
             });
           }}
-          className="flex  space-x-2 justify-start items-center"
+          className="flex group space-x-2 justify-start items-center"
         >
-          <MdOutlineRealEstateAgent className="text-[20px]" />
-          <span className="capitalize">Real Estate</span>
+          <MdOutlineRealEstateAgent className="text-[20px]  group-hover:text-[#009999]" />
+          <span className="capitalize  group-hover:text-[#009999]">Real Estate</span>
         </div>
         <div
           onClick={() => {
             navigate("/detail", {
               state: {
                 navtitle: "Pharmaceuticals",
+                data:category?.pharmacy
               },
             });
           }}
-          className="flex  space-x-2 justify-start items-center"
+          className="flex  space-x-2 group justify-start items-center"
         >
-          <MdOutlineLocalPharmacy className="text-[20px]" />
-          <span className="capitalize">Pharmaceuticals</span>
+          <MdOutlineLocalPharmacy className="text-[20px]  group-hover:text-[#009999]" />
+          <span className="capitalize  group-hover:text-[#009999]">Pharmaceuticals</span>
         </div>
         <div
           onClick={() => {
             navigate("/detail", {
               state: {
                 navtitle: "Drinks and Beverages",
+                data:category?.drink
               },
             });
           }}
-          className="flex  space-x-2 justify-start items-center"
+          className="flex  space-x-2 group justify-start items-center"
         >
-          <MdOutlineEmojiFoodBeverage className="text-[20px]" />
-          <span className="capitalize">Drinks and Beverages</span>
+          <MdOutlineEmojiFoodBeverage className="text-[20px]  group-hover:text-[#009999]" />
+          <span className="capitalize  group-hover:text-[#009999]">Drinks and Beverages</span>
         </div>
         <div
           onClick={() => {
             navigate("/detail", {
               state: {
                 navtitle: "Food Stuffs",
+                data:category?.foodstuff
               },
             });
           }}
-          className="flex   space-x-2 justify-start items-center"
+          className="flex group  space-x-2 justify-start items-center"
         >
-          <MdOutlineFoodBank className="text-[20px]" />
-          <span className="capitalize">Food Stuffs</span>
+          <MdOutlineFoodBank className="text-[20px]  group-hover:text-[#009999]" />
+          <span className="capitalize  group-hover:text-[#009999]">Food Stuffs</span>
         </div>
         <div
           onClick={() => {
             navigate("/detail", {
               state: {
                 navtitle: "Fashion",
+                data:category?.fashion
               },
             });
           }}
-          className="flex  space-x-2 justify-start items-center"
+          className="flex group space-x-2 justify-start items-center"
         >
           <div className="w-[20px] h-[20px]">
-            <img src={fashion} alt="" />
+            <img src={fashions} alt="" />
           </div>
-          <span className="capitalize">Fashion</span>
+          <span className="capitalize  group-hover:text-[#009999]">Fashion</span>
         </div>
         <div
           onClick={() => {
             navigate("/detail", {
               state: {
                 navtitle: "Automobile",
+                data:category?.automobile
               },
             });
           }}
-          className="flex  space-x-2 justify-start items-center"
+          className="flex group space-x-2 justify-start items-center"
         >
           <div className="w-[20px] h-[20px]">
-            <img src={auto} alt="" />
+            <img src={autos} alt="" />
           </div>
-          <span className="capitalize">Automobile</span>
+          <span className=" group-hover:text-[#009999] capitalize">Automobile</span>
         </div>
         <div
           onClick={() => {
             navigate("/detail", {
               state: {
                 navtitle: "Appliances",
+                data:category?.appliance
               },
             });
           }}
-          className="flex   space-x-2 justify-start items-center"
+          className="flex group  space-x-2 justify-start items-center"
         >
           <div className="w-[20px] h-[20px]">
             <img className="w-full h-full" src={appliances} alt="" />
           </div>
-          <span className="capitalize">Appliances</span>
+          <span className="capitalize  group-hover:text-[#009999]">Appliances</span>
         </div>
         <div
           onClick={() => {
             navigate("/detail", {
               state: {
                 navtitle: "Baby Products",
+                data:category?.baby
               },
             });
           }}
-          className="flex  space-x-2 justify-start items-center"
+          className="flex group  space-x-2 justify-start items-center"
         >
-          <TbBabyCarriage className="text-[20px]" />
-          <span className="capitalize">Baby Products</span>
+          <TbBabyCarriage className="text-[20px]  group-hover:text-[#009999]" />
+          <span className="capitalize  group-hover:text-[#009999]">Baby Products</span>
         </div>
       </div>
 

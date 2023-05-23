@@ -44,8 +44,14 @@ const Header = () => {
               
             </div>
 
-            <div className="hide cursor-pointer sm:flex items-center sm:space-x-4 space-x-2">
+            <div className=" cursor-pointer flex items-center sm:space-x-4 space-x-2">
                 <div
+                  onClick={() => {
+                    if(!name) {
+                      navigate("/signin")
+                    }
+                    
+                  }}
                 onMouseEnter={() => {
                     if(name) {
                         setisVisisble(false)
@@ -58,10 +64,10 @@ const Header = () => {
                 onMouseLeave={() => {
                     setisVisisble(false)
                 }}
-                className="group relative text-black">
+                className="group relative flex text-black">
                     <div className="flex group-hover:text-[#009999] text-[16px] items-center space-x-2">
-                    {name ? <span className="capitalize hidden sm:block text-sm">{name.split(" ")[0] || name}</span>:<span className="hidden sm:block text-sm">Sign in</span>}
-                <FaUser className="hidden sm:block " />
+                    {name ? <span className="capitalize  text-sm">{name.split(" ")[0] || name}</span>:<span className=" text-sm">Sign in</span>}
+                <FaUser className=" " />
                     </div>
                  
 
@@ -78,11 +84,11 @@ const Header = () => {
                     setisCart(false)
                 }}
                className="relative">
-                {numOfCartItems > 0 && <div className="hidden sm:flex absolute top-[-10px] right-[-10px] bg-[#009999] rounded-full px-2  text-[10px] text-white  items-center justify-center ">
+                {numOfCartItems > 0 && <div className="hidden min-[450px]:flex absolute top-[-10px] right-[-10px] bg-[#009999] rounded-full px-2  text-[10px] text-white  items-center justify-center ">
                     <span>{numOfCartItems}</span>
 
                 </div>}
-               <FaShoppingCart className="hidden sm:block hover:text-[#009999]"/>
+               <FaShoppingCart className="hidden min-[450px]:block hover:text-[#009999]"/>
                 <CartCard isCart={isCart}  name={name}  items={numOfCartItems}/>
                </div>
              

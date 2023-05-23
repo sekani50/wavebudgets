@@ -1,7 +1,9 @@
 import * as type from "../Actions/Types";
 const initailState = {
     items: null,
-    category:null
+    category:null,
+    itemId:null,
+    singleCategory:null,
    
   };
   const Items = (state = initailState, action) => {
@@ -16,6 +18,17 @@ const initailState = {
           ...state,
           category: action.payload,
         };
+        case type.EDIT_ITEM:
+          return {
+            ...state,
+            itemId: action.payload,
+          };
+          case type.UPDATE_SINGLE_ITEM:
+            return {
+              ...state,
+              singleCategory: action.payload,
+            };
+    
   
   
       default:

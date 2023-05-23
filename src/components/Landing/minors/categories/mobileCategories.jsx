@@ -2,36 +2,40 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./mobileCategories.scss";
 import appliances from "../../../../assets/images/app.jpg";
-import food from "../../../../assets/images/foodstuffs.jpg";
-import health from "../../../../assets/images/health.jpg";
-import laptop from "../../../../assets/images/lap.jpg";
+import foodss from "../../../../assets/images/foodstuffs.jpg";
+import healths from "../../../../assets/images/health.jpg";
+import laptops from "../../../../assets/images/lap.jpg";
 import back from "../../../../assets/Svg/back.svg"
 import foward from "../../../../assets/Svg/foward.svg"
-import fashion from "../../../../assets/images/fashion.jpg";
-import phones from "../../../../assets/images/phones.png";
-import estate from "../../../../assets/images/estate.jpg";
-import drink from "../../../../assets/images/drink.png";
-import baby from "../../../../assets/images/baby.jpg";
-import pharm from "../../../../assets/images/pharm.jpg";
-import auto from "../../../../assets/images/autom.jpg";
+import fashions from "../../../../assets/images/fashion.jpg";
+import phoness from "../../../../assets/images/phones.png";
+import estates from "../../../../assets/images/estate.jpg";
+import drinks from "../../../../assets/images/drink.png";
+import babys from "../../../../assets/images/baby.jpg";
+import pharms from "../../../../assets/images/pharm.jpg";
+import autos from "../../../../assets/images/autom.jpg";
+import { useSelector } from "react-redux";
 const MobileCategories = () => {
   const navigate = useNavigate();
   const slide = useRef();
   const [isnext, setisnext] = useState(true);
   const [isprev, setisprev] = useState(false);
+  const {category} = useSelector((state) => state.items)
+
+
 
   const data = [
-    { cats: "Health & Beauty", img: health },
-    { cats: "Phones", img: phones },
-    { cats: "Laptops", img: laptop },
-    { cats: "Real Estate", img: estate },
-    { cats: "Pharmaceutical", img: pharm },
-    { cats: "Drinks & Beverages", img: drink },
-    { cats: "FoodStuffs", img: food },
-    { cats: "Fashion", img: fashion },
-    { cats: "Automobile", img: auto },
-    { cats: "Appliances", img: appliances },
-    { cats: "Baby Products", img: baby },
+    { cats: "Health & Beauty", img: healths, data:category?.health },
+    { cats: "Phones", img: phoness, data:category?.phone },
+    { cats: "Laptops", img: laptops, data:category?.laptop },
+    { cats: "Real Estate", img: estates, data:category?.estate },
+    { cats: "Pharmaceutical", img: pharms, data:category?.pharmacy },
+    { cats: "Drinks & Beverages", img: drinks, data:category?.drink },
+    { cats: "FoodStuffs", img: foodss, data:category?.foodstuff },
+    { cats: "Fashion", img: fashions, data:category?.fashion },
+    { cats: "Automobile", img: autos, data:category?.automobile },
+    { cats: "Appliances", img: appliances, data:category?.appliance },
+    { cats: "Baby Products", img: babys, data:category?.baby },
   ];
 
   function prev() {
@@ -87,7 +91,7 @@ const MobileCategories = () => {
           <img src={foward} alt="foward" />
         </div>
         <div ref={slide} className="overflow_auto_wrapper">
-          {data?.map(({ cats, img }, idx) => {
+          {data?.map(({ cats, img, data }, idx) => {
             return (
               <div
                 className="groupWidget_album_item"
@@ -95,6 +99,7 @@ const MobileCategories = () => {
                   navigate(`/detail`, {
                     state: {
                       navtitle:cats,
+                      data
                     },
                   });
                 }}

@@ -42,6 +42,8 @@ const SignIn = () => {
               dispatch(GetUsersSuccess(uid))
             }
             else {
+              //please remove this
+              dispatch(GetUsersSuccess(uid))
               navigate("/not-activated")
             }
           })
@@ -142,6 +144,12 @@ const SignIn = () => {
         className="bg-[#009999] text-white sm:py-3 py-2 rounded-md flex items-center w-full justify-center"
         >{loading ? <Loader/> : <span>Log in</span>}</button>
 
+
+              <span>Don't have an account yet? <span 
+              onClick={() => {
+                navigate("/signup")
+              }}
+              className='mr-3 text-blue-700'>Sign up</span></span>
 
                 </div>
             </div>

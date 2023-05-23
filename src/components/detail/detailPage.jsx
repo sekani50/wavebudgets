@@ -10,7 +10,7 @@ import WaveFooter from "components/Landing/minors/footer/footer";
 const DetailPage = () => {
   const { state } = useLocation();
   const [isVisible, setisVisible] = useState(false);
-  const { navtitle } = state;
+  const { navtitle, data } = state;
   return (
     <div className="max-[450px]:mt-[56px] w-full h-full">
       <VisHeader />
@@ -26,9 +26,10 @@ const DetailPage = () => {
       <GroupHeaders headings={navtitle} />
    
       <div className="mt-0  h-full relative min-[450px]:mt-0 sm:mt-0 mb-[1rem] w-full p-2 min-[450px]:p-3 gap-6 flex flex-col">
-        <MoreWidget/>
+        <MoreWidget payload={data}/>
       </div>
-      <WaveFooter/>
+      
+     
     </div>
   );
 };

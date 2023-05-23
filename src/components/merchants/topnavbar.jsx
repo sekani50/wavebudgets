@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const TopNavBar=({merchant}) => {
     const navigate = useNavigate()
     return (
-        <div className="let swipeIn fixed right-0 min-[450px]:right-[9px] top-0 w-full z-10 sm:w-[96%] min-[1000px]:w-[85%] float-right  bg-white flex justify-between items-center border-b-2 shadow-lg ">
+        <div className="let swipeIn fixed right-0 min-[450px]:right-[9px] top-0 w-full z-10 sm:w-[95%] min-[1000px]:w-[80%] xl:w-[83%] float-right  bg-white flex justify-between items-center border-b-2 shadow-lg ">
             
             <div
             onClick={() => {

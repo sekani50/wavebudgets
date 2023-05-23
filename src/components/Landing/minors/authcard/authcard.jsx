@@ -10,7 +10,7 @@ const AuthCard = ({ isVisible}) => {
         <>
  <div
         
-         className={isVisible ? "h-[250px] z-40 absolute w-[300px] text-sm left-[-200px] bg-white bottom-[-250px] flex flex-col shadow-lg rounded-xl space-y-4 px-6 py-4 justify-center items-center": "hidden"}>
+         className={isVisible ? "h-[250px] max-[450px]:hidden z-40 absolute w-[300px] text-sm left-[-200px] bg-white bottom-[-250px] flex flex-col shadow-lg rounded-xl space-y-4 px-6 py-4 justify-center items-center": "hidden"}>
              <div className="w-10 h-6">
                     <img className="w-full h-full" src={logo} alt="" />
                 </div>

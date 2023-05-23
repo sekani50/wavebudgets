@@ -8,7 +8,7 @@ import ActivationCard from "components/merchants/activationCard";
 import MerchantSignUp from "components/merchants/authentication/msignup";
 import AddToStore from "components/merchants/addtostore";
 import AwaitActivation from "components/merchants/awaitActivation";
-
+import EditStore from "components/merchants/merchantCategory/editStore";
 export {
     HomePage,
     SignIn,
@@ -19,7 +19,8 @@ export {
     ActivationCard,
     MerchantSignUp,
     AddToStore,
-    AwaitActivation
+    AwaitActivation,
+    EditStore
 
 }
 

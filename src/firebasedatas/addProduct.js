@@ -23,6 +23,11 @@ export const sendToStore = async (data) => {
   let success;
   const result = {};
 
+  if(data) {
+    console.log(data)
+    
+  }
+
 if (first.isEdit) {
     const imgRef = ref(storage, `images/${first.img + v4()}`);
   
@@ -43,6 +48,9 @@ if (first.isEdit) {
         console.log(err);
       });
   }
+
+  
+
 
    if (second.isEdit)
    { const imgRefS = ref(storage, `images/${second.img + v4()}`);

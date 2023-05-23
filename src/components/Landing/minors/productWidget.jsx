@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import LandingWidget from "./landingWidget/landingWidget";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-const ProductWidget = () => {
-  const { items } = useSelector((state) => state.items);
-  const [data, setdata] = useState(items);
+const ProductWidget = ({items}) => {
+  //const { items } = useSelector((state) => state.items);
+  //const [data, setdata] = useState(items);
   const navigate = useNavigate();
 
   console.log(items);
@@ -13,8 +13,8 @@ const ProductWidget = () => {
       <p className=" top_heading">Just for You</p>
 
       <div className="mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-5">
-        {data?.map(
-          ({ name, available, description, storeName, images, price }, idx) => {
+        {items?.map(
+          ({ name, qty, description, storeName, images, price }, idx) => {
             return (
               <div
                 key={idx}
@@ -24,7 +24,7 @@ const ProductWidget = () => {
                       name,
                       description,
                       price,
-                      available: available || 0,
+                      qty,
                       images,
                       storeName,
                     },

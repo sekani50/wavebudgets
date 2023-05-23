@@ -3,14 +3,15 @@ import { Link, useLocation } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
 import { MdOutlineEditNote } from "react-icons/md";
 import { AiOutlineHome } from "react-icons/ai";
+import CategoryNav from "../merchantCategory/categoryNav";
 
 const MobileDashboard = ({key}) => {
   const [isCat, setisCat] = useState(false);
   const [isOpen, setisOpen] = useState(false);
+  const [ismobile, setismobile] = useState(false);
   const {pathname} = useLocation()
   const showCats = () => {
-    setisCat(!isCat);
-    setisOpen(true);
+    setismobile(!ismobile)
   };
 
   const checkCats = () => {
@@ -18,28 +19,19 @@ const MobileDashboard = ({key}) => {
   };
 
   return (
+    <>
     <div className="w-full sm:hidden h-fit text-sm fixed bottom-0 inset-x-0 shadow-lg border-t text-zinc-800 bg-white z-50">
       <div className="w-full flex justify-between items-center py-2 px-6">
-        <div className="relative flex flex-col space-y-1 items-center justify-center">
-          <span onClick={showCats}>
+        <div
+        onClick={() => {
+          setismobile(!ismobile)
+        }} className="relative flex flex-col space-y-1 items-center justify-center">
+          <span >
             <MdOutlineEditNote  className="text-[22px]" />
           </span>
           <span> Edit </span>
 
-          <div
-            onClick={showCats}
-            className={isCat ? "fixed inset-0 bg-none w-full h-full" : "hidden"}
-          >
-            <div
-              className={
-                isOpen
-                  ? "bg-white p-4 ml-4 shadow-xl space-y-4 bottom-[65px] rounded-md min-h-max min-w-max absolute"
-                  : "hidden"
-              }
-            >
-              <div></div>
-            </div>
-          </div>
+         
         </div>
 
         <Link
@@ -63,6 +55,11 @@ const MobileDashboard = ({key}) => {
         </Link>
       </div>
     </div>
+    <CategoryNav
+    ismobile={ismobile}
+    setismobile={setismobile}
+    />
+    </>
   );
 };
 

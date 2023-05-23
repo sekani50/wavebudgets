@@ -25,7 +25,7 @@ const MobileCards = () => {
     }
 
     return (
-        <div className="w-full mob-none h-fit overflow-hidden">
+        <div className="max-[450px]:mt-[52px] w-full mob-none h-fit overflow-hidden">
                <div className="mt-[1rem] hidescroll overflow-x-auto pl-2 pr-4  grid text-white grid-cols-3 gap-[10.5rem] w-full h-12">
              <div
             onClick={Lservices}

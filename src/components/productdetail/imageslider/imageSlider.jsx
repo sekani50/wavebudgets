@@ -9,23 +9,20 @@ const ImageSlider = ({ isSlider, setisSlider, images }) => {
   const slide = useRef();
   const [slider, setSlider] = useState()
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 721) {
-        setSlider(400);
-      } else if (window.innerWidth < 720 && window.innerWidth >=  566){
-        setSlider(280);
-      }
-      else {
-        setSlider(320)
-      }
-    };
-    window.addEventListener("load", handleResize);
-    window.addEventListener("resize", handleResize);
-    return () => {window.removeEventListener("resize", handleResize)
-    window.removeEventListener("load", handleResize)
-  }
-  }, [slider]);
+ 
+
+  useEffect (() => {
+
+   
+    if (window.innerWidth >= 721) {
+      setSlider(400);
+    } else if (window.innerWidth < 720 && window.innerWidth >=  566){
+      setSlider(280);
+    }
+    else {
+      setSlider(320)
+    }
+  }, [slider])
   function prev() {
     //console.log(this.idx)
     console.log("from slider", slide.current?.scrollWidth);
