@@ -95,6 +95,10 @@ const ProductDetail = () => {
   };
 
   const handlePay = () => {
+    if (!currentUser) {
+      toast.error("You must be logged in to buy")
+      return
+    }
       handlePayment(email, parseFloat(curPrice))
   }
 

@@ -8,6 +8,7 @@ import CartCards from "./cartCard";
 import { useNavigate } from "react-router-dom";
 import { getExistingDoc } from "firebasedatas/firebaseAuth";
 import { handlePayment } from "paystack/paystackInterface";
+import { toast } from "react-hot-toast";
 const UserCart = () => {
   const [isShow, setisShow] = useState(false);
   const {currentUser} = useSelector((state) => state.user)
@@ -36,6 +37,10 @@ const UserCart = () => {
   
   
   const handlePay = () => {
+    if (!currentUser) {
+      toast.error("You must be logged in to buy")
+      return
+    }
     handlePayment(email, parseFloat(overallPrice))
 }
   return (

@@ -27,6 +27,10 @@ const MobileBtns = ({name, curPrice, image, bnpl, count, store}) => {
 },[])
 
 const handlePay = () => {
+  if (!currentUser) {
+    toast.error("You must be logged in to buy")
+    return
+  }
   handlePayment(email, parseFloat(curPrice))
 }
 
