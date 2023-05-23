@@ -65,7 +65,7 @@ const MerchantSignUp = () => {
       .then(async (res) => {
         console.log(res);
         const { uid } = res.user;
-        await saveData(res.user.uid, { userId: res.user.uid, ...form })
+        await saveData(res.user.uid, { key: generateRandomID(20),userId: res.user.uid, ...form })
           .then(async (res) => {
             console.log(res);
 

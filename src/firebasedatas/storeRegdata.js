@@ -50,6 +50,7 @@ export const saveData = async (id, payload) => {
       address: payload.address,
       businessType: payload.businessType,
       cac: result,
+      key: payload.key,
       businessDescription: payload.businessDescription,
       type: "Merchant",
     });

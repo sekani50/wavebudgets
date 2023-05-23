@@ -41,7 +41,7 @@ const MobileNav = () => {
         onClick={() => {
           navigate("/cart")
          }}
-        className="text-zinc-800 flex flex-col space-y-1 items-center justify-center">
+        className="text-zinc-800 z-[60] flex flex-col space-y-1 items-center justify-center">
          <AiOutlineShoppingCart className="text-[20px]" />
           <span className="font-normal">Cart</span>
         </div>
