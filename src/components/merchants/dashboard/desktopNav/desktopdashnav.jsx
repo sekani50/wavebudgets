@@ -1,16 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./desktopdashnav.scss";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import {RiArrowDropDownFill} from 'react-icons/ri'
 import { updateSingleItem } from "Redux/Actions/ActionCreators";
-const DesktopDashNav = ({ key }) => {
+import { getExistingDoc } from "firebasedatas/firebaseAuth";
+const DesktopDashNav = () => {
+  const {currentUser}= useSelector((state) => state.user)
   const { category } = useSelector((state) => state.items);
   const navigate = useNavigate();
   const [isOpen, setisOpen] = useState(false);
+  const [ischeck,setischeck] = useState(false)
   const { pathname } = useLocation();
   const dispatch = useDispatch()
+  const [key, setKey] = useState()
+  
+  useEffect(() => {
+    async function getUser () {
+    await getExistingDoc(currentUser)
+    .then((res) => {
+     console.log(res)
+  
+        setKey(res.key)
+    
+    })
+    .catch((err) => {
+     console.log(err)
+    })
+     }
+    
+     getUser()
+ },[]) 
+
   const data = [
     { cats: "Health & Beauty",  data:category?.health, id:"health"},
     { cats: "Phones",  data:category?.phone , id:"phone"},
@@ -25,12 +48,15 @@ const DesktopDashNav = ({ key }) => {
     { cats: "Baby Products",  data:category?.baby, id:"baby" },
   ];
 
+
   const setOpen = (e) => {
     e.stopPropagation();
     setisOpen(!isOpen);
   };
-  const checkcat = () => {};
-  console.log(key);
+  const checkcat = () => {
+    setischeck(!ischeck)
+  };
+  console.log('from desktop dashboard',key);
   return (
     <div
       onClick={(e) => {
@@ -82,11 +108,12 @@ const DesktopDashNav = ({ key }) => {
         </Link>
         <div
           onClick={checkcat}
-          className={`${pathname === "/edit-item" ? 'font-normal' : 'font-light'} text-gray-200 hover:text-white hover:font-normal flex items-center`}
+          className={`${pathname === "/edit-item" ? 'font-normal' : 'font-light'} text-gray-200 hover:text-white hover:font-normal flex items-center space-x-1`}
         >
           <span>Edit Categories </span>
+          <RiArrowDropDownFill className={ischeck? "text-[20px] rotate-[180deg]":"text-[20px]"} />
         </div>
-        <div className="space-y-3 pl-3 $text-gray-200 text-sm">
+        {ischeck && <div className="space-y-3 pl-3 $text-gray-200 text-sm">
           {data.map(({ cats, data, id }, idx) => {
             return <div
             key={idx}
@@ -104,7 +131,7 @@ const DesktopDashNav = ({ key }) => {
               <span className={`${pathname === "/edit-item" ? 'font-normal' : 'font-light'} hover:text-white hover:font-normal text-gray-200`}>{cats}</span>
             </div>;
           })}
-        </div>
+        </div>}
       </div>
     </div>
   );

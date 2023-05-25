@@ -47,7 +47,7 @@ const ItemCategories = () => {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundSize: 'cover',
-    height: '400px',
+    height: '450px',
     
   }
 
@@ -239,7 +239,7 @@ const ItemCategories = () => {
         </div>
       </div>
 
-      <div className="bg-[#009999] bg-opacity-25 mix-blend-multiply w-full h-full col-span-5 rounded-md">
+      <div className="bg-[#009999] bg-opacity-25 overflow-hidden mix-blend-multiply w-full h-full col-span-5 rounded-md">
   
      
         <Slide>

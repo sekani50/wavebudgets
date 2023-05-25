@@ -114,7 +114,7 @@ const GroupWidget = ({ heading, payload }) => {
                 >
                   <ScrollWidget
                     name={name.stringValue}
-                    image={images[0]?.stringValue}
+                    image={images[0]}
                     descriptions={description.stringValue}
                     price={price.stringValue}
                   />

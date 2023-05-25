@@ -15,7 +15,7 @@ import { auth, db, storage } from "./firebase";
 /// getting docs
 
 export const getAll = async(data) => {
-
+  let images;
   const queryData = query(
     collection(db, "productDetails")
   );
@@ -24,7 +24,9 @@ export const getAll = async(data) => {
   await getDocs(queryData).then((res) => {
     console.log(res.docs);
     res.docs.forEach((doc) => {
+      //console.log(doc._document.data.value.mapValue)
       const { fields } = doc._document.data.value.mapValue;
+      console.log(fields)
       const {
         category,
         description,
@@ -34,13 +36,16 @@ export const getAll = async(data) => {
         qty,
         image,
         storeName,
-        merchantId,
+        merchantId
       } = fields;
       const { values } = image.arrayValue;
       console.log(values);
-      const images = values.filter(
-        (val) => val.stringValue !== undefined || val.stringValue !== null
-      );
+      if(values) {
+        images = values.map((val) => val.stringValue)
+      }
+      
+    
+      console.log('mapped images', images)
       data.push({
         id: doc.id,
         category,
@@ -56,6 +61,7 @@ export const getAll = async(data) => {
     });
   });
   
+  console.log(data)
   return data
 }
 
@@ -79,6 +85,7 @@ export const getCategory = async (
 
   //console.log("from env file", process.env.VUE_APP_MESSAGING_ID)
   await getDocs(queryHealth).then((res) => {
+    let images;
     console.log(res.docs);
     res.docs.forEach((doc) => {
       const { fields } = doc._document.data.value.mapValue;
@@ -95,9 +102,10 @@ export const getCategory = async (
       } = fields;
       const { values } = image.arrayValue;
       console.log(values);
-      const images = values.filter(
-        (val) => val.stringValue !== undefined || val.stringValue !== null
-      );
+      if(values) {
+        images = values.map((val) => val.stringValue)
+      }
+      
       health.push({
         id: doc.id,
         category,
@@ -117,8 +125,10 @@ export const getCategory = async (
     where("category", "==", "Phones")
   );
   await getDocs(queryPhone).then((res) => {
+    let images;
     console.log(res.docs);
     res.docs.forEach((doc) => {
+      console.log(doc._document.data)
       const { fields } = doc._document.data.value.mapValue;
       console.log(fields);
       const {
@@ -135,9 +145,10 @@ export const getCategory = async (
       console.log(image);
       const { values } = image.arrayValue;
       console.log(values);
-      const images = values.filter(
-        (val) => val.stringValue !== undefined || val.stringValue !== null
-      );
+      if(values) {
+        images = values.map((val) => val.stringValue)
+      }
+      
       phone.push({
         id: doc.id,
         category,
@@ -159,8 +170,10 @@ export const getCategory = async (
     where("category", "==", "Laptops")
   );
   await getDocs(queryLaptop).then((res) => {
+    let images;
     console.log(res.docs);
     res.docs.forEach((doc) => {
+      console.log(doc._document.data)
       const { fields } = doc._document.data.value.mapValue;
       const {
         category,
@@ -175,9 +188,10 @@ export const getCategory = async (
       } = fields;
       const { values } = image.arrayValue;
       console.log(values);
-      const images = values.filter(
-        (val) => val.stringValue !== undefined || val.stringValue !== null
-      );
+      if(values) {
+        images = values.map((val) => val.stringValue)
+      }
+      
       laptop.push({
         id: doc.id,
         category,
@@ -197,6 +211,7 @@ export const getCategory = async (
     where("category", "==", "Real Estate")
   );
   await getDocs(queryEstate).then((res) => {
+    let images;
     console.log(res.docs);
     res.docs.forEach((doc) => {
       const { fields } = doc._document.data.value.mapValue;
@@ -213,9 +228,9 @@ export const getCategory = async (
       } = fields;
       const { values } = image.arrayValue;
       console.log(values);
-      const images = values.filter(
-        (val) => val.stringValue !== undefined || val.stringValue !== null
-      );
+      if(values) {
+        images = values.map((val) => val.stringValue)
+      }
       estate.push({
         id: doc.id,
         category,
@@ -235,6 +250,7 @@ export const getCategory = async (
     where("category", "==", "Pharmaceutical")
   );
   await getDocs(queryPharm).then((res) => {
+    let images;
     console.log(res.docs);
     res.docs.forEach((doc) => {
       const { fields } = doc._document.data.value.mapValue;
@@ -251,9 +267,9 @@ export const getCategory = async (
       } = fields;
       const { values } = image.arrayValue;
       console.log(values);
-      const images = values.filter(
-        (val) => val.stringValue !== undefined || val.stringValue !== null
-      );
+      if(values) {
+        images = values.map((val) => val.stringValue)
+      }
       pharmacy.push({
         id: doc.id,
         category,
@@ -273,6 +289,7 @@ export const getCategory = async (
     where("category", "==", "Drinks & Beverages")
   );
   await getDocs(querydrink).then((res) => {
+    let images;
     console.log(res.docs);
     res.docs.forEach((doc) => {
       const { fields } = doc._document.data.value.mapValue;
@@ -289,9 +306,9 @@ export const getCategory = async (
       } = fields;
       const { values } = image.arrayValue;
       console.log(values);
-      const images = values.filter(
-        (val) => val.stringValue !== undefined || val.stringValue !== null
-      );
+      if(values) {
+        images = values.map((val) => val.stringValue)
+      }
       drink.push({
         id: doc.id,
         category,
@@ -312,6 +329,7 @@ export const getCategory = async (
     where("category", "==", "FoodStuffs")
   );
   await getDocs(queryfood).then((res) => {
+    let images;
     console.log(res.docs);
     res.docs.forEach((doc) => {
       const { fields } = doc._document.data.value.mapValue;
@@ -328,9 +346,9 @@ export const getCategory = async (
       } = fields;
       const { values } = image.arrayValue;
       console.log(values);
-      const images = values.filter(
-        (val) => val.stringValue !== undefined || val.stringValue !== null
-      );
+      if(values) {
+        images = values.map((val) => val.stringValue)
+      }
       foodstuff.push({
         id: doc.id,
         category,
@@ -351,6 +369,7 @@ export const getCategory = async (
     where("category", "==", "Fashion")
   );
   await getDocs(queryfashion).then((res) => {
+    let images;
     console.log(res.docs);
     res.docs.forEach((doc) => {
       const { fields } = doc._document.data.value.mapValue;
@@ -367,9 +386,9 @@ export const getCategory = async (
       } = fields;
       const { values } = image.arrayValue;
       console.log(values);
-      const images = values.filter(
-        (val) => val.stringValue !== undefined || val.stringValue !== null
-      );
+      if(values) {
+        images = values.map((val) => val.stringValue)
+      }
       fashion.push({
         id: doc.id,
         category,
@@ -390,6 +409,7 @@ export const getCategory = async (
     where("category", "==", "Automobile")
   );
   await getDocs(queryauto).then((res) => {
+    let images;
     console.log(res.docs);
     res.docs.forEach((doc) => {
       const { fields } = doc._document.data.value.mapValue;
@@ -406,9 +426,9 @@ export const getCategory = async (
       } = fields;
       const { values } = image.arrayValue;
       console.log(values);
-      const images = values.filter(
-        (val) => val.stringValue !== undefined || val.stringValue !== null
-      );
+      if(values) {
+        images = values.map((val) => val.stringValue)
+      }
       automobile.push({
         id: doc.id,
         category,
@@ -429,6 +449,7 @@ export const getCategory = async (
     where("category", "==", "Appliances")
   );
   await getDocs(queryapp).then((res) => {
+    let images;
     console.log(res.docs);
     res.docs.forEach((doc) => {
       const { fields } = doc._document.data.value.mapValue;
@@ -445,9 +466,9 @@ export const getCategory = async (
       } = fields;
       const { values } = image.arrayValue;
       console.log(values);
-      const images = values.filter(
-        (val) => val.stringValue !== undefined || val.stringValue !== null
-      );
+      if(values) {
+        images = values.map((val) => val.stringValue)
+      }
       appliance.push({
         id: doc.id,
         category,
@@ -468,6 +489,7 @@ export const getCategory = async (
     where("category", "==", "Drinks & Beverages")
   );
   await getDocs(querybaby).then((res) => {
+    let images;
     console.log(res.docs);
     res.docs.forEach((doc) => {
       const { fields } = doc._document.data.value.mapValue;
@@ -484,9 +506,9 @@ export const getCategory = async (
       } = fields;
       const { values } = image.arrayValue;
       console.log(values);
-      const images = values.filter(
-        (val) => val.stringValue !== undefined || val.stringValue !== null
-      );
+      if(values) {
+        images = values.map((val) => val.stringValue)
+      }
       baby.push({
         id: doc.id,
         category,

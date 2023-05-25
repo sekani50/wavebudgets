@@ -82,7 +82,7 @@ const ProductDetail = () => {
     const payload = {
       name: name.stringValue,
       price: parseInt(price.stringValue),
-      image: images[0]?.stringValue,
+      image: images[0],
       storeName,
       curPrice,
       count,
@@ -131,7 +131,7 @@ const ProductDetail = () => {
             <div className="w-full h-[300px] min-[450px]:h-[400px]  rounded-sm">
               <img
                 className="w-full h-full rounded-sm"
-                src={images[0].stringValue}
+                src={images[0]}
                 alt="pxl"
               />
             </div>
@@ -148,7 +148,7 @@ const ProductDetail = () => {
         </div>
 
         <div className="flex flex-col justify-start space-y-[5%] text-zinc-800">
-        <div className="uppercase border-b p-2 w-full grid grid-cols-2 gap-20 items-center">
+        <div className="uppercase border-b p-2 w-full grid grid-cols-2  items-center">
           <span><b>seller:</b></span>
           <span><b>{storeName.stringValue}</b></span></div>
           
@@ -229,12 +229,12 @@ const ProductDetail = () => {
           {description.stringValue}
         </div>
         <div className="grid grid-cols-1 min-[450px]:grid-cols-2 xl:grid-cols-3">
-          {images.map((item, index) => {
+          {images && images.length > 1 && images.map((item, index) => {
             return (
               <div key={index} className="w-full h-[400px] rounded-sm object-cover">
                 <img
                   className="w-full h-full rounded-sm"
-                  src={item.stringValue}
+                  src={item}
                   alt="pxl"
                 />
               </div>
@@ -252,7 +252,7 @@ const ProductDetail = () => {
       <MobileBtns 
        name= {name.stringValue}
        price={ parseInt(price.stringValue)}
-       image={images[0]?.stringValue}
+       image={images[0]}
        bnpl={curBNPL}
        count={count}
        store={storeName}

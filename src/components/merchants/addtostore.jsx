@@ -11,6 +11,7 @@ const AddToStore = () => {
     const {id} = useParams()
     const [merchant, setMerchant] = useState()
     const [merchantId, setmerchantId] = useState()
+    const [key, setKey] = useState()
     const dispatch = useDispatch()
     const {currentUser} = useSelector((state) => state.user)
     //const imageFile = {};
@@ -20,6 +21,7 @@ const AddToStore = () => {
     .then((res) => {
      console.log(res)
      setMerchant(res.store)
+        setKey(res.key)
      setmerchantId(res.userId)
     })
     .catch((err) => {
@@ -39,9 +41,9 @@ const AddToStore = () => {
     return (
         <div className="w-full h-full  bg-gray-50 inset-0 sm:pb-32 fixed overflow-y-auto overflow-x-hidden">
             <TopNavBar merchant={merchant}/>
-            <DesktopDashNav key={id}/>
+            <DesktopDashNav key={key}/>
             <AddProduct merchant={merchant} uid={merchantId} key={id}/>
-            <MobileDashboard key={id}/>
+            <MobileDashboard key={key}/>
         </div>
     )
 }

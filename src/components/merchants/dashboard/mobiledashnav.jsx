@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
 import { MdOutlineEditNote } from "react-icons/md";
 import { AiOutlineHome } from "react-icons/ai";
 import CategoryNav from "../merchantCategory/categoryNav";
-
-const MobileDashboard = ({key}) => {
+import { getExistingDoc } from "firebasedatas/firebaseAuth";
+import { useSelector } from "react-redux";
+const MobileDashboard = () => {
+  const {currentUser}  = useSelector((state) => state.user)
   const [isCat, setisCat] = useState(false);
   const [isOpen, setisOpen] = useState(false);
   const [ismobile, setismobile] = useState(false);
   const {pathname} = useLocation()
+  const [key, setKey] = useState()
   const showCats = () => {
     setismobile(!ismobile)
   };
@@ -18,6 +21,24 @@ const MobileDashboard = ({key}) => {
     setisOpen(false);
   };
 
+  useEffect(() => {
+    async function getUser () {
+    await getExistingDoc(currentUser)
+    .then((res) => {
+     console.log(res)
+  
+        setKey(res.key)
+    
+    })
+    .catch((err) => {
+     console.log(err)
+    })
+     }
+    
+     getUser()
+ },[]) 
+
+  console.log('from mobile dashboard',key);
   return (
     <>
     <div className="w-full sm:hidden h-fit text-sm fixed bottom-0 inset-x-0 shadow-lg border-t text-zinc-800 bg-white z-50">

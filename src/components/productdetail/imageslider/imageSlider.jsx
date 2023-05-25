@@ -88,7 +88,7 @@ const ImageSlider = ({ isSlider, setisSlider, images }) => {
                   >
                     <img
                       className="w-full h-full rounded-tl-lg sm:rounded-l-xl rounded-tr-lg sm:rounded-tr-none object-fill"
-                      src={item.stringValue}
+                      src={item}
                       alt=""
                     />
                   </div>

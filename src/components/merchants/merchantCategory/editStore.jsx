@@ -8,10 +8,11 @@ import { getExistingDoc } from "firebasedatas/firebaseAuth";
 import { useLocation } from "react-router-dom";
 import { updateCategory } from "Redux/Actions/ActionCreators";
 import { getCategory } from "firebasedatas/getProducts";
+
 const EditStore = () => {
   const { state } = useLocation();
   const [merchant, setMerchant] = useState();
-
+  const [key, setKey] = useState()
   const [merchantId, setmerchantId] = useState();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
@@ -23,6 +24,7 @@ const EditStore = () => {
           console.log(res);
           setMerchant(res.store);
           setmerchantId(res.userId);
+          setKey(res.key);
         })
         .catch((err) => {
           console.log(err);
@@ -46,7 +48,7 @@ const EditStore = () => {
     const automobile = [];
     const appliance = [];
     const baby = [];
-    const data = [];
+   // const data = [];
     async function getData() {
       await getCategory(
         health,
@@ -75,10 +77,10 @@ const EditStore = () => {
   return (
     <div className="w-full h-full  bg-gray-200 inset-0 sm:pb-56 fixed overflow-y-auto overflow-x-hidden">
       <TopNavBar merchant={merchant} />
-      <DesktopDashNav key={""} />
+      <DesktopDashNav key={key} />
       <EditCategories cats={cats} data={data} uid={merchantId}/>
   
-      <MobileDashboard  />
+      <MobileDashboard key={key} />
     </div>
   );
 };

@@ -15,6 +15,7 @@ const ProductWidget = ({items}) => {
       <div className="mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-5">
         {items?.map(
           ({ name, qty, description, storeName, images, price }, idx) => {
+            console.log('images @@@',images[0])
             return (
               <div
                 key={idx}
@@ -33,7 +34,7 @@ const ProductWidget = ({items}) => {
               >
                 <LandingWidget
                   name={name.stringValue}
-                  image={images[0]?.stringValue}
+                  image={images[0]}
                   descriptions={description.stringValue}
                   price={price.stringValue}
                 />

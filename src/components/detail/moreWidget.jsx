@@ -34,7 +34,7 @@ const MoreWidget = ({payload}) => {
         {data?.length !== 0  && <div className="mt-[4rem] min-[450px]:mt-[2rem] px-[2%] md:px-[1%] lg:px-[2%] space-y-[1rem] pb-[60px]" > 
 
             <div className="mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-5">
-            {data?.map (({name, description, storeName, images, price, available}, idx) => {
+            {data?.map (({name, description, storeName, qty, images, price, available}, idx) => {
                 return (
                     <div
                     onClick={() => {
@@ -43,7 +43,7 @@ const MoreWidget = ({payload}) => {
                                 name,
                                 description,
                                 price,
-                                available: available || 0,
+                                qty,
                                 images,
                                 storeName,
                             }
@@ -52,7 +52,7 @@ const MoreWidget = ({payload}) => {
                     >
                      <LandingWidget
                      name={name.stringValue}
-                     image={images[0]?.stringValue}
+                     image={images[0]}
                      descriptions={description.stringValue}
                      price={price.stringValue}
                     />

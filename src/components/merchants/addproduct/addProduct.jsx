@@ -83,6 +83,8 @@ const AddProduct = ({merchant, uid, key}) => {
   },[itemId])
 
   
+
+  
   const chooseImage = (e) => {
     const newImgObj = { ...selectedImageObj}
     const newImgdata = { ...imagedata}
@@ -139,8 +141,27 @@ const  saveToDatabse = async () => {
   for (let i in validateData) {
     if (validateData[i] === "") {
       this.$toast.error(`${i} is empty`);
+      setisSubmit(false)
       return;
     }
+  }
+
+  let count = 0;
+  for (let data in Object.values(imagedata)) {
+   
+   console.log(data['img'])
+   console.log(imagedata)
+    if(data['img'] === null) {
+      count++
+      if (count >= 4) {
+        toast.error("Image cannot be empty")
+        setisSubmit(false)
+        return
+      }
+    }
+    console.log(count)
+  
+    
   }
 
   const payload = {
@@ -154,6 +175,12 @@ const  saveToDatabse = async () => {
     price,
     id
   };
+
+  if (payload)
+  {
+    console.log(payload)
+    return
+  } 
 
    await sendToStore (payload)
     .then((res) => {
