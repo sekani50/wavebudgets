@@ -147,7 +147,7 @@ const MerchantSignIn = () => {
 
               <span>Want to become a seller? <span 
               onClick={() => {
-                navigate("/seller/signup")
+                navigate("/seller/register")
               }}
               className='mr-3 text-blue-700'>Sign up</span></span>
 

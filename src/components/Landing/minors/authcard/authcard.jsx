@@ -114,7 +114,7 @@ const AuthCard = ({ isVisible, isUser, isMobile, setisMobile}) => {
            onClick={() => {
             navigate("/seller/login")
           }}
-          >Sign in as a seller </div>
+          >Sign in/Log in as a seller </div>
             </div>
             </div>
             
