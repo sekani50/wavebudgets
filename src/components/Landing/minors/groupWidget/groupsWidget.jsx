@@ -91,7 +91,7 @@ const GroupWidget = ({ heading, payload }) => {
         <div ref={slide} className="overflow_auto_wrapper">
           {payload?.slice(0,10).map(
             (
-              { name, description, storeName, images, price, qty },
+              { name, description, storeName, id,images, price, qty },
               idx
             ) => {
               console.log(name);
@@ -99,22 +99,14 @@ const GroupWidget = ({ heading, payload }) => {
                 <div
                   className="groupWidget_album_item"
                   onClick={() => {
-                    navigate(`/product`, {
-                      state: {
-                        name,
-                        description,
-                        price,
-                        qty,
-                        images,
-                        storeName,
-                      },
-                    });
+                    navigate(`/product/${id}`)
                   }}
                   key={idx + 1}
                 >
                   <ScrollWidget
                     name={name.stringValue}
                     image={images[0]}
+                    id={id}
                     descriptions={description.stringValue}
                     price={price.stringValue}
                   />

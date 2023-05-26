@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import pxl from "../../assets/images/pxl.jpg";
 import HidHeader from "components/Landing/minors/headers/hidHeader";
 import { BsCartPlus } from "react-icons/bs";
+import {BiArrowBack} from 'react-icons/bi'
 import { MdPreview } from "react-icons/md";
 import WaveFooter from "components/Landing/minors/footer/footer";
 //import MobileNav from "components/mobilenav/mobileNav";
@@ -9,31 +10,38 @@ import ImageSlider from "./imageslider/imageSlider";
 //import AuthCard from "components/Landing/minors/authcard/authcard";
 import MobileBtns from "components/mobilenav/mobileBtns";
 import GroupHeaders from "components/groupHeadings/groupHeaders";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { itemsToCart, calculateTotal } from "Redux/Actions/ActionCreators";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
 import { getExistingDoc } from "firebasedatas/firebaseAuth";
 import { handlePayment } from "paystack/paystackInterface";
+import { getExistingProduct } from "firebasedatas/getExisting";
 const ProductDetail = () => {
-  const { state } = useLocation();
-  const { name, description, price, qty, storeName, images } = state;
+  const {id} = useParams()
+  //const { state } = useLocation();
+  //const { name, description, price, qty, storeName, images } = state;
   const { cartItems } = useSelector((state) => state.cart);
   const [isShow, setisShow] = useState(false);
   const [username, setUsername] = useState();
+  const [name, setname] = useState()
+  const [description, setdescription] = useState()
+  const [qty, setQty] = useState()
+  const [storeName, setStorename] = useState()
+  const [images, setImages] = useState()
   const [email, setEmail] = useState()
   const [isVisible, setIsVisible] = useState(true);
   const {currentUser} = useSelector((state) => state.user)
   const [isSlider, setisSlider] = useState(false);
-  const [curPrice, setcurPrice] = useState(parseInt(price.stringValue));
+  const [price, setprice] = useState();
+  const [curPrice, setcurPrice] = useState();
   const [curBNPL, setcurBNPL] = useState(
-    parseInt(price.stringValue) + parseInt(price.stringValue * 0.1)
+   
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
-  const bnpl =
-    parseInt(price.stringValue) + parseInt(price.stringValue * 0.1);
+  const [bnpl, setbnpl] = useState()
 
   //console.log(name, description, price.)
   useEffect(() => {
@@ -53,9 +61,37 @@ const ProductDetail = () => {
     getUser()
 },[])
 
+useEffect(() => {
+  if (!id) return
+
+  async function getProduct () {
+    await getExistingProduct(id) 
+    .then((res) => {
+      console.log(res)
+      const { name, description, price, qty, storeName, image } = res;
+      setname(name)
+      setdescription(description)
+      setQty(qty)
+      setStorename(storeName)
+      setImages(image)
+      setprice(price)
+      setbnpl(
+        parseInt(price) + parseInt(price * 0.1))
+      setcurBNPL( parseInt(price) + parseInt(price * 0.1))
+      setcurPrice(parseInt(price))
+
+
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+  getProduct()
+},[])
+
   const incItem = () => {
     setCount(count + 1);
-    setcurPrice(curPrice + parseInt(price.stringValue));
+    setcurPrice(curPrice + parseInt(price));
     setcurBNPL(curBNPL + bnpl);
   };
   const decItem = () => {
@@ -64,13 +100,13 @@ const ProductDetail = () => {
     } else {
       setCount(1);
     }
-    if (curPrice === parseInt(price.stringValue)) {
-      setcurPrice(parseInt(price.stringValue));
+    if (curPrice === parseInt(price)) {
+      setcurPrice(parseInt(price));
       setcurBNPL(
-        parseInt(price.stringValue) + parseInt(price.stringValue * 0.1)
+        parseInt(price) + parseInt(price * 0.1)
       );
     } else {
-      setcurPrice(curPrice - parseInt(price.stringValue));
+      setcurPrice(curPrice - parseInt(price));
       setcurBNPL(curBNPL - bnpl);
     }
   };
@@ -80,8 +116,8 @@ const ProductDetail = () => {
       return
     }
     const payload = {
-      name: name.stringValue,
-      price: parseInt(price.stringValue),
+      name: name,
+      price: parseInt(price),
       image: images[0],
       storeName,
       curPrice,
@@ -112,10 +148,10 @@ const ProductDetail = () => {
     
     + "Username: "+username+"%0a"
     + "Email:   "+email+"%0a"
-    + "Product Name:   "+name.stringValue+"%0a"
+    + "Product Name:   "+name+"%0a"
     + "Quantity:   "+count+"%0a"
     + "Price:   "+curBNPL+"%0a"
-    + "Store:   "+storeName.stringValue+"%0a"
+    + "Store:   "+storeName+"%0a"
 
   window.open(url, "blank").focus();
   }
@@ -124,16 +160,18 @@ const ProductDetail = () => {
     <div className="w-full h-full ">
       <HidHeader isVisibles={isVisible} />
       <GroupHeaders headings={"Product Descriptions"} />
-
+      <div
+    
+       className=" flex justify-start items-center space-x-2 max-[450px]:hidden text-zinc-700"><BiArrowBack className="text-[20px]"/>Back</div>
       <div className="mt-[56px] min-[450px]:mt-[60px] sm:mt-[80px] mb-[1rem] w-full bg-white p-2 min-[450px]:p-3 gap-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         <div className="w-full min-[450px]:mt-0 mt-[35px] mx-auto">
           <div className="w-[93%] mx-auto flex flex-col cursor-pointer sm:row-span-2">
             <div className="w-full h-[300px] min-[450px]:h-[400px]  rounded-sm">
-              <img
+             {images && <img
                 className="w-full h-full rounded-sm"
                 src={images[0]}
                 alt="pxl"
-              />
+              />}
             </div>
             <button
               onClick={() => {
@@ -150,24 +188,24 @@ const ProductDetail = () => {
         <div className="flex flex-col justify-start space-y-[5%] text-zinc-800">
         <div className="uppercase border-b p-2 w-full grid grid-cols-2  items-center">
           <span><b>seller:</b></span>
-          <span><b>{storeName.stringValue}</b></span></div>
+          <span><b>{storeName}</b></span></div>
           
           <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-20 items-center">
           <span>Product:</span>
-          <span><b>{name.stringValue}</b></span></div>
+          <span><b>{name}</b></span></div>
         
           <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-20 items-center">
           <span>Outright price:</span>
-          <span><b>{`₦${parseInt(price.stringValue)}`}</b></span></div>
+          <span><b>{`₦${parseInt(price)}`}</b></span></div>
           <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-20 items-center">
           <span>  BNPL price:</span>
           <span><b>{`₦${
-              parseInt(price.stringValue) +
-              parseInt(price.stringValue * 0.1)
+              parseInt(price) +
+              parseInt(price * 0.1)
             }`}</b></span></div>
           <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-20 items-center">
           <span>  Available Qty: </span>
-          <span><b>{`${qty.stringValue} pieces`}</b></span></div>
+          <span><b>{`${qty} pieces`}</b></span></div>
 
 
           <div class="w-[50%] my-2 flex border text-zinc-800 font-semibold bg-white h-10 sm:h-14 items-center rounded-sm sm:rounded-md">
@@ -226,7 +264,7 @@ const ProductDetail = () => {
         <p className="text-[#009999] font-semibold">Product Details</p>
         <p className=" font-semibold">Overview</p>
         <div className="leading-7 min-[450px]:leading-8">
-          {description.stringValue}
+          {description}
         </div>
         <div className="grid grid-cols-1 min-[450px]:grid-cols-2 xl:grid-cols-3">
           {images && images.length > 1 && images.map((item, index) => {
@@ -250,9 +288,9 @@ const ProductDetail = () => {
       />
       <WaveFooter />
       <MobileBtns 
-       name= {name.stringValue}
-       price={ parseInt(price.stringValue)}
-       image={images[0]}
+       name= {name}
+       price={ parseInt(price)}
+       image={images && images[0]}
        bnpl={curBNPL}
        count={count}
        store={storeName}

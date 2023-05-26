@@ -80,7 +80,7 @@ const ImageSlider = ({ isSlider, setisSlider, images }) => {
             className="hide-scroll overflow-x-auto w-full h-full"
           >
             <div className="min-w-max flex h-full ">
-              {images.map((item, index) => {
+              {images?.map((item, index) => {
                 return (
                   <div
                     key={index}
