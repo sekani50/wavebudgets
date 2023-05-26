@@ -90,15 +90,15 @@ const DesktopDashNav = () => {
         }}
         className={
           isOpen
-            ? "dashhideshow let swipeInLeft px-4 space-y-3 sm:space-y-4 sm:px-12 h-full"
-            : "dashshow let swipeInLeft px-4 space-y-3 sm:space-y-4 sm:px-12 h-full"
+            ? "dashhideshow let swipeInLeft px-4  sm:px-12 h-full"
+            : "dashshow let swipeInLeft px-4  sm:px-12 h-full"
         }
       >
-        <div className="uppercase font-bold text-white">Dashboard</div>
+        <div className="uppercase font-bold text-white mb-3">Dashboard</div>
         <div className="bg-none h-2 w-2"></div>
         <Link
           to={`/seller/store/${key}`}
-          className={`hover:text-white hover:font-normal ${
+          className={`hover:text-white hover:font-normal  ${
             pathname === `/seller/store/${key}`
               ? "font-medium text-gray-200"
               : "font-light text-gray-200"}
@@ -106,9 +106,10 @@ const DesktopDashNav = () => {
         >
           Add product
         </Link>
+        <div className="my-3">
         <div
           onClick={checkcat}
-          className={`${pathname === "/seller/edit-item" ? 'font-normal' : 'font-light'} text-gray-200 hover:text-white hover:font-normal flex items-center space-x-1`}
+          className={`${pathname === "/seller/edit-item" ? 'font-normal' : 'font-light'} text-gray-200 hover:text-white mb-3 hover:font-normal flex items-center space-x-1`}
         >
           <span>Edit Categories </span>
           <RiArrowDropDownFill className={ischeck? "text-[20px] rotate-[180deg]":"text-[20px]"} />
@@ -132,6 +133,20 @@ const DesktopDashNav = () => {
             </div>;
           })}
         </div>}
+        </div>
+
+        <Link
+          to={`/seller/userinfo`}
+          className={`hover:text-white hover:font-normal  ${
+            pathname === `/seller/userinfo`
+              ? "font-medium text-gray-200"
+              : "font-light text-gray-200"}
+          `}
+        >
+          My wave
+        </Link>
+
+       
       </div>
     </div>
   );

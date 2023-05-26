@@ -41,9 +41,9 @@ const AddToStore = () => {
     return (
         <div className="w-full h-full  bg-gray-50 inset-0 sm:pb-32 fixed overflow-y-auto overflow-x-hidden">
             <TopNavBar merchant={merchant}/>
-            <DesktopDashNav key={key}/>
+            <DesktopDashNav />
             <AddProduct merchant={merchant} uid={merchantId} key={id}/>
-            <MobileDashboard key={key}/>
+            <MobileDashboard />
         </div>
     )
 }

@@ -15,6 +15,7 @@ import {
   EditStore,
   UserInfo,
   MerchantSignIn,
+  MerchantInfo,
 
 } from "Pages";
 
@@ -63,6 +64,7 @@ const App = () => {
           <Route path="/seller/edit-item" element={<EditStore />} />
           <Route path="/userinfo" element={<UserInfo />} />
           <Route path="/seller/login" element={<MerchantSignIn />} />
+          <Route path="/seller/userinfo" element={<MerchantInfo />} />
           {/*    AUTH PAGE */}
         </Routes>
       </Router>

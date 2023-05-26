@@ -5,6 +5,11 @@ import { MdOutlineEditNote } from "react-icons/md";
 import { AiOutlineHome } from "react-icons/ai";
 import CategoryNav from "../merchantCategory/categoryNav";
 import { getExistingDoc } from "firebasedatas/firebaseAuth";
+import { useNavigate } from "react-router-dom";
+import {
+  HiOutlineUserCircle,
+  HiUserCircle,
+} from "react-icons/hi";
 import { useSelector } from "react-redux";
 const MobileDashboard = () => {
   const {currentUser}  = useSelector((state) => state.user)
@@ -13,6 +18,7 @@ const MobileDashboard = () => {
   const [ismobile, setismobile] = useState(false);
   const {pathname} = useLocation()
   const [key, setKey] = useState()
+  const navigate = useNavigate()
   const showCats = () => {
     setismobile(!ismobile)
   };
@@ -74,6 +80,28 @@ const MobileDashboard = () => {
           </span>
           <span> Home </span>
         </Link>
+
+        {pathname === "/seller/userinfo" ? (
+          <div
+          onClick={() => {
+            navigate("/seller/userinfo")
+           }}
+          className="text-[#009999] flex flex-col space-y-1 items-center justify-center">
+      
+      <HiUserCircle className="text-[20px]" />
+          <span className="font-normal">My wave</span>
+          </div>
+      ) : (
+        <div
+        onClick={() => {
+          navigate("/seller/userinfo")
+         }}
+        className="text-zinc-800 flex flex-col space-y-1 items-center justify-center">
+         <HiOutlineUserCircle className="text-[20px]"/>
+         <span className="font-normal">My wave</span>
+       </div>
+       
+      )}
       </div>
     </div>
     <CategoryNav

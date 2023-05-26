@@ -11,6 +11,7 @@ import UserInfo from "components/User/userInfo";
 import AwaitActivation from "components/merchants/awaitActivation";
 import EditStore from "components/merchants/merchantCategory/editStore";
 import MerchantSignIn from "components/merchants/authentication/msignIn";
+import MerchantInfo from "components/merchants/merchantinfo/merchantInfo";
 export {
     HomePage,
     SignIn,
@@ -24,7 +25,8 @@ export {
     AwaitActivation,
     EditStore,
     UserInfo,
-    MerchantSignIn
+    MerchantSignIn,
+    MerchantInfo
 
 }
 
