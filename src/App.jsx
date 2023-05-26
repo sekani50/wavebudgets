@@ -14,6 +14,7 @@ import {
   AwaitActivation,
   EditStore,
   UserInfo,
+  MerchantSignIn,
 
 } from "Pages";
 
@@ -55,12 +56,13 @@ const App = () => {
           <Route path="/product" element={<ProductDetail />} />
           <Route path="/cart" element={<UserCart />} />
           <Route path="/detail" element={<DetailPage />} />
-          <Route path="/activate-account" element={<ActivationCard />} />
-          <Route path="/not-activated" element={<AwaitActivation />} />
-          <Route path="/register" element={<MerchantSignUp />} />
-          <Route path="/store/:id" element={<AddToStore />} />
-          <Route path="/edit-item" element={<EditStore />} />
+          <Route path="/seller/activate-account" element={<ActivationCard />} />
+          <Route path="/seller/not-activated" element={<AwaitActivation />} />
+          <Route path="/seller/register" element={<MerchantSignUp />} />
+          <Route path="/seller/store/:id" element={<AddToStore />} />
+          <Route path="/seller/edit-item" element={<EditStore />} />
           <Route path="/userinfo" element={<UserInfo />} />
+          <Route path="/seller/login" element={<MerchantSignIn />} />
           {/*    AUTH PAGE */}
         </Routes>
       </Router>

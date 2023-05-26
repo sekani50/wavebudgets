@@ -10,6 +10,7 @@ import AddToStore from "components/merchants/addtostore";
 import UserInfo from "components/User/userInfo";
 import AwaitActivation from "components/merchants/awaitActivation";
 import EditStore from "components/merchants/merchantCategory/editStore";
+import MerchantSignIn from "components/merchants/authentication/msignIn";
 export {
     HomePage,
     SignIn,
@@ -22,7 +23,8 @@ export {
     AddToStore,
     AwaitActivation,
     EditStore,
-    UserInfo
+    UserInfo,
+    MerchantSignIn
 
 }
 

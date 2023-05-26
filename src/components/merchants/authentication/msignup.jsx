@@ -86,7 +86,7 @@ const MerchantSignUp = () => {
                 setBizdescription("");
                 setCAC("");
                 setAddress("");
-                navigate("/activate-account");
+                navigate("/seller/activate-account");
               })
               .catch((err) => {
                 console.log(err);

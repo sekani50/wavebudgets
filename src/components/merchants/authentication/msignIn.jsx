@@ -9,7 +9,7 @@ import { toast } from 'react-hot-toast';
 import { useDispatch } from "react-redux";
 import { GetUsersSuccess } from "Redux/Actions/ActionCreators";
 
-const SignIn = () => {
+const MerchantSignIn = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
     const [showPassword, setShowPassword] = useState(false);
@@ -162,4 +162,4 @@ const SignIn = () => {
     )
 }
 
-export default SignIn
+export default  MerchantSignIn

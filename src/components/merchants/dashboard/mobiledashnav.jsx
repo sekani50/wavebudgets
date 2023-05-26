@@ -56,8 +56,8 @@ const MobileDashboard = () => {
         </div>
 
         <Link
-          to={`/store/COeALmKoRQcLvtk4XHIu`}
-          className={`flex flex-col space-y-1 items-center justify-center ${pathname === `/store/${key}` ? 'text-[#009999]':'text-zinc-700'}`}
+          to={`/seller/store/${key}`}
+          className={`flex flex-col space-y-1 items-center justify-center ${pathname === `/seller/store/${key}` ? 'text-[#009999]':'text-zinc-700'}`}
         >
           <span>
             <IoMdAddCircle className="text-[22px]"/>

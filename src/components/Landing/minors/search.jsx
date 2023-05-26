@@ -82,7 +82,7 @@ const Search = ({setIsVisible}) => {
             </div>
             <div
             onClick={() => {
-              navigate("/register")
+              navigate("/seller/register")
             }}
             className="flex items-center justify-center min-[450px]:space-x-2 md:space-x-3 text-sm md:text-[15px] px-2 border-l border-r h-full">
                 <IoIosCash  className="text-[#009999] min-[450px]:text-[30px] md:text-[40px]"/>

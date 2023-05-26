@@ -26,16 +26,16 @@ const MobileCards = () => {
 
     return (
         <div className="max-[450px]:mt-[52px] w-full mob-none h-fit overflow-hidden">
-               <div className="mt-[1rem] hidescroll overflow-x-auto pl-2 pr-4  grid text-white grid-cols-3 gap-[10.5rem] w-full h-12">
+               <div className="mt-[1rem] hidescroll overflow-x-auto pl-2 pr-4  grid text-white grid-cols-3 gap-[8.5rem] w-full h-12">
              <div
             onClick={Lservices}
-            className="flex items-center justify-center space-x-2 h-full rounded-lg bg-[#009999] min-w-max px-2">
+            className="flex items-center w-[150px] justify-center space-x-2 h-full rounded-lg bg-[#009999] px-2">
                 <GiTakeMyMoney className="text-white text-[20px]"/>
                 <p className=" text-sm">Shop to Earn</p>
             </div>
             <div
               onClick={() => {
-                navigate("/register")
+                navigate("/seller/register")
               }}
             className="flex items-center justify-center space-x-2 h-full rounded-lg bg-orange-500 min-w-max px-2">
                 <IoIosCash  className="text-white text-[20px]"/>

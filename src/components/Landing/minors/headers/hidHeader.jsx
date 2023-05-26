@@ -14,6 +14,8 @@ const HidHeader = ({ isVisibles }) => {
   const { numOfCartItems } = useSelector((state) => state.cart);
   const [isVisible, setisVisisble] = useState(false);
   const [isCart, setisCart] = useState(false);
+  const [isUser, setisUser] = useState(false)
+  const [isMobile, setisMobile] = useState(false)
   const [searchText, setsearchText] = useState();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -35,6 +37,18 @@ const HidHeader = ({ isVisibles }) => {
     
      getUser()
  },[])
+
+ const handleMobileSignin = () => {
+
+  if(window.innerWidth <= 450) {
+      if (!name) {
+          setisMobile(true)
+      }
+      else {
+          navigate("/userinfo")
+      }
+  }
+}
 
   return (
     <div
@@ -77,33 +91,35 @@ const HidHeader = ({ isVisibles }) => {
       </div>
 
       <div className=" cursor-pointer flex items-center sm:space-x-4 space-x-2">
-        <div
-         onClick={() => {
-          if(!name) {
-            navigate("/signin")
-          }
-          
-        }}
-          onMouseEnter={() => {
-            if(name) {
-              setisVisisble(false)
-          }
-          else {
-              setisVisisble(true)
-          }
-          }}
-          onMouseLeave={() => {
-            setisVisisble(false);
-          }}
-          className="group relative flex text-black"
-        >
-          <div className="flex group-hover:text-[#009999] text-[16px] items-center space-x-2">
-          {name ? <span className="capitalize  text-sm">{name.split(" ")[0] || name}</span>:<span className=" text-sm">Sign in</span>}
-            <FaUser className=" " />
-          </div>
+      <div
+                  onClick={() => {
+                handleMobileSignin()
+                    
+                  }}
+                onMouseEnter={() => {
+                    if(name) {
+                        setisVisisble(false)
+                        setisUser(true)
+                    }
+                    else {
+                        setisVisisble(true)
+                        setisUser(false)
+                    }
+                  
+                }}
+                onMouseLeave={() => {
+                    setisVisisble(false)
+                    setisUser(false)
+                }}
+                className="group relative flex text-black">
+                    <div className="flex group-hover:text-[#009999] text-[16px] items-center space-x-2">
+                    {name ? <span className="capitalize  text-sm">{name.split(" ")[0] || name}</span>:<span className="min-w-max text-sm">Sign in</span>}
+                <FaUser className=" " />
+                    </div>
+                 
 
-          <AuthCard isVisible={isVisible} />
-        </div>
+                <AuthCard isVisible={isVisible} isUser={isUser} isMobile={isMobile} setisMobile={setisMobile}/>
+                </div>
         <div
           onClick={() => {
             if (pathname !== "/cart") {

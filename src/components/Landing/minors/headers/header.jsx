@@ -10,6 +10,8 @@ import { getExistingDoc } from "firebasedatas/firebaseAuth";
 const Header = () => {
     const { numOfCartItems}  = useSelector((state) => state.cart)
     const [isVisible, setisVisisble] = useState(false)
+    const [isUser, setisUser] = useState(false)
+    const [isMobile, setisMobile] = useState(false)
     const [isCart, setisCart] = useState(false)
     const [name, setname] = useState()
     const navigate = useNavigate()
@@ -30,6 +32,18 @@ const Header = () => {
        
         getUser()
     },[])
+
+const handleMobileSignin = () => {
+
+    if(window.innerWidth <= 450) {
+        if (!name) {
+            setisMobile(true)
+        }
+        else {
+            navigate("/userinfo")
+        }
+    }
+}
     return (
 
         <div className="bg-white w-full cursor-pointer p-2 min-[450px]:py-3 min-[450px]:px-5 shadow-lg flex justify-between items-center border-b">
@@ -51,31 +65,32 @@ const Header = () => {
             <div className=" cursor-pointer flex items-center sm:space-x-4 space-x-2">
                 <div
                   onClick={() => {
-                    if(!name) {
-                      navigate("/signin")
-                    }
+                handleMobileSignin()
                     
                   }}
                 onMouseEnter={() => {
                     if(name) {
                         setisVisisble(false)
+                        setisUser(true)
                     }
                     else {
                         setisVisisble(true)
+                        setisUser(false)
                     }
                   
                 }}
                 onMouseLeave={() => {
                     setisVisisble(false)
+                    setisUser(false)
                 }}
                 className="group relative flex text-black">
                     <div className="flex group-hover:text-[#009999] text-[16px] items-center space-x-2">
-                    {name ? <span className="capitalize  text-sm">{name.split(" ")[0] || name}</span>:<span className=" text-sm">Sign in</span>}
+                    {name ? <span className="capitalize  text-sm">{name.split(" ")[0] || name}</span>:<span className="min-w-max text-sm">Sign in</span>}
                 <FaUser className=" " />
                     </div>
                  
 
-                <AuthCard isVisible={isVisible}/>
+                <AuthCard isVisible={isVisible} isUser={isUser} isMobile={isMobile} setisMobile={setisMobile}/>
                 </div>
                <div
                onClick={() => {
@@ -95,6 +110,7 @@ const Header = () => {
                <FaShoppingCart className="hidden min-[450px]:block hover:text-[#009999]"/>
                 <CartCard isCart={isCart}  name={name}  items={numOfCartItems}/>
                </div>
+               
              
             </div>
 

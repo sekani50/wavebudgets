@@ -53,7 +53,7 @@ const CategoryNav = ({ ismobile, setismobile }) => {
           return (
             <div
               onClick={() => {
-                navigate("/edit-item", {
+                navigate("/seller/edit-item", {
                   state: {
                     cats,
                   },

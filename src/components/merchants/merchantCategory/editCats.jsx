@@ -1,20 +1,42 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import box from "../../../assets/images/box.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { editItem, updateCategory } from "Redux/Actions/ActionCreators";
 import { updateSingleItem } from "Redux/Actions/ActionCreators";
 import { deleteProduct } from "firebasedatas/deleteProduct";
+import { getExistingDoc } from "firebasedatas/firebaseAuth";
 const EditCategories = ({ cats, uid }) => {
+  const {currentUser} = useSelector((state) => state.user)
   const { singleCategory } = useSelector((state) => state.items);
+  const [userId, setuserId] = useState()
+  const [key, setKey] = useState()
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   console.log("this is uid", uid);
+  useEffect(() => {
+    async function getUser () {
+    await getExistingDoc(currentUser)
+    .then((res) => {
+     console.log(res)
+      
+        setKey(res.key)
+        setuserId(res.userId)
+    
+    })
+    .catch((err) => {
+     console.log(err)
+    })
+     }
+    
+     getUser()
+ },[]) 
+
 
   const editCat = (id) => {
     console.log(id);
-    navigate(`/store/COeALmKoRQcLvtk4XHIu`);
+    navigate(`/seller/store/${key}`);
     dispatch(editItem(id));
   };
  // console.log(id);
@@ -49,7 +71,7 @@ const EditCategories = ({ cats, uid }) => {
       <div className="mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-[1rem]  text-zinc-700">
         {singleCategory?.length !== 0 &&
           singleCategory
-            ?.filter((val) => val.merchantId !== uid)
+            ?.filter((val) => val.merchantId !== userId)
             .map((item, index) => {
               return (
                 <div

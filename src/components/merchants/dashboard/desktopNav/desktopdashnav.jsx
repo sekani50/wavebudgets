@@ -97,9 +97,9 @@ const DesktopDashNav = () => {
         <div className="uppercase font-bold text-white">Dashboard</div>
         <div className="bg-none h-2 w-2"></div>
         <Link
-          to={`/store/COeALmKoRQcLvtk4XHIu`}
+          to={`/seller/store/${key}`}
           className={`hover:text-white hover:font-normal ${
-            pathname === `/store/COeALmKoRQcLvtk4XHIu`
+            pathname === `/seller/store/${key}`
               ? "font-medium text-gray-200"
               : "font-light text-gray-200"}
           `}
@@ -108,7 +108,7 @@ const DesktopDashNav = () => {
         </Link>
         <div
           onClick={checkcat}
-          className={`${pathname === "/edit-item" ? 'font-normal' : 'font-light'} text-gray-200 hover:text-white hover:font-normal flex items-center space-x-1`}
+          className={`${pathname === "/seller/edit-item" ? 'font-normal' : 'font-light'} text-gray-200 hover:text-white hover:font-normal flex items-center space-x-1`}
         >
           <span>Edit Categories </span>
           <RiArrowDropDownFill className={ischeck? "text-[20px] rotate-[180deg]":"text-[20px]"} />
@@ -118,7 +118,7 @@ const DesktopDashNav = () => {
             return <div
             key={idx}
             onClick={() => {
-              navigate("/edit-item", {
+              navigate("/seller/edit-item", {
                 state: {
                 
                   cats,
@@ -128,7 +128,7 @@ const DesktopDashNav = () => {
               dispatch(updateSingleItem(data))
             }}
             >
-              <span className={`${pathname === "/edit-item" ? 'font-normal' : 'font-light'} hover:text-white hover:font-normal text-gray-200`}>{cats}</span>
+              <span className={`${pathname === "/seller/edit-item" ? 'font-normal' : 'font-light'} hover:text-white hover:font-normal text-gray-200`}>{cats}</span>
             </div>;
           })}
         </div>}
