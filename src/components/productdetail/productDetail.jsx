@@ -196,13 +196,13 @@ useEffect(() => {
         
           <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-20 items-center">
           <span>Outright price:</span>
-          <span><b>{`₦${parseInt(price)}`}</b></span></div>
+          <span><b>{`₦${parseInt(price)}` || 0}</b></span></div>
           <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-20 items-center">
           <span>  BNPL price:</span>
           <span><b>{`₦${
               parseInt(price) +
               parseInt(price * 0.1)
-            }`}</b></span></div>
+            }` || 0}</b></span></div>
           <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-20 items-center">
           <span>  Available Qty: </span>
           <span><b>{`${qty} pieces`}</b></span></div>
@@ -229,13 +229,13 @@ useEffect(() => {
           <div className=" flex w-[90%] sm:w-full lg:w-[90%] justify-between items-center p-2">
             <span>Outright price:</span>{" "}
             <span>
-              <b>{`₦${curPrice}`}</b>
+              <b>{`₦${curPrice}` || 0}</b>
             </span>
           </div>
           <div className=" flex w-[90%] sm:w-full lg:w-[90%] justify-between items-center p-2">
             <span>Installment price:</span>{" "}
             <span>
-              <b>{`₦${curBNPL}`}</b>
+              <b>{`₦${curBNPL}` || 0}</b>
             </span>
           </div>
           <button
