@@ -147,22 +147,18 @@ const  saveToDatabse = async () => {
   }
 
   let count = 0;
-  for (let data in Object.values(imagedata)) {
-   
-   console.log(data['img'])
-   console.log(imagedata)
-    if(data['img'] === null) {
+  Object.values(imagedata).forEach((val) => {
+    console.log(val.img)
+    if((val.img === null)){
       count++
       if (count >= 4) {
         toast.error("Image cannot be empty")
         setisSubmit(false)
+        count = 0
         return
       }
     }
-    console.log(count)
-  
-    
-  }
+  })
 
   const payload = {
     name,
@@ -179,7 +175,7 @@ const  saveToDatabse = async () => {
   if (payload)
   {
     console.log(payload)
-    return
+    
   } 
 
    await sendToStore (payload)

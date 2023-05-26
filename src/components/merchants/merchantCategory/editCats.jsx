@@ -32,7 +32,9 @@ const EditCategories = ({ cats, uid }) => {
     
      getUser()
  },[]) 
-
+console.log(singleCategory)
+ console.log(userId)
+ console.log(singleCategory?.filter((val) => val.merchantId.stringValue !== userId))
 
   const editCat = (id) => {
     console.log(id);
@@ -57,7 +59,7 @@ const EditCategories = ({ cats, uid }) => {
       <p className="text-zinc-700 sm:text-xl text-lg font-semibold collectio">
         {cats}
       </p>
-      {singleCategory?.length === 0 && (
+      {singleCategory?.filter((val) => val.merchantId.stringValue === userId)?.length === 0 && (
         <div className="w-full max-[450px]:h-[100vw] h-[30vw] inset-0 relative">
           <div className=" m-auto absolute w-[320px] inset-0 flex flex-col justify-center items-center space-y-[4%] h-fit">
             <div className="w-[128px] h-[128px]">
@@ -71,7 +73,7 @@ const EditCategories = ({ cats, uid }) => {
       <div className="mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-[1rem]  text-zinc-700">
         {singleCategory?.length !== 0 &&
           singleCategory
-            ?.filter((val) => val.merchantId !== userId)
+            ?.filter((val) => val.merchantId.stringValue === userId)
             .map((item, index) => {
               return (
                 <div
@@ -82,7 +84,7 @@ const EditCategories = ({ cats, uid }) => {
                     <div className="w-full h-[140px] img_sz overflow-hidden">
                       <img
                         className="h-full w-full object-cover min-[450px]:object-fill transform duration-200 group-hover:scale-105"
-                        src={item.images[0]?.stringValue}
+                        src={item.images[0]}
                         alt=""
                       />
                     </div>

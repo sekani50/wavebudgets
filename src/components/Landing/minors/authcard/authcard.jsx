@@ -97,11 +97,24 @@ const AuthCard = ({ isVisible, isUser, isMobile, setisMobile}) => {
         onClick={(e) => {
             e.stopPropagation();
         }}
-        className= "h-fit text-znc-700 let swipeIn min-[450px]:hidden z-40 absolute w-[300px] text-sm top-[45px] left-[47px] bg-white bottom-[-135px] flex flex-col shadow-lg rounded-xl space-y-4 py-2 justify-center items-center">
+        className= "h-fit text-znc-700 let swipeIn min-[450px]:hidden z-40 absolute w-[300px] text-sm top-[45px] left-[47px] bg-white bottom-[-135px] flex flex-col shadow-lg rounded-xl space-y-4 py-3 justify-center items-center">
            
-          <div>Sign in </div>
-          <div>Register for free </div>
-          <div>Sign in as a seller </div>
+          <div
+          onClick={() => {
+            navigate("/signin")
+          }}
+          >Sign in </div>
+          <div
+           onClick={() => {
+            navigate("/signup")
+          }}
+          
+          >Register for free </div>
+          <div
+           onClick={() => {
+            navigate("/seller/login")
+          }}
+          >Sign in as a seller </div>
             </div>
             </div>
             

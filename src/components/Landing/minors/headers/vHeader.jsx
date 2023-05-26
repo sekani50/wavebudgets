@@ -15,36 +15,47 @@ const VisHeader = () => {
   const [isVisible, setisVisisble] = useState(false);
   const [isCart, setisCart] = useState(false);
   const [searchText, setsearchText] = useState();
-  const [name, setname] = useState()
-  const navigate = useNavigate()
-  const {currentUser} = useSelector((state) => state.user)
+  const [name, setname] = useState();
+  const [isMobile, setisMobile] = useState(false);
+  const [isUser, setisUser] = useState(false);
+  const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user);
   const { pathname } = useLocation();
 
-
   useEffect(() => {
-    if(!currentUser) return
-    async function getUser () {
-    await getExistingDoc(currentUser)
-    .then((res) => {
-     console.log(res)
-     setname(res.name)
-    })
-    .catch((err) => {
-     console.log(err)
-    })
-     }
-    
-     getUser()
- },[])
+    if (!currentUser) return;
+    async function getUser() {
+      await getExistingDoc(currentUser)
+        .then((res) => {
+          console.log(res);
+          setname(res.name);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    getUser();
+  }, []);
+
+  const handleMobileSignin = () => {
+    if (window.innerWidth <= 450) {
+      if (!name) {
+        setisMobile(true);
+      } else {
+        navigate("/userinfo");
+      }
+    }
+  };
+
   return (
-    <div
-      className="cursor-pointer bg-white max-[450px]:fixed max-[450px]:inset-x-0 z-40 max-[450px]:top-0 w-full p-2 min-[450px]:py-3 min-[450px]:px-5 shadow-lg flex justify-between items-center border-b"
-    >
+    <div className="cursor-pointer bg-white max-[450px]:fixed max-[450px]:inset-x-0 z-40 max-[450px]:top-0 w-full p-2 min-[450px]:py-3 min-[450px]:px-5 shadow-lg flex justify-between items-center border-b">
       <div
-     onClick={() => {
-      navigate("/")
-  }}
-      className="flex space-x-2 items-center">
+        onClick={() => {
+          navigate("/");
+        }}
+        className="flex space-x-2 items-center"
+      >
         <div className="w-10 h-6">
           <img className="w-full h-full" src={logo} alt="" />
         </div>
@@ -74,31 +85,41 @@ const VisHeader = () => {
 
       <div className=" cursor-pointer flex items-center sm:space-x-4 space-x-2">
         <div
-         onClick={() => {
-          if(!name) {
-            navigate("/signin")
-          }
-          
-        }}
+          onClick={() => {
+            handleMobileSignin();
+          }}
           onMouseEnter={() => {
-            if(name) {
-              setisVisisble(false)
-          }
-          else {
-              setisVisisble(true)
-          }
+            if (name) {
+              setisVisisble(false);
+              setisUser(true);
+            } else {
+              setisVisisble(true);
+              setisUser(false);
+            }
           }}
           onMouseLeave={() => {
             setisVisisble(false);
+            setisUser(false);
           }}
           className="group relative flex text-black"
         >
           <div className="flex group-hover:text-[#009999] text-[16px] items-center space-x-2">
-          {name ? <span className="capitalize  text-sm">{name.split(" ")[0] || name}</span>:<span className=" text-sm">Sign in</span>}
+            {name ? (
+              <span className="capitalize  text-sm">
+                {name.split(" ")[0] || name}
+              </span>
+            ) : (
+              <span className="min-w-max text-sm">Sign in</span>
+            )}
             <FaUser className=" " />
           </div>
 
-          <AuthCard isVisible={isVisible} />
+          <AuthCard
+            isVisible={isVisible}
+            isUser={isUser}
+            isMobile={isMobile}
+            setisMobile={setisMobile}
+          />
         </div>
         <div
           onClick={() => {
@@ -121,7 +142,9 @@ const VisHeader = () => {
           )}
           <FaShoppingCart className="hidden min-[450px]:block hover:text-[#009999]" />
 
-          {numOfCartItems === 0 && <CartCard name={name}  items={numOfCartItems} isCart={isCart} />}
+          {numOfCartItems === 0 && (
+            <CartCard name={name} items={numOfCartItems} isCart={isCart} />
+          )}
         </div>
       </div>
     </div>

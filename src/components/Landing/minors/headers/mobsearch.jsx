@@ -6,7 +6,7 @@ const MobileSearch = () => {
 
 
     return (
-        <div className="block min-[450px]:hidden z-50 fixed inset-x-0 top-[57px] bg-white w-full px-8 py-3 mx-auto">
+        <div className="block min-[450px]:hidden z-2 fixed inset-x-0 top-[57px] bg-white w-full px-8 py-3 mx-auto">
             <div className="relative w-full h-9 rounded-3xl">
         <input
         onChange={(e) => {

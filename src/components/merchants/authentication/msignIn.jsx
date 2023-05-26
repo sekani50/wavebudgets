@@ -76,7 +76,7 @@ const MerchantSignIn = () => {
             <div className='bg-white py-3 px-6 min-[450px]:py-4 min-[450px]:px-4'>
             <div
             onClick={() => {
-              navigate("/")
+              navigate(-1)
             }}
             className="flex space-x-2 items-center" >
                 <div className="w-10 h-6">
@@ -145,9 +145,9 @@ const MerchantSignIn = () => {
         >{loading ? <Loader/> : <span>Log in</span>}</button>
 
 
-              <span>Don't have an account yet? <span 
+              <span>Want to become a seller? <span 
               onClick={() => {
-                navigate("/signup")
+                navigate("/seller/signup")
               }}
               className='mr-3 text-blue-700'>Sign up</span></span>
 

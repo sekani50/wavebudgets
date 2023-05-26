@@ -17,6 +17,7 @@ const MerchantSignUp = () => {
   const [password, setPassword] = useState("");
   const [storeName, setStorename] = useState("");
   const [address, setAddress] = useState("");
+  const [phoneNumber, setPhoneNumber]  = useState("");
   const [businessType, setBusinessType] = useState("");
   const [bizdescription, setBizdescription] = useState("");
   const [cac, setCAC] = useState();
@@ -41,6 +42,7 @@ const MerchantSignUp = () => {
       storeName,
       address,
       businessType,
+      phoneNumber,
       email,
       password,
     };
@@ -55,6 +57,7 @@ const MerchantSignUp = () => {
       email: email,
       store: storeName,
       address,
+      phoneNumber,
       businessType,
       cacImage: cac || "https://imagetolink.com/ib/cx6NeI8ZwH.png",
       businessDescription: bizdescription,
@@ -84,6 +87,7 @@ const MerchantSignUp = () => {
                 setPassword("");
                 setBusinessType("");
                 setBizdescription("");
+                setPhoneNumber("")
                 setCAC("");
                 setAddress("");
                 navigate("/seller/activate-account");
@@ -105,10 +109,10 @@ const MerchantSignUp = () => {
   return (
     <div className="w-full h-full fixed inset-0 ">
       <div className="w-full h-full">
-        <div className="max-[450px]:hidden bg-white py-3 px-6 min-[450px]:py-4 min-[450px]:px-4">
+        <div className=" bg-white py-3 px-6 min-[450px]:py-4 min-[450px]:px-4">
           <div
             onClick={() => {
-              navigate("/");
+              navigate(-1);
             }}
             className="flex space-x-2 items-center"
           >
@@ -121,7 +125,7 @@ const MerchantSignUp = () => {
             </div>
           </div>
         </div>
-        <div className="bg-gray-300 grid grid-cols-1 md:grid-cols-5  w-full h-full items-center">
+        <div className="bg-gray-300 grid grid-cols-1 md:grid-cols-5  w-full h-full pt-[40px]">
           <div className="hidden md:block md:w-[350px] col-span-2 md:h-[350px] lg:w-[400px] lg:h-[400px]">
             <img
               className="w-full h-full mix-blend-multiply"
@@ -130,10 +134,10 @@ const MerchantSignUp = () => {
             />
           </div>
 
-          <div className=" overflow-hidden col-span-3 text-sm w-[100vw] mx-auto md:mx-0 h-fit min-[450px]:w-[95%] min-[450px]:h-fit md:w-[95%] md:h-fit lg:w-[95%] lg:h-fit flex flex-col justify-center items-center bg-white p-4 space-y-1 rounded-xl shadow-lg">
-            <p className="text-zinc-700 text-lg font-medium">Sign Up</p>
+          <div className=" overflow-hidden col-span-3 text-sm w-[100vw] mx-auto md:mx-0  min-[450px]:w-[95%] min-[450px]:h-fit md:w-[95%] md:h-fit lg:w-[95%] lg:h-fit flex flex-col justify-center items-center bg-white p-4 space-y-1 rounded-xl shadow-lg">
+            <p className="mx-auto text-zinc-700 text-lg font-medium">Sign Up</p>
 
-            <div className="grid max-[450px]:grid-cols-1  grid-cols-2 space-y-2 gap-2 md:gap-5 w-full">
+            <div className="grid max-[450px]:grid-cols-1  grid-cols-2 space-y-2 gap-2 md:gap-5 w-full h-full max-[450px]:overflow-auto max-[450px]:pb-[70px]">
               <div className="mt-[0.5rem] form-group space-y-1 w-full">
                 <label
                   className="block font-medium text-zinc-700"
@@ -162,6 +166,21 @@ const MerchantSignUp = () => {
                   placeholder="Enter your location address"
                   name="address"
                   onChange={(e) => setAddress(e.target.value)}
+                />
+              </div>
+              <div className="form-group space-y-1 w-full">
+                <label
+                  className="block font-medium text-zinc-700"
+                  htmlFor="tel number"
+                >
+                  Phone Number
+                </label>
+                <input
+                  className="block form__input input-field border border-black  rounded-md focus:outline-none w-full h-10 sm:h-11 px-4"
+                  type="number"
+                  placeholder="Phone Number"
+                  name="tel number"
+                  onChange={(e) => setPhoneNumber(e.target.value)}
                 />
               </div>
               <div className="form-group space-y-1 w-full">
@@ -253,13 +272,33 @@ const MerchantSignUp = () => {
                   </div>
                 </div>
               </div>
-            </div>
-            <button
+
+              <button
               onClick={handleSubmit}
-              className="bg-[#009999] text-white sm:py-3 py-2 rounded-md flex items-center w-[50%] justify-center"
+              className="bg-[#009999] min-[450px]:hidden text-white sm:py-3 mx-auto py-2 rounded-md flex items-center w-[50%] justify-center"
             >
               {loading ? <Loader /> : <span>Sign Up</span>}
             </button>
+
+            
+            <span className="mx-auto min-[450px]:hidden ">Are you a registered seller? <span 
+              onClick={() => {
+                navigate("/seller/signin")
+              }}
+              className='mr-3 text-blue-700'>Log in</span></span>
+            </div>
+            <button
+              onClick={handleSubmit}
+              className="bg-[#009999] max-[450px]:hidden text-white sm:py-3 mx-auto py-2 rounded-md flex items-center w-[50%] justify-center"
+            >
+              {loading ? <Loader /> : <span>Sign Up</span>}
+            </button>
+            <span className="mx-auto max-[450px]:hidden ">Are you a registered seller? <span 
+              onClick={() => {
+                navigate("/seller/login")
+              }}
+              className='mr-3 text-blue-700'>Log in</span></span>
+            
           </div>
         </div>
       </div>
