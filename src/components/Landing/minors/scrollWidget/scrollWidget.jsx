@@ -50,7 +50,7 @@ const ScrollWidget = ({name, descriptions, price,id, image}) => {
         onClick={(e)=> {
           e.stopPropagation()
         }}
-        className="lets swipeDown space-y-3 min-[450px]:space-y-4 max-[450px]:w-[90%] bg-white rounded-xl max-[450px]:rounded-lg p-4 w-[350px] m-auto absolute inset-x-0 h-[20vw] flex flex-col justify-center items-center">
+        className="lets swipeDown space-y-3 min-[450px]:space-y-4 max-[450px]:w-[90%] bg-white rounded-xl max-[450px]:rounded-lg p-4 w-[450px] m-auto absolute inset-x-0 h-fit flex flex-col justify-center items-center">
           <div
          onClick={(e) => {
           e.stopPropagation();
@@ -65,13 +65,13 @@ const ScrollWidget = ({name, descriptions, price,id, image}) => {
             name="text"
             value={link}
             readOnly
-            className="w-full min-[450px]:h-9 md:h-11 outline-none border border-gray-100 bg-white text-zinc-700 rounded-xl max-[450px]:rounded-lg "
+            className="w-full min-[450px]:h-9 md:h-11 outline-none border border-gray-200 bg-white text-zinc-700 rounded-xl max-[450px]:rounded-lg "
           />
           <button
            onClick={(e)=> {
             e.stopPropagation()
             copy(link)
-            toast.success(`copied ${link}`)
+            toast.success(`successfully copied`)
             //setisShare(!isShare)
           }}
            className="border p-1 focus:bg-gray-200">Copy link</button>
