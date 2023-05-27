@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
 import { MdOutlineEditNote } from "react-icons/md";
-import { AiOutlineHome } from "react-icons/ai";
+import { HiHome, HiOutlineHome } from "react-icons/hi";
 import CategoryNav from "../merchantCategory/categoryNav";
 import { getExistingDoc } from "firebasedatas/firebaseAuth";
 import { useNavigate } from "react-router-dom";
@@ -71,15 +71,25 @@ const MobileDashboard = () => {
           <span> Add products </span>
         </Link>
 
-        <Link
-          to="/"
-          className="flex flex-col space-y-1 items-center justify-center"
-        >
-          <span>
-            <AiOutlineHome  className="text-[22px]" />
-          </span>
-          <span> Home </span>
-        </Link>
+        {pathname === "/" ? (
+        <div
+        onClick={() => {
+          navigate("/seller/home")
+         }}
+        className="text-[#009999] flex flex-col space-y-1 items-center justify-center">
+          <HiHome className="text-[20px]" />
+          <span className="font-medium"> Home</span>
+        </div>
+      ) : (
+        <div 
+        onClick={() => {
+          navigate("/seller/home")
+         }}
+        className="text-zinc-800 flex flex-col space-y-1 items-center justify-center">
+          <HiOutlineHome className="text-[20px]" />
+          <span className="font-normal">Home</span>
+        </div>
+      )}
 
         {pathname === "/seller/userinfo" ? (
           <div

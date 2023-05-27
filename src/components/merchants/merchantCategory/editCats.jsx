@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import box from "../../../assets/images/box.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { editItem, updateCategory } from "Redux/Actions/ActionCreators";
+import { editItem } from "Redux/Actions/ActionCreators";
 import { updateSingleItem } from "Redux/Actions/ActionCreators";
 import { deleteProduct } from "firebasedatas/deleteProduct";
 import { getExistingDoc } from "firebasedatas/firebaseAuth";
@@ -34,7 +34,7 @@ const EditCategories = ({ cats, uid }) => {
  },[]) 
 console.log(singleCategory)
  console.log(userId)
- console.log(singleCategory?.filter((val) => val.merchantId.stringValue !== userId))
+ //console.log(singleCategory?.filter((val) => val.merchantId.stringValue !== userId))
 
   const editCat = (id) => {
     console.log(id);

@@ -186,24 +186,24 @@ useEffect(() => {
         </div>
 
         <div className="flex flex-col justify-start space-y-[5%] text-zinc-800">
-        <div className="uppercase border-b p-2 w-full grid grid-cols-2  items-center">
+        <div className="uppercase border-b p-2 w-full grid grid-cols-2 gap-[3.5rem] items-center">
           <span><b>seller:</b></span>
           <span><b>{storeName}</b></span></div>
           
-          <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-20 items-center">
+          <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-[3.5rem] items-center">
           <span>Product:</span>
           <span><b>{name}</b></span></div>
         
-          <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-20 items-center">
+          <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-[3.5rem] items-center">
           <span>Outright price:</span>
           <span><b>{`₦${parseInt(price)}` || 0}</b></span></div>
-          <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-20 items-center">
+          <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-[3.5rem] items-center">
           <span>  BNPL price:</span>
           <span><b>{`₦${
               parseInt(price) +
               parseInt(price * 0.1)
             }` || 0}</b></span></div>
-          <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-20 items-center">
+          <div className="capitalize border-b p-2 w-full grid grid-cols-2 gap-[3.5rem] items-center">
           <span>  Available Qty: </span>
           <span><b>{`${qty} pieces`}</b></span></div>
 

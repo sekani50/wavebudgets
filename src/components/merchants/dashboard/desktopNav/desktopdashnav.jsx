@@ -95,6 +95,17 @@ const DesktopDashNav = () => {
         }
       >
         <div className="uppercase font-bold text-white mb-3">Dashboard</div>
+        <div className="bg-none h-2 mb-3 w-2"></div>
+        <Link
+          to={`/seller/home`}
+          className={`hover:text-white hover:font-normal  ${
+            pathname === `/seller/home`
+              ? "font-medium text-gray-200"
+              : "font-light text-gray-200"}
+          `}
+        >
+          Home
+        </Link>
         <div className="bg-none h-2 w-2"></div>
         <Link
           to={`/seller/store/${key}`}

@@ -63,7 +63,11 @@ html {
   background-color: rgba(244, 245, 234, 0.9);
 }
 
+.scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 18px;
 
+}
 
 .top_heading {
         
