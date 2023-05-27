@@ -16,6 +16,7 @@ const MerchantSignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false)
+   
     
   const handleSubmit = async() => {
     const customersId=[]
@@ -33,6 +34,7 @@ const MerchantSignIn = () => {
           navigate("/")
         dispatch(GetUsersSuccess(uid))
         }
+        
         if (sellersId && sellersId.includes(uid)) {
           await getExistingDoc(uid)
           .then ((res) => {
