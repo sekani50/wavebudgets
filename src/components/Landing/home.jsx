@@ -43,7 +43,10 @@ const HomePage = () => {
         setProduct(res)
         const filter = res?.filter((val) => val.createdAt?.integerValue > (currentTime - 604800000))
         console.log('this is filter',filter)
-        setNewarrival(filter)
+        const arr =  filter.sort(function(a,b) {
+          return a.createdAt - b.createdAt
+        })
+        setNewarrival(arr)
         
       })
       .catch((err) => {
@@ -81,7 +84,11 @@ const HomePage = () => {
     if (items) {
       const filter = items?.filter((val) => val.createdAt?.integerValue > (currentTime - 604800000))
    console.log('this is filter',filter)
-   setNewarrival(filter)
+   const arr =  filter.sort(function(a,b) {
+    return a.createdAt - b.createdAt
+  })
+  setNewarrival(arr)
+ 
     }
 
    },[])

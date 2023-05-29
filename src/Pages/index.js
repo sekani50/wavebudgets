@@ -13,6 +13,9 @@ import EditStore from "components/merchants/merchantCategory/editStore";
 import MerchantSignIn from "components/merchants/authentication/msignIn";
 import MerchantInfo from "components/merchants/merchantinfo/merchantInfo";
 import MerchantHome from "components/merchants/merchanthome/merchantHome";
+import AdminHome from "components/admin/adminhome/adminHome"
+import AdminCustomer from "components/admin/admincustomer/adminCustomer";
+import UserDetail from "components/admin/userdetails/userDetail";
 export {
     HomePage,
     SignIn,
@@ -28,7 +31,10 @@ export {
     UserInfo,
     MerchantSignIn,
     MerchantInfo,
-    MerchantHome
+    MerchantHome,
+    AdminHome,
+    AdminCustomer,
+    UserDetail
 
 }
 

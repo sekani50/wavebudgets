@@ -1,6 +1,7 @@
 import { HandlePayment } from "paystack/paystackInterface";
 import React,{useState, useEffect} from "react";
 import { toast } from "react-hot-toast";
+import timeFormat from "Utils/timeFormat";
 import { useSelector, useDispatch } from "react-redux";
 import PaymentNotification from "components/paymentnotification/paymentNote";
 import { saveHistory } from "firebasedatas/transactionHistory";
@@ -11,16 +12,25 @@ const MobileCheckout = ({ email, total }) => {
   const [isNote, setisNote] = useState()
   const [transHistory, setTransHistory] = useState()
   const dispatch = useDispatch()
+  const dt = new Date();
+  const month = dt.toLocaleString("default", { month: "long" });
+  const day = dt.getDate();
+  const year = dt.getFullYear();
+  let hours, minutes, seconds, amPm;
 
   useEffect(() => {
     const history = async () => {
       if (payStatus) {
         setTransHistory(cartItems);
 
-        await saveHistory(currentUser, {
+        await saveHistory({
           status: payStatus,
+          userId:currentUser,
           type: 'checkout',
           cart: cartItems,
+          date:`${day} ${month} ${year}`,
+          time:`${timeFormat(hours, minutes, seconds, amPm)}`,
+          createdAt: dt.getTime()
         })
           .then((res) => {
             console.log(res);

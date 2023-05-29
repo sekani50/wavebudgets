@@ -62,6 +62,7 @@ const UserCart = () => {
           status: payStatus,
           type: 'checkout',
           cart: cartItems,
+          userId:currentUser,
           date:`${day} ${month} ${year}`,
           time:`${timeFormat(hours, minutes, seconds, amPm)}`,
           createdAt: dt.getTime()

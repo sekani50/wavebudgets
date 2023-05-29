@@ -4,6 +4,7 @@ import { getExistingDoc } from "firebasedatas/firebaseAuth";
 import { toast } from "react-hot-toast";
 import { HandlePayment } from "paystack/paystackInterface";
 import { saveHistory } from "firebasedatas/transactionHistory";
+import timeFormat from "Utils/timeFormat";
 const MobileBtns = ({ name, curPrice, image, bnpl, count, store }) => {
   const { currentUser, payStatus } = useSelector((state) => state.user);
   const [username, setUsername] = useState();
@@ -12,6 +13,11 @@ const MobileBtns = ({ name, curPrice, image, bnpl, count, store }) => {
   const [transHistory, setTransHistory] = useState();
   //const { pathname } = useLocation();
   const [email, setEmail] = useState();
+  const dt = new Date();
+  const month = dt.toLocaleString("default", { month: "long" });
+  const day = dt.getDate();
+  const year = dt.getFullYear();
+  let hours, minutes, seconds, amPm;
 
   useEffect(() => {
     if (!currentUser) return;
@@ -55,13 +61,16 @@ const MobileBtns = ({ name, curPrice, image, bnpl, count, store }) => {
           userId:currentUser,
           status: payStatus,
           name,
-          price: parseInt(curPrice),
+          curPrice: parseInt(curPrice),
           count,
           storeName: store,
-          type: 'no-checkout'
+          type: 'no-checkout',
+          date: `${day} ${month} ${year}`,
+          time: `${timeFormat(hours, minutes, seconds, amPm)}`,
+          createdAt: dt.getTime(),
         };
 
-        await saveHistory(currentUser, payload)
+        await saveHistory(payload)
           .then((res) => {
             console.log(res);
           })

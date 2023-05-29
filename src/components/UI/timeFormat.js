@@ -1,5 +1,5 @@
 
-export default function timeFormat (hour, minutes, amPm) {
+export default function timeFormat (hour, minutes, seconds, amPm) {
 
     let date = new Date();
 
@@ -7,7 +7,7 @@ export default function timeFormat (hour, minutes, amPm) {
 
      minutes = date.getMinutes();
 
-    
+    seconds = date.getSeconds();
 
      
 
@@ -42,6 +42,6 @@ export default function timeFormat (hour, minutes, amPm) {
     }
   
 
-    return `${hour}:${minutes} ${amPm}`;
+    return `${hour}:${minutes}:${seconds} ${amPm}`;
 
 }

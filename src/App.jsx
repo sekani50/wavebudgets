@@ -17,6 +17,9 @@ import {
   MerchantSignIn,
   MerchantInfo,
   MerchantHome,
+  AdminHome,
+  AdminCustomer,
+  UserDetail,
 
 } from "Pages";
 
@@ -67,6 +70,9 @@ const App = () => {
           <Route path="/seller/login" element={<MerchantSignIn />} />
           <Route path="/seller/userinfo" element={<MerchantInfo />} />
           <Route path="/seller/home" element={<MerchantHome />} />
+          <Route path="/admin/home" element={<AdminHome />} />
+          <Route path="/admin/customer" element={<AdminCustomer />} />
+          <Route path="/admin/userdetail/:id" element={<UserDetail />} />
           {/*    AUTH PAGE */}
         </Routes>
       </Router>

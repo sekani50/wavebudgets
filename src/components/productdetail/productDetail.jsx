@@ -122,6 +122,7 @@ const ProductDetail = () => {
       price: parseInt(price),
       image: images[0],
       storeName,
+      userId:currentUser,
       curPrice,
       count,
     };
@@ -153,7 +154,7 @@ const ProductDetail = () => {
         const payload = {
           userId: currentUser,
           name: name,
-          price: parseInt(curPrice),
+          curPrice: parseInt(curPrice),
           status: payStatus,
           storeName,
           count,
