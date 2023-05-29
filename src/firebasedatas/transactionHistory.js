@@ -14,9 +14,19 @@ import {
 
 
 
-export const saveHistory = async (id, payload) => {
-    const ref = doc(db, "transactionHistory", id);
-  
-    return setDoc(ref, payload);
+export const saveHistory = async (payload) => {
+    console.log(payload)
+   
+    const ref = collection(db, "transactionHistory");
+    //let result;
+    return await addDoc(ref, payload)
+      .then((res) => {
+        console.log(res);
+      
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
   };
   

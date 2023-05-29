@@ -17,6 +17,13 @@ const loginSuccess = (data) => {
     payload: data,
   };
 };
+
+const getPaymentstatus = (data) => {
+  return {
+    type: type.PAYMENT_STATUS,
+    payload: data,
+  }
+}
 const logout = () => {
   return {
     type: type.LOGOUT,
@@ -362,5 +369,6 @@ export {
   registration,
   updateCategory,
   editItem,
-  updateSingleItem
+  updateSingleItem,
+  getPaymentstatus
 };

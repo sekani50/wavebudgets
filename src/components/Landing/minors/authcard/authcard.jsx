@@ -66,7 +66,7 @@ const AuthCard = ({ isVisible, isUser, isMobile, setisMobile}) => {
 
             <div
         
-        className={isUser ? "h-fit max-[450px]:hidden z-40 absolute w-[300px] text-sm left-[-200px] bg-white bottom-[-135px] flex flex-col shadow-lg rounded-xl space-y-4 py-4 justify-center items-center": "hidden"}>
+        className={isUser ? "h-fit max-[450px]:hidden z-40 absolute w-[300px] text-sm left-[-200px] bg-white bottom-[-133px] flex flex-col shadow-lg rounded-xl space-y-4 py-4 justify-center items-center": "hidden"}>
            
            <div className=' items-center justify-start flex space-x-2'>
                     <div className='w-[50px] h-[50px]'>
