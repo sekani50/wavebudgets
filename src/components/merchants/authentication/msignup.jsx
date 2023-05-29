@@ -110,10 +110,12 @@ const MerchantSignUp = () => {
           })
           .catch((err) => {
             console.log(err);
+            setLoading(false);
             toast.error(err.code);
           });
       })
       .catch((err) => {
+        setLoading(false);
         toast.error(err.code);
       });
   };

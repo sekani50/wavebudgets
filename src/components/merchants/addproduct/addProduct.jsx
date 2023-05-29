@@ -535,9 +535,7 @@ const  saveToDatabse = async () => {
               value={description}
               onChange={(e) => {setdescription(e.target.value)}}
             ></textarea>
-            <span className="absolute right-[3px] sm:text-sm text-[13px] top-0">
-              {description.length + "/ 50"}
-            </span>
+           
           </div>
 
           <button

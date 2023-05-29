@@ -31,7 +31,7 @@ const MerchantSignIn = () => {
         console.log(res)
         const {customersId, sellersId} = res
         if(customersId && customersId.includes(uid)) {
-          navigate("/")
+          navigate(-1)
         dispatch(GetUsersSuccess(uid))
         }
         

@@ -17,6 +17,8 @@ import { toast } from "react-hot-toast";
 import { getExistingDoc } from "firebasedatas/firebaseAuth";
 import { handlePayment } from "paystack/paystackInterface";
 import { getExistingProduct } from "firebasedatas/getExisting";
+import PaymentNotification from "components/paymentnotification/paymentNote";
+import { saveHistory } from "firebasedatas/transactionHistory";
 const ProductDetail = () => {
   const {id} = useParams()
   //const { state } = useLocation();
@@ -42,6 +44,8 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [bnpl, setbnpl] = useState()
+  const [transHistory, setTransHistory] = useState()
+  const [isNote, setisNote] = useState(false)
 
   //console.log(name, description, price.)
   useEffect(() => {
@@ -130,12 +134,44 @@ useEffect(() => {
     toast.success("Item added to cart successfully");
   };
 
-  const handlePay = () => {
+  const handlePay = async () => {
     if (!currentUser) {
       toast.error("You must be logged in to buy")
       return
     }
-      handlePayment(email, parseFloat(curPrice))
+      await handlePayment(email, parseFloat(curPrice))
+      .then (async (res) => {
+        console.log(res)
+        
+          setTransHistory([{
+            name: name,
+            price: parseInt(price),
+            status: res ? 'success' : 'failed',
+            storeName,
+            curPrice,
+            count,
+
+          }])
+
+          const payload = {
+
+          }
+       //   await saveHistory(currentUser, payload)
+        ////  .then((res) => {
+        //    console.log(res)
+
+
+         // })
+          //.catch((err) => {
+            //console.log(err)
+        //  })
+          
+        
+        
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   const handleInstallment = () => {
@@ -285,6 +321,11 @@ useEffect(() => {
         isSlider={isSlider}
         setisSlider={setisSlider}
         images={images}
+      />
+      <PaymentNotification
+      isNote={isNote}
+      setisNote={setisNote}
+      transHistory={transHistory}
       />
       <WaveFooter />
       <MobileBtns 
