@@ -29,8 +29,8 @@ const ActivationCard = () => {
         </div>
         <button
           onClick={() => {
-            navigate("/signin")
-           // handleActivate()
+           // navigate("/signin")
+            handleActivate()
           }}
           className="bg-white text-[#009999] p-2 rounded-2xl flex items-center px-10 justify-center"
         >

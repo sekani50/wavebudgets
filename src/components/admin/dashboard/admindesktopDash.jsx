@@ -88,46 +88,16 @@ const AdminDesktopDashboard = () => {
         </Link>
         <div className="my-3">
           <div
-            onClick={checkcat}
+            onClick={ () => {navigate("/admin/merchant" 
+          )}}
             className={`${
               pathname === "/admin/merchant/" ? "font-normal" : "font-light"
             } text-gray-200 hover:text-white mb-3 hover:font-normal flex items-center space-x-1`}
           >
             <span>Merchants </span>
-            <RiArrowDropDownFill
-              className={
-                ischeck ? "text-[20px] rotate-[180deg]" : "text-[20px]"
-              }
-            />
+           
           </div>
-          {ischeck && (
-            <div className="space-y-3 pl-1 $text-gray-200 text-sm">
-              {data.map(({ cats, id }, idx) => {
-                return (
-                  <div
-                    key={idx}
-                    onClick={() => {
-                      navigate("/admin/merchant", {
-                        state: {
-                          cats,
-                        },
-                      });
-                    }}
-                  >
-                    <span
-                      className={`${
-                        pathname === "/admin/merchant"
-                          ? "font-normal"
-                          : "font-light"
-                      } hover:text-white hover:font-normal text-gray-200`}
-                    >
-                      {cats}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+         
         </div>
       </div>
     </div>

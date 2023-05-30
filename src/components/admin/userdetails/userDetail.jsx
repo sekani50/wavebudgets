@@ -63,26 +63,26 @@ const UserDetail = () => {
             onClick={() => {
               navigate(-1);
             }}
-            className="absolute top-3 left-3 text-[20px] min-[450px]:text-[30px] text-teal-100 "
+            className="absolute z-50 cursor-pointer top-3 left-3 text-[20px] min-[450px]:text-[30px] text-teal-100 "
           >
             <AiOutlineArrowLeft />
           </div>
           <img className="h-full w-full object-cover" src={detail} alt="" />
           <div className="w-full h-full absolute inset-0 ">
-            <div className="pl-12 flex  items-center space-x-2 h-full text-teal-100 text-lg min-[450px]:text-lg ">
-              <div className="w-[80px] h-[80px]">
+            <div className="pl-12 max-[450px]:pl-8 flex  items-center space-x-2 h-full text-teal-100 text-lg min-[450px]:text-lg ">
+              <div className="w-[80px] h-[80px] max-[450px]:w-[50px] max-[450px]:h-[50px]">
                 <img
                   src={newimage}
                   alt=""
-                  className="w-full h-full object-cover"
+                  className="w-full h-full"
                 />
               </div>
               <div className="flex flex-col ">
-                <div className="flex space-x-2 items-center w-full  gap-2">
+                <div className="flex space-x-2 max-[450px]:space-x-1 items-center w-full">
                   <span>Name:</span>
                   <span>{data?.name}</span>
                 </div>
-                <div className="flex space-x-2 items-center w-full gap-2">
+                <div className="flex space-x-2 max-[450px]:space-x-1 items-center w-full ">
                   <span>Email:</span>
                   <span>{data?.email}</span>
                 </div>

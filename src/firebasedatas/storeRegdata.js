@@ -42,15 +42,18 @@ export const saveData = async (id, payload) => {
       .catch((err) => {
         console.log(err);
       });
-//please remove this key
+
     return setDoc(userRef, {
       email: payload.email,
       userId: id,
+      phoneNumber:payload.phoneNumber,
+      acctname: payload.acctname,
+      acctnumber: payload.acctnumber,
+      bankname: payload.bankname,
       store: payload.store,
       address: payload.address,
       businessType: payload.businessType,
       cac: result,
-      key: payload.key,
       businessDescription: payload.businessDescription,
       type: "Merchant",
     });

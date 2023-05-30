@@ -45,7 +45,7 @@ const MerchantSignIn = () => {
             }
             else {
               //please remove this
-              dispatch(GetUsersSuccess(uid))
+              //dispatch(GetUsersSuccess(uid))
               navigate("/seller/not-activated")
             }
           })

@@ -20,6 +20,8 @@ import {
   AdminHome,
   AdminCustomer,
   UserDetail,
+  AdminMerchant,
+  MerchantDetail,
 
 } from "Pages";
 
@@ -73,6 +75,8 @@ const App = () => {
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/customer" element={<AdminCustomer />} />
           <Route path="/admin/userdetail/:id" element={<UserDetail />} />
+          <Route path="/admin/merchant" element={<AdminMerchant />} />
+          <Route path="/admin/merchantdetail/:id" element={<MerchantDetail />} />
           {/*    AUTH PAGE */}
         </Routes>
       </Router>

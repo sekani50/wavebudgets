@@ -6,7 +6,7 @@ const AdminTopBar=() => {
   
     const navigate = useNavigate()
     return (
-        <div className={`let swipeIn fixed right-0  top-0 w-full z-10 sm:w-[97%] min-[1000px]:w-[83%] xl:w-[84%] float-right  bg-white flex justify-between items-center border-b-2 shadow-lg '} `}>
+        <div className={`let swipeIn fixed right-0  top-0 w-full z-10 sm:w-[96%] min-[1000px]:w-[84%] xl:w-[84%] float-right  bg-white flex justify-between items-center border-b-2 shadow-lg min-[450px]:right-[8px] `}>
             
             <div
             onClick={() => {
