@@ -22,6 +22,7 @@ import {
   UserDetail,
   AdminMerchant,
   MerchantDetail,
+  UserHistory,
 
 } from "Pages";
 
@@ -69,6 +70,7 @@ const App = () => {
           <Route path="/seller/store/:id" element={<AddToStore />} />
           <Route path="/seller/edit-item" element={<EditStore />} />
           <Route path="/userinfo" element={<UserInfo />} />
+          <Route path="/order-history/:id" element={<UserHistory />} />
           <Route path="/seller/login" element={<MerchantSignIn />} />
           <Route path="/seller/userinfo" element={<MerchantInfo />} />
           <Route path="/seller/home" element={<MerchantHome />} />
@@ -77,6 +79,7 @@ const App = () => {
           <Route path="/admin/userdetail/:id" element={<UserDetail />} />
           <Route path="/admin/merchant" element={<AdminMerchant />} />
           <Route path="/admin/merchantdetail/:id" element={<MerchantDetail />} />
+         
           {/*    AUTH PAGE */}
         </Routes>
       </Router>

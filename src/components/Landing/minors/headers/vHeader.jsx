@@ -39,13 +39,9 @@ const VisHeader = () => {
   }, []);
 
   const handleMobileSignin = () => {
-    if (window.innerWidth <= 450) {
-      if (!name) {
-        setisMobile(true);
-      } else {
+  
         navigate("/userinfo");
-      }
-    }
+   
   };
 
   return (

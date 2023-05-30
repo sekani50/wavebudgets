@@ -33,16 +33,12 @@ const Header = () => {
         getUser()
     },[])
 
-const handleMobileSignin = () => {
 
-    if(window.innerWidth <= 450) {
-        if (!name) {
-            setisMobile(true)
-        }
-        else {
-            navigate("/userinfo")
-        }
-    }
+    const handleMobileSignin = () => {
+
+   
+        navigate("/userinfo")
+    
 }
     return (
 

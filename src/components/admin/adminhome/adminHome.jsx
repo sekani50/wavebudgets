@@ -54,10 +54,7 @@ const AdminHome = () => {
             <div className="">Number of Merchants </div>
           </div>
 
-          <div className="min-[450px]:h-[250px] h-[150px] overflow-hidden text-white  bg-[#009999] shadow-lg  p-3 flex flex-col space-y-3 items-center justify-center max-[450px]:rounded-lg rounded-xl">
-            <div className="text-5xl">{noOfItem || 0}</div>
-            <div className="">Number of Item Purchased </div>
-          </div>
+          
         </div>
       </div>
       <AdminDesktopDashboard />

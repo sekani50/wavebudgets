@@ -8,7 +8,7 @@ export const HandlePayment = async (email, amount, dispatch) => {
 
   const paystack = new PaystackPop();
 paystack.newTransaction({
-	key: 'pk_test_e2f11bcc6e8ba94bb218a9b03bae850b9cb06092',
+	key: 'pk_live_6beefc72a8a4e9825686d59f2b0287afe622b722 ',
   email,
   amount: amount * 100,
 

@@ -6,7 +6,7 @@ import newimage from "../../assets/images/new.png"
 import Header from 'components/Landing/minors/headers/header';
 import GroupHeaders from 'components/groupHeadings/groupHeaders';
 import MobileNav from 'components/mobilenav/mobileNav';
-
+import {AiOutlineArrowRight} from 'react-icons/ai'
 const UserInfo = () => {
     const {currentUser} = useSelector((state) => state.user)
     const [username, setUsername] = useState();
@@ -43,7 +43,7 @@ const UserInfo = () => {
 
         <Header/>
         <GroupHeaders headings={'User Information'}/>
-        <div className='px-3 py-6 mt-[50px] relative bg-white rounded-lg mx-auto w-[95vw] h-fit'>
+        <div className='px-3 py-6 mt-[18px]  max-[450px]:mt-[50px] relative bg-white rounded-lg mx-auto w-[95vw] h-fit'>
               
               {username && <button
               onClick={() => {
@@ -73,7 +73,26 @@ const UserInfo = () => {
                         >Sign up</div>
                     </div>}
                 </div>
+        
 
+       
+        </div>
+        <div className='w-[95vw] text-zinc-700  mx-auto px-3 my-4 py-6 bg-white '>
+          <div
+          onClick={() => {
+            if (currentUser) {
+              navigate(`/order-history/${currentUser}`)
+            }
+            else {
+              navigate("/userinfo")
+            }
+            
+          }}
+          className='flex  items-center justify-between'>
+          <span>Order History</span>
+          <AiOutlineArrowRight className="text-[23px]"/>
+          </div>
+          
         </div>
         <MobileNav/>
         </div>

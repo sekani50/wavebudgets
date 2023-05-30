@@ -18,6 +18,7 @@ import AdminCustomer from "components/admin/admincustomer/adminCustomer";
 import UserDetail from "components/admin/userdetails/userDetail";
 import MerchantDetail from "components/admin/merchantdetail/merchantDetail";
 import AdminMerchant from "components/admin/adminmerchant/adminMerchant";
+import UserHistory from "components/User/userHistory";
 export {
     HomePage,
     SignIn,
@@ -38,7 +39,8 @@ export {
     AdminCustomer,
     UserDetail,
     MerchantDetail,
-    AdminMerchant
+    AdminMerchant,
+    UserHistory
 
 }
 
