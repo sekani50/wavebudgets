@@ -207,7 +207,8 @@ const ProductDetail = () => {
       "%0a" +
       "Store:   " +
       storeName +
-      "%0a";
+      "%0a" +
+      'Product link:  ' + `https://wavebudget.vercel.app/${id}` + '%0a';
 
     window.open(url, "blank").focus();
   };
@@ -377,6 +378,7 @@ const ProductDetail = () => {
         count={count}
         store={storeName}
         curPrice={parseFloat(curPrice)}
+        plink={`https://wavebudget.vercel.app/${id}`}
       />
     </div>
   );

@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { HandlePayment } from "paystack/paystackInterface";
 import { saveHistory } from "firebasedatas/transactionHistory";
 import timeFormat from "Utils/timeFormat";
-const MobileBtns = ({ name, curPrice, image, bnpl, count, store }) => {
+const MobileBtns = ({ name, curPrice, image, bnpl, plink, count, store }) => {
   const { currentUser, payStatus } = useSelector((state) => state.user);
   const [username, setUsername] = useState();
   const dispatch = useDispatch();
@@ -109,7 +109,8 @@ const MobileBtns = ({ name, curPrice, image, bnpl, count, store }) => {
       "%0a" +
       "Store:   " +
       store +
-      "%0a";
+      "%0a" +
+      'Product link:  ' + plink + '%0a';
 
     window.open(url, "blank").focus();
   };
